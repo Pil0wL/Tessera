@@ -43,7 +43,7 @@
   position: absolute;
 
   left: calc(50%);
-  top: calc(105px);
+  top: calc(120px);
 
   width: 80%;
 
@@ -62,11 +62,22 @@
   gap: 10px;
 
   left: calc(10%);
-  top: calc(75px);
+  top: calc(50% - 375px);
   transform: translate(-50%, -50%);
 
 }
 .login-logo {
   height: 100%;
   aspect-ratio: 1 / 1;
+}
+
+.login-registration {
+  position: absolute;
+  bottom: calc(5%);
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
