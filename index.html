@@ -69,31 +69,35 @@
         <link rel="stylesheet" href="index/style.css"/>
         <div class="container-fit-to-screen color-bg">
             
+
+
+            <!-- background -->
             <div class="login-mask bg-image">
                 <img src="images/login.jpg" alt="its just clouds">
             </div>
 
-            <div class="container-borderfill login-container default-shadow">
+            <!-- logo -->
+            <div class="container-logo login-container-logo textstyle-standard">
+                <img class="login-logo" src="images/Freepik ticket.png" alt="Freepik Logo">
+                <p>Tessera</p>
+            </div>
 
+            <!-- the login details -->
+            <div class="container-borderfill login-container default-shadow">
+                <form class="my-form">
+                    <input class="textstyle-standard button-style1 login-username default-shadow" type="text" name="username" placeholder="Enter name" />
+                    <input class="textstyle-standard button-style1 login-password default-shadow" type="password" name="password" placeholder="Enter Password" />
+
+                    <button class="textstyle-standard button-style1 login-submit default-shadow" type="submit">Login</button>
+                </form>
             </div>
         </div>
 
         
         <link rel="canonical"
         href="https://pil0wl.github.io/Tessera/" />
+        <p>ticket Image by Freepik</p>
     </body>
 
-    <script>
-        function updateSizes() {
-        const elements = document.querySelectorAll(".container-fit-to-screen");
-
-        elements.forEach(el => {
-            el.style.height = document.documentElement.scrollHeight + "px";
-            el.style.width = document.documentElement.scrollWidth + "px";
-        });
-        }
-
-        updateSizes();
-        window.addEventListener("resize", updateSizes);
-    </script>
+    <script src="globalscript.js"></script>
 </html>

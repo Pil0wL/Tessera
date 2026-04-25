@@ -14,22 +14,6 @@ html, body {
   margin: 0;
 }
 
-.button-style1 {
-  background-color: var(--btn-fill-color);
-  color: var(--btn-text-color);
-
-  border: 5px solid var(--btn-stroke-color);
-
-  font-family: "Times New Roman", serif;
-  font-size: 24px;
-  font-weight: normal;
-
-  padding: 12px 24px;
-
-
-  cursor: pointer;
-}
-
 /**************** Quick Settings ****************/
 
 .default-shadow {
@@ -47,11 +31,11 @@ html, body {
 
 /**************** Container Types ****************/
 .container-fit-to-screen {
-  width: 100vw;
+  width: 100vw; /* */
   height: 100vh;
-  overflow-y: auto;
-  overflow-x: auto;
   position: relative;
+
+  background: linear-gradient(to top, var(--bg-fill) 43%, var(--bg-border) 95%);
 }
 
 
@@ -62,4 +46,39 @@ html, body {
   background: var(--main-border);
 }
 
-/**************** Container Types ****************/
+.container-logo {
+  color: var(--text-on-bg);
+  position: absolute;
+  
+  height: 50px;
+  width: 200px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/**************** Text Settings ****************/
+.textstyle-standard {
+  color: var(--text-on-bg);
+
+  font-family: "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: normal;
+}
+.button-style1 {
+  background-color: var(--main-fill);
+  border: 5px solid var(--main-border);
+
+  padding: 12px 24px;
+  height: 50px;
+
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
