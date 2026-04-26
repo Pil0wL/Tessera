@@ -15,17 +15,19 @@
     <body>
         <link rel="stylesheet" href="./style.css"/>
         <link rel="stylesheet" href="./style_myactivity.css"/>
+        <link rel="stylesheet" href="./style_submitticket.css"/>
+        <link rel="stylesheet" href="./style_account.css"/>
 
 
         <div class="container-fit-to-screen color-bg">
-            
+
 
             <!-- Quick Access -->
             <div class="homepage-container-quick-access default-shadow">
                 <!-- logo -->
                 <div class="container-logo homepage-container-logo textstyle-standard">
                     <img src="../../images/Freepik ticket.png" alt="Freepik Logo">
-                    <p>Tessera</p>
+                    Tessera
                 </div>
 
                 <!-- buttons -->
@@ -42,10 +44,13 @@
 
             <!-- Panels -->
             <div class="homepage-container-panels">
+                <!-- Welcome Message (put in here because the middle of it is in the same place as the panels) -->
+                <div class="textstyle-standard homepage-welcome">Welcome to Tessera! Placeholder
+                </div>
                 
                 <!-- My Activity -->
                 <div id="my_activity" class="homepage-individual-panel">
-                    <div id="my_activity_1" class="homepage-myactivity-container">
+                    <div id="my_activity_1" class="homepage-internal-panel-container">
                         <input type="text" class="textstyle-standard button-style1 default-shadow homepage-myactivity-1-search" placeholder="Search...">
                     
                         <div class="textstyle-standard button-style1 default-shadow homepage-myactivity-1-1">
@@ -58,7 +63,7 @@
                             Actions
                         </div>
                     </div>
-                    <div id="my_activity_2" class="homepage-myactivity-container">
+                    <div id="my_activity_2" class="homepage-internal-panel-container">
                         <input type="text" class="textstyle-standard button-style1 default-shadow homepage-myactivity-1-search" placeholder="Search...">
                     
                         <div class="textstyle-standard button-style1 default-shadow homepage-myactivity-2-1">
@@ -68,7 +73,7 @@
                             Details
                         </div>
                     </div>
-                    <div id="my_activity_3" class="homepage-myactivity-container">
+                    <div id="my_activity_3" class="homepage-internal-panel-container">
                         
                         <div class="textstyle-standard container-mainfill homepage-myactivity-3-1">
                             Graph here
@@ -95,7 +100,68 @@
 
                 <!-- Submit a Ticket -->
                 <div id="submit_ticket" class="homepage-individual-panel">
-                    submit ticket
+                    <div id="submit_ticket_greetings" class="homepage-internal-panel-container">
+                        <div class="textstyle-standard homepage-submitticket-titletext">
+                            Welcome to submit a ticket!
+                        </div>
+
+
+                        <div class="textstyle-standard homepage-submitticket-greetings-quickviewtitle">
+                            Your tickets ( more info in the activity page):
+                        </div>
+                        <div class="textstyle-standard button-style1 default-shadow homepage-submitticket-greetings-quickview">
+                            short ticket history here
+                        </div>
+
+                        <button onclick="submitaticketOpenPage('submit_ticket_forum')" class="textstyle-standard button-style1 default-shadow homepage-submitticket-greetings-submit">New Ticket</button>
+                    </div>
+                    <div id="submit_ticket_forum" class="homepage-internal-panel-container">
+                        <div class="textstyle-standard homepage-submitticket-forum-title">
+                            Enter your feedback for a ticket ( 200 - 300 words ) : 
+                        </div>
+                        
+                        <div class="container-mainfill homepage-submitticket-forum-entry" >
+                            <textarea id="submit_ticket_forum_textarea" class="textstyle-standard" style="align-items: start;" placeholder="...">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </textarea>
+                        </div>
+                        
+                        <button onclick="submitaticketOpenPage('submit_ticket_review')" class="textstyle-standard button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Next
+                        </button>
+                    </div>
+                    <div id="submit_ticket_review" class="homepage-internal-panel-container">
+                        
+                        <div class="textstyle-standard homepage-submitticket-forum-title">
+                           Make sure everything here is correct
+                        </div>
+                        
+                        <div id="submit_ticket_review_toreview" class="container-mainfill homepage-submitticket-forum-entry textstyle-standard" style="color: #ffffff79" >
+                            <!-- content is put in through code -->
+                        </div>
+                        
+                        <button onclick="submitaticketOpenPage('submit_ticket_forum')" class="textstyle-standard button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Back
+                        </button>
+                    
+                        <button style="right: 225px;" onclick="submitaticketOpenPage('submit_ticket_greetings')" class="textstyle-standard button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Cancel
+                        </button>
+                    
+                        <button style="left: 0px; right: auto;" onclick="submitaticketOpenPage('submit_ticket_confirmation')" class="textstyle-standard button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Confirm
+                        </button>
+                    
+                    </div>
+                    <div id="submit_ticket_confirmation" class="homepage-internal-panel-container">
+                        
+                        <div style="top: 50%; transform: translate(0%, -50%);" class="textstyle-standard homepage-submitticket-titletext">
+                            Success!
+                        </div>
+                        <button onclick="submitaticketOpenPage('submit_ticket_greetings')" class="textstyle-standard button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Confirm
+                        </button>
+                    
+                    </div>
                 </div>
 
                 <!-- Messages -->
@@ -108,8 +174,27 @@
                         mmessaags
                     </div>
                 </div>
+                
+                
+                <!-- My Account -->
                 <div id="my_account" class="homepage-individual-panel">
-                    mu account
+
+                    <div id="submit_ticket_greetings" class="homepage-internal-panel-container">
+                        
+                        <div class="textstyle-standard container-mainfill homepage-account-title">
+                            short ticket history here
+                        </div>
+                        <div class="textstyle-standard container-borderfill homepage-account-title">
+                            short ticket history here
+                        </div>
+                        <div class="textstyle-standard container-borderfill homepage-account-profile">
+                            short ticket history here
+                        </div>
+                        
+                        <button onclick="window.location.href = '../../index.html';" class="textstyle-standard button-style1 default-shadow homepage-account-logout">
+                            Logout
+                        </button>
+                    </div>
                 </div>
             </div>
 

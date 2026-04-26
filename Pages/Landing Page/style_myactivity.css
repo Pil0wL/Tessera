@@ -1,15 +1,4 @@
 
-.homepage-myactivity-container {
-  display: none;
-  position: absolute;
-  
-  left: 50px;
-  top: 50px;
-
-  height: calc(100% - 100px);
-  width: calc(100% - 100px);
-}
-
 .homepage-myactivity-button {
   cursor: pointer;
   position: absolute;

@@ -1,0 +1,48 @@
+
+.homepage-account-datecreated {
+  position: absolute;
+
+  left: 0px;
+  width: 200px;
+  height: 64px;
+
+  font-size: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.homepage-account-settings {
+  position: absolute;
+
+  right: 0px;
+
+  width: 40%;
+  height: 100%;
+}
+.homepage-account-title {
+  position: absolute;
+
+  top: calc(50% - 125px);
+
+  width: 40%;
+  height: 100%;
+}
+.homepage-account-profile {
+  position: absolute;
+  transform: translate(0, -50%);
+
+  top: 50%;
+
+  width: 50%;
+  height: 200px;
+}
+.homepage-account-logout {
+  position: absolute;
+  transform: none;
+
+  left: 0px;
+  bottom: 0px;
+
+  width: 200px;
+  cursor: pointer;
+}

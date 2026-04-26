@@ -1,5 +1,20 @@
 
 
+.homepage-welcome {
+  position: absolute;
+  transform: none;
+
+  left: 25%;
+  top: 25%;
+
+  width: 50%;
+  height: 50%;
+
+  font-size: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .homepage-container-quick-access {
   position: absolute;
 
@@ -23,6 +38,18 @@
   width: calc(100% - 300px);
   height: 100%;
 }
+
+.homepage-internal-panel-container {
+  display: block;
+  position: absolute;
+  
+  left: 25px;
+  top: 25px;
+
+  height: calc(100% - 50px);
+  width: calc(100% - 50px);
+}
+
 
 .homepage-container-logo {
   font-size: 48px;

@@ -47,6 +47,10 @@ html, body {
   border-radius: 5px;
   background: var(--secondary-fill);
 }
+.container-borderfill {
+  border-radius: 5px;
+  background: var(--main-border);
+}
 
 .container-logo {
   color: var(--text-on-bg);
@@ -71,7 +75,17 @@ html, body {
   font-family: "Times New Roman", serif;
   font-size: 24px;
   font-weight: normal;
+  text-align: center;
 }
+body * {
+  color: var(--text-on-bg);
+
+  font-family: "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
+}
+
 .button-style1 {
   box-sizing: border-box;
   background-color: var(--main-fill);
