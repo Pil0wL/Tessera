@@ -50,6 +50,7 @@
   bottom: calc(10%);
 
   width: 25%;
+  cursor: pointer;
 }
 .registration-title {
   position: absolute;

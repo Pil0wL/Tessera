@@ -11,7 +11,7 @@ function myactivityOpenPage(id) {
     p.style.display = "none";
   });
 
-  document.getElementById(id).style.display = "flex";
+  document.getElementById(id).style.display = "block";
 }
 
 window.addEventListener("load", () => {

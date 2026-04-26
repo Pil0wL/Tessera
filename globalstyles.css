@@ -39,9 +39,13 @@ html, body {
 }
 
 
-.container-borderfill {
+.container-mainfill {
   border-radius: 5px;
-  background: var(--main-border);
+  background: var(--main-fill);
+}
+.container-secondaryfill {
+  border-radius: 5px;
+  background: var(--secondary-fill);
 }
 
 .container-logo {
