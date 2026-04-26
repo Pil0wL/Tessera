@@ -1,0 +1,78 @@
+
+.login-container {
+  position: absolute;
+
+  left: calc(10% + 50px);
+  top: calc(50%);
+
+  width: 348px;
+  height: 595px;
+
+  border-radius: 15px;
+
+  transform: translate(-50%, -50%);
+}
+.login-mask {
+  overflow: clip;
+  max-width: 100%;
+  max-height: 100%;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 30%,
+    black 70%,
+    black 100%
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent 30%,
+    black 70%,
+    black 100%
+  );
+}
+
+.login-username {
+  position: absolute;
+
+  left: calc(50%);
+  top: calc(50px);
+
+  width: 80%;
+}
+.login-password {
+  position: absolute;
+
+  left: calc(50%);
+  top: calc(120px);
+
+  width: 80%;
+
+}
+.login-submit {
+  position: absolute;
+
+  left: calc(50%);
+  bottom: calc(20%);
+
+  width: 50%;
+}
+.login-container-logo {
+  font-size: 64px;
+  height: 100px;
+  gap: 10px;
+
+  left: calc(10%);
+  top: calc(50% - 375px);
+  transform: translate(-50%, -50%);
+
+}
+.login-registration {
+  position: absolute;
+  bottom: calc(5%);
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

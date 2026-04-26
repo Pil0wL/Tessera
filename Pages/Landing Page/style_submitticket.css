@@ -1,0 +1,79 @@
+
+.homepage-submitticket-titletext {
+  position: absolute;
+
+  top: 0px;
+  width: 100%;
+  height: 64px;
+
+  font-size: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.homepage-submitticket-greetings-quickviewtitle {
+  position: absolute;
+
+  top: calc(60% - 25% - 35px);
+  width: 100%;
+  height: 50px;
+}
+.homepage-submitticket-greetings-quickview {
+  position: absolute;
+  transform: translate(0%, -50%);
+
+  top: 60%;
+  width: 100%;
+  height: 50%;
+}
+.homepage-submitticket-greetings-submit {
+  position: absolute;
+  transform: translate(-50%, 0%);
+
+  left: 50%;
+  bottom: 0px;
+
+  width: 200px;
+  cursor: pointer;
+}
+.homepage-submitticket-forum-title {
+  position: absolute;
+
+  top: 0px;
+  width: 100%;
+  height: 64px;
+
+  display: flex;
+  justify-content: left;
+}
+.homepage-submitticket-forum-entry {
+  position: absolute;
+
+  top: 50px;
+  width: calc(100% - 50px);
+  height: calc(75% - 50px);
+  padding: 25px;
+}
+
+.homepage-submitticket-forum-entry textarea {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  text-align: left;
+  vertical-align: top;
+}
+.homepage-submitticket-lowerrightbutton {
+  position: absolute;
+  transform: none;
+
+  right: 0px;
+  bottom: 0px;
+
+  width: 200px;
+  cursor: pointer;
+}
