@@ -1,117 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tessera</title>
-    <style>
-            body {
-                background-color: #dceafa;
-            }
-            div.container, body {
-                text-align: center;
-            }
-            ol, table {
-                display: inline-block;
-                text-align: left;
-            }
-            td {
-                border: 1px solid black;
-            }
-    </style>
+    <title>Tessera - Home Page</title>
+    <head>
+        <title>Tessera</title>
+        <meta property="og:title" content="Tessera" />
+        <meta property="twitter:card" content="summary_large_image" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="../../globalstyles.css"/>
+    </head>
 </head>
-<body>
-    
-    <header>
-        <h1 id="Home">Welcome to <strong>Tessera</strong>!</h1>
-        
-    </header>
-
-    <img 
-        src="https://media.istockphoto.com/id/1185727166/photo/african-american-postal-worker-delivering-mail-in-the-city.jpg?s=612x612&w=0&k=20&c=W4YJboIh1XJ1RIlG8UGmgBzsy6cV5pmECt05OODJ4qk="
-        alt="Platform Illustration"
-        width="306" height="204"
-    >
-    
-    <br><br>
-    
-    <nav>
-        <a href="#Home">Home</a> • 
-        <a href="#About">About Us</a> • 
-        <a href="#Features">Features</a> • 
-        <a href="#Contact">Contact</a>
-        
-    <!--
-    <br><br><br><br>
-    <h2 id="Home">Home</h2>
-    <img src="https://img.freepik.com/free-photo/smoky-watercolor-cloud-background_1409-1733.jpg?semt=ais_hybrid&w=740&q=80" alt="Platform Illustration">
-    -->
-    
-    <br><br><br><br>
+    <body>
+        <link rel="stylesheet" href="./style.css"/>
 
 
-    <h2 id="About">About Us</h2>
-    <p>A program that is built to be light weight with features like a messaging system that is mostly one-way for announcments from your provider, profile and statistics to let people see how much tickets you've sent in that scope ( you may disable this )<br>Our purpose is to provide a service for other services that is in need of feedback and/or reports from their customers, with it being incredibly accessible for it being light weight</p>
+        <div class="container-fit-to-screen color-bg">
+            
 
-    <br><br>
+            <!-- Quick Access -->
+            <div class="homepage-container-quick-access default-shadow">
+                <!-- logo -->
+                <div class="container-logo homepage-container-logo textstyle-standard">
+                    <img src="../../images/Freepik ticket.png" alt="Freepik Logo">
+                    <p>Tessera</p>
+                </div>
 
-    <h2 id="Features">Features</h2>
-    <div class="container">
-        <ol>
-            <li><strong>Statistics</strong></li>
-            <li><strong>Notifications</strong></li>
-            <li><strong>Admin Panel</strong></li>
-        </ol>
-    </div>
+                <!-- buttons -->
+                <button onclick="openPopup('my_activity')" class="textstyle-standard button-style1 default-shadow homepage-quickacess-button" >My Activity</button>
+            
+                <button onclick="openPopup('submit_ticket')" class="textstyle-standard button-style1 default-shadow homepage-quickacess-button" style="top: 230px;">Submit a Ticket</button>
+            
+                <button onclick="openPopup('messages')" class="textstyle-standard button-style1 default-shadow homepage-quickacess-button" style="top: 295px;">Messages</button>
+                
+                <button onclick="openPopup('my_account')" class="textstyle-standard button-style1 default-shadow homepage-quickacess-button" style="top: auto; bottom: 50px;">My Account</button>
 
-    <br><br>
+            
+            </div>
 
-    <h2 id="Contact">Contact</h2>
-    <div class="container">
-        <table>
-            <tr>
-                <td>Email</td>
-                <td>cadmonjas.libetario@perpetual.edu.ph </td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td>0987 654 3210</td>
-            </tr>
-            <tr>
-                <td>Adress</td>
-                <td>123 Anywhere St., Any City, ST 12345</td>
-            </tr>
-        </table>
-    </div>
+            <!-- Panels -->
+            <div class="homepage-container-panels">
+                
+                <!-- My Activity -->
+                <div id="my_activity" class="homepage-individual-panel">
+                    <div id="my_activity_1" class="homepage-myactivity-container">
+                        1
+                    </div>
+                    <div id="my_activity_2" class="homepage-myactivity-container">
+                        2
+                    </div>
+                    <div id="my_activity_3" class="homepage-myactivity-container">
+                        3
+                    </div>
 
-    
-    <div class="container">
-        <table style="border: 1px solid black; text-align: center;">
-            <tr>
-                <th colspan="5">Available In</th>
-            </tr>
-            <tr>
-                <td>Philippines</td>
-                <td>Canada</td>
-                <td>America</td>
-                <td>Singapore</td>
-                <td>Malaysia</td>
-            </tr>
-        </table>
-    </div>
-
-
-    <br><br><br><br>
-
-    <footer>
-    Student Name: Libetario, Cadmon Jas A.<br>
-    Course: Bachelor of Science in Computer Engineering (BSCOME)<br>
-    2nd Yr.<br>
-    <a href="#top">Back to Top</a>
-    </footer>
-    
+                    <!-- Buttons -->
+                    <div onclick="myactivityOpenPage('my_activity_1')" class="textstyle-standard button-style1 default-shadow homepage-myactivity-button">
+                        1
+                    </div>
+                    <div onclick="myactivityOpenPage('my_activity_2')" class="textstyle-standard button-style1 default-shadow homepage-myactivity-button" style="left: 80px;">
+                        2
+                    </div>
+                    <div onclick="myactivityOpenPage('my_activity_3')" class="textstyle-standard button-style1 default-shadow homepage-myactivity-button" style="left: 135px;">
+                        3
+                    </div>
+                </div>
 
 
+                <!-- Messages -->
+                <div id="messages" class="homepage-individual-panel">
+                    
+                    <div class="textstyle-standard button-style1 homepage-messages-1 default-shadow">
+                        mmessaags
+                    </div>
+                    <div class="textstyle-standard container-borderfill homepage-messages-2">
+                        mmessaags
+                    </div>
+                </div>
+                <div id="my_account" class="homepage-individual-panel">
+                    mu account
+                </div>
+            </div>
 
-</body>
+        </div>
+        <link rel="canonical" href="https://pil0wl.github.io/Tessera/">
+
+    </body>
+    <script src="../../globalscript.js"></script>
+    <script src="./script.js"></script>
 </html>

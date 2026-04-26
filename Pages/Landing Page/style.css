@@ -1,0 +1,103 @@
+
+
+.homepage-container-quick-access {
+  position: absolute;
+
+  left: calc(-20px);
+  top: calc(0%);
+  background-color: var(--secondary-fill);
+  border: 5px solid var(--main-border);
+
+  width: 300px;
+  height: calc(100% - 10px);
+
+  border-radius: 15px;
+
+}
+
+.homepage-container-panels { /* must be the remainder of homepage-container-quick-access */
+  position: absolute;
+
+  left: calc(300px);
+
+  width: calc(100% - 300px);
+  height: 100%;
+}
+
+.homepage-container-logo {
+  font-size: 48px;
+  height: 75px;
+  gap: 10px;
+
+  right: calc(50% - 80px);
+  top: calc(25px);
+
+}
+
+.homepage-quickacess-button {
+  position: absolute;
+
+  left: calc(50% + 5px);
+  top: calc(165px);
+
+  width: 75%;
+  cursor: pointer;
+}
+
+.homepage-individual-panel {
+
+  display: none; /* is changed to "flex" when toggled */
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+
+  background-color: var(--secondary-fill);
+  border: 5px solid var(--main-border);
+
+  left: calc(100px);
+  top: calc(100px);
+
+  width: calc(100% - 300px);
+  height: calc(100% - 300px);
+  padding: 50px;
+}
+
+.homepage-myactivity-container {
+  display: none;
+
+  height: 100%;
+  width: 100%;
+}
+
+.homepage-myactivity-button {
+  cursor: pointer;
+  position: absolute;
+
+  bottom: -85px;
+  left: calc(25px);
+
+  height: 50px;
+  width: 50px;
+  padding: 0px;
+
+  border-radius: 50px;
+}
+
+
+.homepage-messages-1 {
+  position: relative;
+  transform: none;
+  left: calc(-25px);
+
+  height: 100%;
+  width: 300px;
+}
+
+.homepage-messages-2 {
+  position: relative;
+  left: calc(25px);
+
+  height: 100%;
+  width: calc(100% - 350px);
+}

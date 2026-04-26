@@ -40,9 +40,7 @@ html, body {
 
 
 .container-borderfill {
-  position: relative;
-  width: 100%;
-  height: 300px;
+  border-radius: 5px;
   background: var(--main-border);
 }
 
@@ -58,6 +56,10 @@ html, body {
   gap: 10px;
 }
 
+.container-logo img {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
 /**************** Text Settings ****************/
 .textstyle-standard {
   color: var(--text-on-bg);
@@ -76,8 +78,6 @@ html, body {
 
   border-radius: 5px;
   transform: translate(-50%, -50%);
-
-  cursor: pointer;
 
   display: flex;
   align-items: center;
