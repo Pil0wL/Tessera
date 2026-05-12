@@ -17,7 +17,7 @@ loginForm.addEventListener('submit', async (event) => {
 
         if (isSignedIn) {
             alert("Login Successful!");
-            location.href = "../../Home Page/Home Page.html";
+            location.href = "Pages/Home Page/Home Page.html";
         } else if (nextStep.signInStep === "CONFIRM_SIGN_UP") {
             alert("Please confirm your email first.");
         }

@@ -17,6 +17,20 @@ function switchCategory(id) {
 
 window.addEventListener("load", () => {
   disableAll();
+
+  const to_link = {
+    OverviewButton: "Overview",
+    UserMaButton: "UserMa",
+  };
+
+  for (const key in to_link) {
+    document.getElementById(key).addEventListener("click", () => {
+      switchCategory(to_link[key]);
+    });
+  }
+
+
+  
 });
 
 

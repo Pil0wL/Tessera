@@ -32,17 +32,17 @@
                 </div>
 
                 <!-- buttons -->
-                <button onclick="openPopup('my_activity')" class="button-style1 default-shadow homepage-quickacess-button" >My Activity</button>
+                <button id="popup_my_activity" class="button-style1 default-shadow homepage-quickacess-button" >My Activity</button>
             
-                <button onclick="openPopup('submit_ticket')" class="button-style1 default-shadow homepage-quickacess-button" style="top: 230px;">Submit a Ticket</button>
+                <button id="popup_submit_ticket" class="button-style1 default-shadow homepage-quickacess-button" style="top: 230px;">Submit a Ticket</button>
             
-                <button onclick="openPopup('messages')" class="button-style1 default-shadow homepage-quickacess-button" style="top: 295px;">Messages</button>
+                <button id="popup_messages" class="button-style1 default-shadow homepage-quickacess-button" style="top: 295px;">Messages</button>
                 
-                <button onclick="location.href='../Admin Panel/Admin Panel.html';" class="button-style1 default-shadow homepage-quickacess-button" style="top: 360px;">Go to Admin Panel</button>
+                <button id="gotoadminpanel" class="button-style1 default-shadow homepage-quickacess-button" style="top: 360px;">Go to Admin Panel</button>
                 
 
 
-                <button onclick="openPopup('my_account')" class="button-style1 default-shadow homepage-quickacess-button" style="top: auto; bottom: 50px;">My Account</button>
+                <button id="popup_my_account" class="button-style1 default-shadow homepage-quickacess-button" style="top: auto; bottom: 50px;">My Account</button>
             
             </div>
 
@@ -91,19 +91,20 @@
                     </div>
 
                     <!-- Buttons -->
-                    <div onclick="myactivityOpenPage('my_activity_1')" class="button-style1 default-shadow homepage-myactivity-button">
+                    <div id="my_activity_button_1" class="button-style1 default-shadow homepage-myactivity-button">
                         1
                     </div>
-                    <div onclick="myactivityOpenPage('my_activity_2')" class="button-style1 default-shadow homepage-myactivity-button" style="left: 80px;">
+                    <div id="my_activity_button_2" class="button-style1 default-shadow homepage-myactivity-button" style="left: 80px;">
                         2
                     </div>
-                    <div onclick="myactivityOpenPage('my_activity_3')" class="button-style1 default-shadow homepage-myactivity-button" style="left: 135px;">
+                    <div id="my_activity_button_3" class="button-style1 default-shadow homepage-myactivity-button" style="left: 135px;">
                         3
                     </div>
                 </div>
 
                 <!-- Submit a Ticket -->
                 <div id="submit_ticket" class="homepage-individual-panel">
+                    <!-- greetings -->
                     <div id="submit_ticket_greetings" class="homepage-internal-panel-container">
                         <div class="homepage-submitticket-titletext">
                             Welcome to submit a ticket!
@@ -117,8 +118,10 @@
                             short ticket history here
                         </div>
 
-                        <button onclick="submitaticketOpenPage('submit_ticket_forum')" class="button-style1 default-shadow homepage-submitticket-greetings-submit">New Ticket</button>
+                        <button id="button_submit_ticket_greetings" class="button-style1 default-shadow homepage-submitticket-greetings-submit">New Ticket</button>
                     </div>
+
+                    <!-- forum -->
                     <div id="submit_ticket_forum" class="homepage-internal-panel-container">
                         <div class="homepage-submitticket-forum-title">
                             Enter your feedback for a ticket ( 200 - 300 words ) : 
@@ -129,10 +132,12 @@
                             </textarea>
                         </div>
                         
-                        <button onclick="submitaticketOpenPage('submit_ticket_review')" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                        <button id="button_submit_ticket_forum" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
                             Next
                         </button>
                     </div>
+
+                    <!-- review -->
                     <div id="submit_ticket_review" class="homepage-internal-panel-container">
                         
                         <div class="homepage-submitticket-forum-title">
@@ -143,25 +148,27 @@
                             <!-- content is put in through code -->
                         </div>
                         
-                        <button onclick="submitaticketOpenPage('submit_ticket_forum')" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                        <button id="button_submit_ticket_review_1" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
                             Back
                         </button>
                     
-                        <button style="right: 225px;" onclick="submitaticketOpenPage('submit_ticket_greetings')" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                        <button style="right: 225px;" id="button_submit_ticket_review_2" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
                             Cancel
                         </button>
                     
-                        <button style="left: 0px; right: auto;" onclick="submitaticketOpenPage('submit_ticket_confirmation')" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                        <button style="left: 0px; right: auto;" id="button_submit_ticket_review_3" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
                             Confirm
                         </button>
                     
                     </div>
+
+                    <!-- confirmation -->
                     <div id="submit_ticket_confirmation" class="homepage-internal-panel-container">
                         
                         <div style="top: 50%; transform: translate(0%, -50%);" class="homepage-submitticket-titletext">
                             Success!
                         </div>
-                        <button onclick="submitaticketOpenPage('submit_ticket_greetings')" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                        <button id="button_submit_ticket_confirmation" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
                             Confirm
                         </button>
                     
@@ -194,7 +201,7 @@
                             profile icon
                         </div>
                         
-                        <button onclick="window.location.href = '../../index.html';" class="button-style1 default-shadow homepage-account-logout">
+                        <button id="logout" class="button-style1 default-shadow homepage-account-logout">
                             Logout
                         </button>
 
@@ -246,4 +253,5 @@
     </body>
     <script src="../../globalscript.js"></script>
     <script src="./script.js"></script>
+    <script type="module" src="./module.js"></script>
 </html>

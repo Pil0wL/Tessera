@@ -1,5 +1,5 @@
 import { Amplify } from "https://esm.sh/aws-amplify";
-import { getCurrentUser } from "https://esm.sh/@aws-amplify/auth";
+import { getCurrentUser, signOut } from "https://esm.sh/@aws-amplify/auth";
 
 // live laugh larp
 
@@ -30,5 +30,16 @@ export async function IsLoggedIn() {
     return user;
   } catch (error) {
     console.log("User is not logged in");
+  }
+}
+
+export async function handleSignOut() {
+  try {
+    await signOut();
+    // The Hub listener we set up earlier will detect this 
+    // and you can redirect the user or update the UI there.
+    window.location.href = '/index.html'; 
+  } catch (error) {
+    console.error('Error signing out: ', error);
   }
 }
