@@ -5,12 +5,13 @@
         <meta property="og:title" content="Tessera" />
         <meta property="twitter:card" content="summary_large_image" />
 
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="globalstyles.css"/>
     </head>
     <body>
-    
+        
         <link rel="stylesheet" href="Pages/Landing Page/style.css"/>
         <div class="container-fit-to-screen color-bg">
             
@@ -28,10 +29,14 @@
             </div>
 
             <!-- the login details -->
-            <div class="container-secondaryfill login-container default-shadow">
+            <div id="loggedin" class="container-secondaryfill login-container default-shadow">
+                <button onclick="window.location.href='Pages/Home Page/Home Page.html';" class="button-style1 login-input default-shadow">You are already logged in! ( go to next page )</button>
+                
+            </div>
+            <div id="notloggedin" class="container-secondaryfill login-container default-shadow">
                 <form id="loginForm">
-                    <input id="email" class="button-style1 login-email default-shadow" type="email" name="email" placeholder="Enter Email" />
-                    <input id="password" class="button-style1 login-password default-shadow" type="password" name="password" placeholder="Enter Password" />
+                    <input id="email" class="button-style1 login-input default-shadow" type="email" name="email" placeholder="Enter Email" />
+                    <input id="password" style="top: 120px;" class="button-style1 login-input default-shadow" type="password" name="password" placeholder="Enter Password" />
 
                     <button class="button-style1 login-submit default-shadow" type="submit">Login</button>
                 </form>
@@ -41,6 +46,7 @@
                     <a href="Pages/Registration/Registration.html">New to Tessera? ( Register)</a>
                 </div>
             </div>
+
 
         </div>
 

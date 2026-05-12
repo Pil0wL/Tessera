@@ -1,4 +1,7 @@
 import { Amplify } from "https://esm.sh/aws-amplify";
+import { getCurrentUser } from "https://esm.sh/@aws-amplify/auth";
+
+// live laugh larp
 
 Amplify.configure({
   Auth: {
@@ -19,3 +22,13 @@ Amplify.configure({
   }
 });
 
+
+export async function IsLoggedIn() {
+  try {
+    const user = await getCurrentUser();
+    console.log("User is logged in:", user);
+    return user;
+  } catch (error) {
+    console.log("User is not logged in");
+  }
+}

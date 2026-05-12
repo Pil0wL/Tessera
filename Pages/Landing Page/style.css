@@ -31,7 +31,7 @@
   );
 }
 
-.login-email {
+.login-input {
   position: absolute;
 
   left: calc(50%);
