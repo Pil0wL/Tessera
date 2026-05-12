@@ -24,7 +24,7 @@
   );
 }
 
-.registration-username {
+.registration-input {
   position: absolute;
 
   left: calc(50%);
@@ -32,17 +32,8 @@
 
   width: 25%;
 }
-.registration-password {
-  position: absolute;
 
-  left: calc(50%);
-  top: calc(165px);
 
-  width: 25%;
-}
-.registration-re-password {
-  top: calc(220px);
-}
 .registration-submit {
   position: absolute;
 

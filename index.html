@@ -11,7 +11,7 @@
     </head>
     <body>
     
-        <link rel="stylesheet" href="Pages/Login/style.css"/>
+        <link rel="stylesheet" href="Pages/Landing Page/style.css"/>
         <div class="container-fit-to-screen color-bg">
             
 
@@ -29,9 +29,9 @@
 
             <!-- the login details -->
             <div class="container-secondaryfill login-container default-shadow">
-                <form>
-                    <input class="button-style1 login-username default-shadow" type="text" name="username" placeholder="Enter name" />
-                    <input class="button-style1 login-password default-shadow" type="password" name="password" placeholder="Enter Password" />
+                <form id="loginForm">
+                    <input id="email" class="button-style1 login-email default-shadow" type="email" name="email" placeholder="Enter Email" />
+                    <input id="password" class="button-style1 login-password default-shadow" type="password" name="password" placeholder="Enter Password" />
 
                     <button class="button-style1 login-submit default-shadow" type="submit">Login</button>
                 </form>
@@ -49,4 +49,7 @@
     </body>
 
     <script src="globalscript.js"></script>
+    <script src="Pages/Landing Page/script.js"></script>
+    <script type="module" src="local_modules/aws main.js"></script>
+    <script type="module" src="Pages/Landing Page/module.js"></script>
 </html>
