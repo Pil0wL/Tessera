@@ -38,7 +38,7 @@ export async function handleSignOut() {
     await signOut();
     // The Hub listener we set up earlier will detect this 
     // and you can redirect the user or update the UI there.
-    window.location.href = "index.html"; 
+    window.location.href = "/index.html"; 
   } catch (error) {
     console.error('Error signing out: ', error);
   }
