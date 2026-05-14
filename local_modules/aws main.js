@@ -1,6 +1,6 @@
 import { Amplify } from "https://esm.sh/aws-amplify";
 import { getCurrentUser, signOut } from "https://esm.sh/@aws-amplify/auth";
-import { Hub } from "https://esm.sh/@aws-amplify/core";
+import "https://esm.sh/aws-amplify/auth/enable-oauth-listener";
 
 // live laugh larp
 
@@ -14,8 +14,8 @@ Amplify.configure({
         oauth: {
           domain: "ap-southeast-1cdzf5ewms.auth.ap-southeast-1.amazoncognito.com",
           scopes: ["openid", "email", "profile"],
-          redirectSignIn: ["https://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
-          redirectSignOut: ["https://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
+          redirectSignIn: ["http://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
+          redirectSignOut: ["http://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
           responseType: "code"
         }
       }
@@ -25,6 +25,7 @@ Amplify.configure({
 // */
 
 /*
+import { Hub } from "https://esm.sh/aws-amplify/utils";
 Hub.listen("auth", ({ payload }) => {
     console.log("Auth Event:", payload.event);
     if (payload.event === "signedIn") {
