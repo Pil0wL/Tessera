@@ -12,7 +12,7 @@ Amplify.configure({
       loginWith: {
         email: true,
         oauth: {
-          domain: "https://ap-southeast-1cdzf5ewms.auth.ap-southeast-1.amazoncognito.com",
+          domain: "ap-southeast-1cdzf5ewms.auth.ap-southeast-1.amazoncognito.com",
           scopes: ["openid", "email", "profile"],
           redirectSignIn: ["127.0.0.1:5500/index.html"],
           redirectSignOut: ["127.0.0.1:5500/index.html"],
