@@ -49,7 +49,7 @@ window.addEventListener("load", () => {
       });
     }
     document.getElementById("gotoadminpanel").addEventListener("click", () => {
-      window.location.href="./Pages/Admin Panel/Admin Panel.html";
+      window.location.href=".././Admin Panel/Admin Panel.html";
     });
   }
 
