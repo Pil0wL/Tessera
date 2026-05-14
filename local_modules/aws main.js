@@ -14,8 +14,8 @@ Amplify.configure({
         oauth: {
           domain: "ap-southeast-1cdzf5ewms.auth.ap-southeast-1.amazoncognito.com",
           scopes: ["openid", "email", "profile"],
-          redirectSignIn: ["127.0.0.1:5500/index.html"],
-          redirectSignOut: ["127.0.0.1:5500/index.html"],
+          redirectSignIn: ["https://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
+          redirectSignOut: ["https://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
           responseType: "code"
         }
       }
