@@ -52,7 +52,7 @@ confirmForm.addEventListener("submit", async (event) => {
         if (isSignUpComplete) {
             alert("Verification successful! You can now log in.");
 
-            location.href = "../../index.html";
+            location.href = "index.html";
         }
     } catch (error) {
         console.error("Error confirming sign up", error);

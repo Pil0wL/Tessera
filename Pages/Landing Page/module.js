@@ -1,9 +1,9 @@
-import { signIn } from "https://esm.sh/aws-amplify/auth";
-import { IsLoggedIn } from "../../local_modules/aws main.js";
+import { signIn } from "https://esm.sh/@aws-amplify/auth";
+import { IsLoggedIn } from "/local_modules/aws main.js";
 
 const loginForm = document.getElementById('loginForm');
 
-loginForm.addEventListener('submit', async (event) => {
+loginForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // Stops the page from reloading
 
     const email = document.getElementById("email").value;
@@ -17,7 +17,7 @@ loginForm.addEventListener('submit', async (event) => {
 
         if (isSignedIn) {
             alert("Login Successful!");
-            location.href = "Pages/Home Page/Home Page.html";
+            location.href = "/Pages/Home Page/Home Page.html";
         } else if (nextStep.signInStep === "CONFIRM_SIGN_UP") {
             alert("Please confirm your email first.");
         }

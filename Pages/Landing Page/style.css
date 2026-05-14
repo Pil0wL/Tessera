@@ -55,6 +55,7 @@
   bottom: calc(20%);
 
   width: 50%;
+  cursor: pointer;
 }
 .login-container-logo {
   font-size: 64px;
