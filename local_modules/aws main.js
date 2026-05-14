@@ -29,7 +29,7 @@ Hub.listen("auth", ({ payload }) => {
     console.log("Auth Event:", payload.event);
     if (payload.event === "signedIn") {
         alert("Google Login Successful!");
-        window.location.href = "/Pages/Home Page/Home Page.html";
+        window.location.href = "./Pages/Home Page/Home Page.html";
     }
     if (payload.event === "signInWithRedirect_failure") {
         console.error("The OAuth flow failed:", payload.data);
@@ -59,7 +59,7 @@ export async function handleSignOut() {
     await signOut();
     // The Hub listener we set up earlier will detect this 
     // and you can redirect the user or update the UI there.
-    window.location.href = "/index.html"; 
+    window.location.href = "./index.html"; 
   } catch (error) {
     console.error('Error signing out: ', error);
   }

@@ -1,5 +1,5 @@
 import { signIn, signInWithRedirect } from "https://esm.sh/@aws-amplify/auth";
-import { IsLoggedIn } from "/local_modules/aws main.js";
+import { IsLoggedIn } from "./local_modules/aws main.js";
 
 const loginForm = document.getElementById('loginForm');
 
@@ -18,7 +18,7 @@ loginForm.addEventListener("submit", async (event) => {
 
         if (isSignedIn) {
             alert("Login Successful!");
-            location.href = "/Pages/Home Page/Home Page.html";
+            location.href = "./Pages/Home Page/Home Page.html";
         } else if (nextStep.signInStep === "CONFIRM_SIGN_UP") {
             alert("Please confirm your email first.");
         }
