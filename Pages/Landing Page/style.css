@@ -77,3 +77,15 @@
   align-items: center;
   justify-content: center;
 }
+.login-externalloginbutton {
+  position: absolute;
+  bottom: -85px;
+  left: calc(25px);
+
+  height: 50px;
+  width: 50px;
+  padding: 0px;
+  
+  border-radius: 50px;
+  cursor: pointer;
+}
