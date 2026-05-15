@@ -53,6 +53,9 @@
   width: calc(100% - 50px);
   height: calc(75% - 50px);
   padding: 25px;
+
+  text-align: left;
+  vertical-align: top;
 }
 
 .homepage-submitticket-forum-entry textarea {

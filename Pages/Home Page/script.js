@@ -70,7 +70,7 @@ window.addEventListener("load", () => {
       // atp i am contemplating about jst using class identifiers
       button_submit_ticket_review_1: "submit_ticket_forum",
       button_submit_ticket_review_2: "submit_ticket_greetings",
-      button_submit_ticket_review_3: "submit_ticket_confirmation",
+      //button_submit_ticket_review_3: "submit_ticket_confirmation", // is now handled by module_submitticket.js
 
       button_submit_ticket_confirmation: "submit_ticket_greetings"
     };

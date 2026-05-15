@@ -1,5 +1,5 @@
 import { Amplify } from "https://esm.sh/aws-amplify";
-import { getCurrentUser, signOut } from "https://esm.sh/@aws-amplify/auth";
+import { fetchAuthSession, getCurrentUser, signOut } from "https://esm.sh/@aws-amplify/auth";
 import "https://esm.sh/aws-amplify/auth/enable-oauth-listener";
 
 // live laugh larp
@@ -20,30 +20,16 @@ Amplify.configure({
         }
       }
     }
+  },
+  API: {
+    REST: {
+      "Tessera-RestAPI": { 
+        endpoint: "https://msiext399k.execute-api.ap-southeast-1.amazonaws.com/prod",
+        region: "ap-southeast-1"
+      }
+    }
   }
 });
-// */
-
-/*
-import { Hub } from "https://esm.sh/aws-amplify/utils";
-Hub.listen("auth", ({ payload }) => {
-    console.log("Auth Event:", payload.event);
-    if (payload.event === "signedIn") {
-        alert("Google Login Successful!");
-        window.location.href = "./Pages/Home Page/Home Page.html";
-    }
-    if (payload.event === "signInWithRedirect_failure") {
-        console.error("The OAuth flow failed:", payload.data);
-    }
-    if (payload.event === "signInWithRedirect") {
-      console.log("is logged in = ", IsLoggedIn());
-    }
-    if (payload.event === "customOAuthState") {
-      //setCustomState(payload.data); // this is the customState provided on signInWithRedirect function
-      console.log("wawa");
-    }
-});
-// */
 
 export async function IsLoggedIn() {
   try {
@@ -64,4 +50,28 @@ export async function handleSignOut(indexpath) {
   } catch (error) {
     console.error('Error signing out: ', error);
   }
+}
+
+async function checkUserGroups() {
+  try {
+    const session = await fetchAuthSession();
+    const groups = session.tokens.idToken.payload["cognito:groups"] || [];
+
+    if (groups.includes('admin')) {
+      console.log("Welcome, Overlord.");
+    }
+
+    if (groups.includes('ticket checker')) {
+      console.log("Ready to scan some tickets!");
+    }
+    
+    return groups;
+  } catch (err) {
+    console.error("Error fetching session:", err);
+    return [];
+  }
+}
+
+export function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

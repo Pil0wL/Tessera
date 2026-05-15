@@ -1,7 +1,7 @@
 
-import { IsLoggedIn } from "../.././local_modules/aws main.js";
+import { IsLoggedIn, delay } from "../.././local_modules/aws main.js";
 import { signIn, signInWithRedirect, fetchAuthSession } from "https://esm.sh/aws-amplify/auth";
-
+import { post } from "https://esm.sh/aws-amplify/api";
 
 const loginForm = document.getElementById('loginForm');
 
@@ -44,27 +44,35 @@ googleBtn.addEventListener("click", async () => {
     }
 });
 
-import { Hub } from "https://esm.sh/@aws-amplify/core";
+document.getElementById("loggedin").style.display = "none"; // for the moment
+let currentUser = await IsLoggedIn();
+while (currentUser) {
+    try {
+        const session = await fetchAuthSession();
+        const token = session.tokens?.idToken?.toString(); 
+        const restOperation = post({
+        apiName: "Tessera-RestAPI",
+        path: "/Tessera-CreateUserDataEntry",
+        options: {
+            headers: {
+                Authorization: token
+            },
+            body: {
+            id: 'ticket-123', // Your Partition Key
+            type: 'VIP',      // Your Sort Key (if applicable)
+            status: 'active'
+            }
+        }});
 
-console.log("wawa");
-Hub.listen("auth", ({ payload }) => {
-    console.log("Auth Event:", payload.event);
-    if (payload.event === "signedIn") {
-      console.log("testsddg");
-    }
-    if (payload.event === "signInWithRedirect_failure") {
-      console.error("The OAuth flow failed:", payload.data);
-    }
-    if (payload.event === "signInWithRedirect") {
-      console.log("thingy");
-      console.log("is logged in = ", IsLoggedIn());
-    }
-    if (payload.event === "customOAuthState") {
-      //setCustomState(payload.data); // this is the customState provided on signInWithRedirect function
-      console.log("wawa");
-    }
-});
+        const response = await restOperation.response;
+        console.log("Success!", await response.body.json());
 
-let logged_in = await IsLoggedIn();
-document.getElementById("notloggedin").style.display = logged_in ? "none" : "block";
-document.getElementById("loggedin").style.display = logged_in ? "block" : "none";
+        document.getElementById("notloggedin").style.display = "none";
+        document.getElementById("loggedin").style.display = "block";
+        break;
+    } catch (error) {
+        console.error("database entry verification error:", error.message, "if it says its a network error, try checking the lambda to see if something crashed it");
+    }
+
+    await delay(5000);
+}
