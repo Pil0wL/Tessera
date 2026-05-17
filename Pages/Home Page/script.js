@@ -18,6 +18,7 @@ function myactivityOpenPage(id) {
   document.getElementById(id).style.display = "block";
 }
 
+let tosend_ticketDescription;
 function submitaticketOpenPage(id) {
   document.querySelectorAll("#submit_ticket .homepage-internal-panel-container").forEach(p => {
     p.style.display = "none";
@@ -25,11 +26,29 @@ function submitaticketOpenPage(id) {
 
   // this is the start of a long if-chain, normally you wouldn't do this, but its less of a hassle on the html side
   if (id === "submit_ticket_review") { 
-    document.getElementById("submit_ticket_review_toreview").textContent = document.getElementById("submit_ticket_forum_textarea").value;
+    const writtenText = document.getElementById("submit_ticket_forum_textarea").value;
+    document.getElementById("submit_ticket_review_toreview").textContent = writtenText;
+    tosend_ticketDescription = writtenText;
   }
 
   document.getElementById(id).style.display = "block";
 }
+function submitaticketConfirmationPage(success, error_message) { // aint this bittersweet
+  submitaticketOpenPage("submit_ticket_confirmation")
+
+  const successScreen = document.getElementById("submit_ticket_confirmation_success");
+  const errorScreen = document.getElementById("submit_ticket_confirmation_error");
+  successScreen.style.display = "none";
+  errorScreen.style.display = "none";
+  if (success) {
+    successScreen.style.display = "block";
+  } else {
+    errorScreen.textContent = "Error: " + error_message;
+    errorScreen.style.display = "block";
+  }
+  
+}
+
 
 window.addEventListener("load", () => {
   myactivityOpenPage("my_activity_1");

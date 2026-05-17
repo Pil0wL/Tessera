@@ -47,22 +47,20 @@ googleBtn.addEventListener("click", async () => {
 document.getElementById("loggedin").style.display = "none"; // for the moment
 let currentUser = await IsLoggedIn();
 while (currentUser) {
+    // this basically loops until it can confirm that there is an entry for userData for this account
     try {
         const session = await fetchAuthSession();
         const token = session.tokens?.idToken?.toString(); 
         const restOperation = post({
-        apiName: "Tessera-RestAPI",
-        path: "/Tessera-CreateUserDataEntry",
-        options: {
-            headers: {
-                Authorization: token
-            },
-            body: {
-            id: 'ticket-123', // Your Partition Key
-            type: 'VIP',      // Your Sort Key (if applicable)
-            status: 'active'
+            apiName: "Tessera-RestAPI",
+            path: "/Tessera-CreateUserDataEntry",
+            options: {
+                headers: {
+                    Authorization: token
+                },
+                body: {}
             }
-        }});
+        });
 
         const response = await restOperation.response;
         console.log("Success!", await response.body.json());

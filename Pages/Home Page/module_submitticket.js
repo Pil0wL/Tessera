@@ -1,7 +1,15 @@
 import { post } from "https://esm.sh/aws-amplify/api";
 import { fetchAuthSession } from "https://esm.sh/aws-amplify/auth";
 
-document.getElementById("button_submit_ticket_review_3").addEventListener("click", async () => {
+
+const submitATicketButton = document.getElementById("button_submit_ticket_review_3");
+const submitATicketButton_spinner = document.getElementById("button_submit_ticket_review_3_loading");
+submitATicketButton.addEventListener("click", async () => {
+  console.log("tosend_ticketDescription = ", tosend_ticketDescription);
+
+  submitATicketButton.style.display = "flex";
+  submitATicketButton_spinner.style.display = "block";
+  
   try {
 
     const session = await fetchAuthSession();
@@ -15,16 +23,19 @@ document.getElementById("button_submit_ticket_review_3").addEventListener("click
           Authorization: token
         },
         body: {
-          id: 'ticket-123', // Your Partition Key
-          type: 'VIP',      // Your Sort Key (if applicable)
-          status: 'active'
+          des: tosend_ticketDescription
         }
       }
     });
 
     const response = await restOperation.response;
-    console.log('Success!', await response.body.json());
+    console.log("Success!", await response.body.json());
+    submitaticketConfirmationPage(true, "");
   } catch (e) {
-    console.error('Post failed', e);
+    console.error("Ticket Submission Fail: ", e);
+    submitaticketConfirmationPage(false, e);
   }
+
+  submitATicketButton.style.display = "flex";
+  submitATicketButton_spinner.style.display = "none";
 });

@@ -3,6 +3,7 @@
 :root { /* Globals */
   --main-fill: #8BB4DC;
   --main-border: #95C5F5;
+  --main-border-transparent: #95C5F586;
   --secondary-fill: #7BAFE0;
   --bg-fill: #D3E0F0;
   --bg-border: #B0C9E5;
@@ -13,6 +14,48 @@
 html, body {
   height: 100%;
   margin: 0;
+
+  scrollbar-color: var(--text-on-bg) transparent;
+  scrollbar-width: thin;
+}
+
+body * {
+  color: var(--text-on-bg);
+
+  font-family: "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 25px;
+  height: 25px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;  
+  /*border-radius: 10px;*/
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-on-bg);
+  /*border-radius: 10px;*/
+  /*border: 3px solid #f1f1f1;*/
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-on-bg-disable);
+}
+
+ol {
+  list-style-type: none;
+  padding-left: 0px;
+  padding-top: 0px;
+}
+
+ol li {
+  margin-bottom: 5px;
 }
 
 /**************** Quick Settings ****************/
@@ -37,6 +80,22 @@ html, body {
   position: relative;
 
   background: linear-gradient(to top, var(--bg-fill) 43%, var(--bg-border) 95%);
+}
+.container-fit-to-container {
+  position: absolute;
+
+  margin: 0px;
+  padding: 0px;
+
+  top: 0px;
+  left: 0px;
+  right: auto;
+  bottom: auto;
+
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
 }
 
 
@@ -88,6 +147,104 @@ html, body {
   align-items: center;
   justify-content: center;
 }
+.container-ticket {
+  position: relative;
+
+  border-radius: 5px;
+  border: none;
+  background: var(--secondary-fill);
+
+  height: 50px;
+  width: calc(100% - 10px);
+
+  cursor: pointer;
+}
+.container-ticket .primary {
+  position: absolute;
+  transform: translate(0%, -50%);
+  background: none;
+
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  left: 5px;
+  top: 50%;
+
+
+  height: 30px;
+  width: calc(80% - 65px);
+}
+
+.container-ticket .secondary {
+  position: absolute;
+  background: none;
+
+  left: calc(80% - 55px);
+  height: 100%;
+  width: calc(20% + 50px);
+}
+
+.container-ticket .border {
+  position: absolute;
+  background: var(--main-border);
+
+  top: 5px;
+  /*left: calc(80% - 55px); is set manually*/
+
+  height: calc(100% - 10px);
+  width: 5px;
+  border-radius: 5px;
+}
+
+.container-ticket img {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  height: calc(100% - 10px);
+  aspect-ratio: 1 / 1;
+}
+
+.container-headertextstyle.a {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  height: 30px;
+  width: calc(100% - 10px);
+}
+.container-headertextstyle.b {
+  position: absolute;
+  top: 35px;
+  left: 5px;
+
+  background: var(--main-border-transparent);
+  border-radius: 5px;
+
+
+  height: 5px;
+  width: calc(100% - 10px);
+}
+.container-headertextstyle.c {
+  position: absolute;
+
+  top: 45px;
+  left: 5px;
+  
+  height: calc(100% - 50px);
+  width: calc(100% - 10px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  text-align: left;
+
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+
 
 
 /**************** Text Settings ****************/
@@ -99,11 +256,24 @@ html, body {
   font-weight: normal;
   text-align: center;
 }
-body * {
-  color: var(--text-on-bg);
 
-  font-family: "Times New Roman", serif;
-  font-size: 24px;
-  font-weight: normal;
-  text-align: center;
+
+.spinner {
+  transform: translate();
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 25px;
+  height: 25px;
+
+  border: 5px solid var(--text-on-bg);
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  
+  animation: spin 1s linear infinite; 
+}
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }

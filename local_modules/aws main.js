@@ -1,5 +1,6 @@
 import { Amplify } from "https://esm.sh/aws-amplify";
 import { fetchAuthSession, getCurrentUser, signOut } from "https://esm.sh/@aws-amplify/auth";
+import { post } from "https://esm.sh/aws-amplify/api";
 import "https://esm.sh/aws-amplify/auth/enable-oauth-listener";
 
 // live laugh larp
@@ -52,6 +53,43 @@ export async function handleSignOut(indexpath) {
   }
 }
 
+export function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+let _activeTicketsCache = [];
+let _activeTicketsRequestTime = 0;
+export async function getAllMyActiveTickets() {
+  let toReturn = _activeTicketsCache;
+
+  if (Date.now() < _activeTicketsRequestTime) return toReturn; // debounce
+  _activeTicketsRequestTime = Date.now() + 2000; // current date + 2 seconds in milisec
+
+  try {
+    const session = await fetchAuthSession();
+    const token = session.tokens?.idToken?.toString(); 
+
+    const restOperation = post({
+    apiName: "Tessera-RestAPI",
+    path: "/Tessera-BasicUser-GetMyActiveTickets", // return my pages
+    options: {
+      headers: {
+        Authorization: token
+      },
+      body: {}
+    }});
+
+    const response = await restOperation.response;
+    const responseBody = await response.body.json();
+    console.log("getAllMyActiveTickets, Success!");
+
+    toReturn = responseBody.items;
+  } catch(e) {
+    console.log("getAllMyActiveTickets, something happed ( an erro bro ):", e);
+  }
+  return toReturn;
+}
+
 async function checkUserGroups() {
   try {
     const session = await fetchAuthSession();
@@ -72,6 +110,8 @@ async function checkUserGroups() {
   }
 }
 
-export function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+
+
+
+
+
