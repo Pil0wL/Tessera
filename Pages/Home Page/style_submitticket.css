@@ -56,8 +56,11 @@
 
   text-align: left;
   vertical-align: top;
-}
+  display: flex;
 
+  white-space: pre-wrap; 
+  word-break: break-word;
+}
 .homepage-submitticket-forum-entry textarea {
   position: relative;
   width: 100%;

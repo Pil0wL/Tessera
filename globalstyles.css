@@ -101,15 +101,15 @@ ol li {
 
 .container-mainfill {
   border-radius: 5px;
-  background: var(--main-fill);
+  background-color: var(--main-fill);
 }
 .container-secondaryfill {
   border-radius: 5px;
-  background: var(--secondary-fill);
+  background-color: var(--secondary-fill);
 }
 .container-borderfill {
   border-radius: 5px;
-  background: var(--main-border);
+  background-color: var(--main-border);
 }
 
 .container-secondaryfillbordered {
@@ -182,8 +182,11 @@ ol li {
   background: none;
 
   left: calc(80% - 55px);
+
   height: 100%;
   width: calc(20% + 50px);
+
+  text-align: center;
 }
 
 .container-ticket .border {
@@ -207,6 +210,20 @@ ol li {
   aspect-ratio: 1 / 1;
 }
 
+/* special container styles
+  so if you just wanwt a header for your container do
+  a
+  b
+  c
+  
+  if you want a buttons at the bottom, you want to do
+  a
+  b
+  d
+  e
+  f
+
+*/
 .container-headertextstyle.a {
   position: absolute;
   top: 5px;
@@ -214,6 +231,10 @@ ol li {
 
   height: 30px;
   width: calc(100% - 10px);
+  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .container-headertextstyle.b {
   position: absolute;
@@ -244,8 +265,155 @@ ol li {
   white-space: pre-line;
   overflow-wrap: break-word;
 }
+.container-headertextstyle.d {
+  position: absolute;
+
+  top: 45px;
+  left: 5px;
+  
+  height: calc(100% - 115px);
+  width: calc(100% - 10px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  text-align: left;
+
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+.container-headertextstyle.e {
+  position: absolute;
+  bottom: calc(60px);
+  left: 5px;
+
+  background: var(--main-border-transparent);
+  border-radius: 5px;
 
 
+  height: 5px;
+  width: calc(100% - 10px);
+}
+.container-headertextstyle.f {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+
+  height: 50px;
+  width: calc(100% - 10px);
+  
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.container-headertextstyle.f button {
+  position: relative;
+  transform: none;
+  margin-left: 5px;
+
+  cursor: pointer;
+}
+
+  
+/* prompt container styles */
+.container-prompt {
+  position: absolute;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--bg-fill);
+  border: 2px solid var(--bg-border);
+  border-radius: 5px;
+
+  top: 50%;
+  left: 50%;
+
+  width: calc(300px + 10%);
+  height: calc(200px + 10%);
+
+  z-index: 1000;
+}
+
+.container-prompt * {
+  color: var(--main-fill);
+  background: none;
+  border: none;
+}
+
+.container-prompt .headertitle {
+  position: absolute;
+  top: 5px;
+
+  height: 50px;
+  width: 100%;
+}
+
+.container-prompt .maincontent {
+  position: absolute;
+  top: 60px;
+  left: 5px;
+
+  height: calc(100% - 120px);
+  width: calc(100% - 10px);
+}
+.container-prompt .maincontent .prompttitle {
+  position: absolute;
+  
+  left: 0px;
+  top: 0px;
+
+  background-color: var(--main-fill);
+  border-radius: 5px;
+  padding: 0px;
+
+  height: 30px;
+  width: 100%;
+
+  color: var(--text-on-bg);
+}
+.container-prompt .maincontent .prompdescription {
+  position: absolute;
+
+  background-color: var(--main-fill);
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+
+  left: 0px;
+  top: 35px;
+
+  height: calc(100% - 40px);
+  width: calc(100% - 10px);
+
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  color: var(--text-on-bg);
+  text-align: left;
+
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+.container-prompt .buttoncontainer {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+
+  height: 50px;
+  width: calc(100% - 10px);
+}
+.container-prompt .buttoncontainer .left {
+  position: absolute;
+  left: 0px;
+
+  height: 100%;
+}
+.container-prompt .buttoncontainer .right {
+  position: absolute;
+  right: 0px;
+
+  height: 100%;
+}
 
 /**************** Text Settings ****************/
 .textstyle-standard { /* kept here so you may re-apply it */

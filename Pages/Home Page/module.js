@@ -25,6 +25,8 @@ async function refreshMyActivityTicketContainer() {
     my_activity_activeticket_details.textContent = `Title: ${data.data.ti}
     \n\nDescription: ${data.data.des}
     \n\nDate: ${data.timestamp.split("T")[0]}`;
+
+    selectedActiveTicket = data;
   });
 }
 

@@ -82,11 +82,11 @@
   background-color: var(--secondary-fill);
   border: 5px solid var(--main-border);
 
-  left: calc(100px);
-  top: calc(100px);
+  left: calc(50px);
+  top: calc(50px);
 
-  width: calc(100% - 300px);
-  height: calc(100% - 300px);
+  width: calc(100% - 225px);
+  height: calc(100% - 225px);
   padding: 50px;
 }
 

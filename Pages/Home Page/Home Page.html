@@ -58,7 +58,7 @@
                         <input type="text" class="button-style1 default-shadow homepage-myactivity-1-search" placeholder="Search...">
                         
                         <div class="homepage-myactivity-1-container">
-                            <div class="button-style1 default-shadow homepage-myactivity-1-1">
+                            <div class="button-style1 homepage-myactivity-1-1">
                                 <div class="container-headertextstyle a">
                                     Active Tickets
                                 </div>
@@ -72,12 +72,16 @@
                                     Details
                                 </div>
                                 <div class="container-headertextstyle b"></div>
-                                <div id="homepage-myactivity-1-details" class="container-headertextstyle c">
+                                <div id="homepage-myactivity-1-details" class="container-headertextstyle d">
                                     Content goes here
                                 </div>
-                            </div>
-                            <div class="container-mainfill homepage-myactivity-1-3">
-                                Actions
+                                <div class="container-headertextstyle e"></div>
+                                <div class="container-headertextstyle f">
+                                    <button id="homepage_myactivity_1_details_edit" class="button-style1 default-shadow" >Edit</button>
+                                    <button id="homepage_myactivity_1_details_remove" class="button-style1 default-shadow" >Delete/Archive</button>
+            
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -142,7 +146,7 @@
                         </div>
                         
                         <div class="container-mainfill homepage-submitticket-forum-entry" >
-                            <textarea id="submit_ticket_forum_textarea" class="textstyle-standard" style="align-items: start;" placeholder="...">Write your feedback 200 - 300 words</textarea>
+                            <textarea id="submit_ticket_forum_textarea" class="textstyle-standard" placeholder="...">Write your feedback 200 - 300 words</textarea>
                         </div>
                         
                         <button id="button_submit_ticket_forum" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
@@ -277,4 +281,5 @@
     <script src="./script.js"></script>
     <script type="module" src="./module.js"></script>
     <script type="module" src="./module_submitticket.js"></script>
+    <script type="module" src="./module_myactivity.js"></script>
 </html>

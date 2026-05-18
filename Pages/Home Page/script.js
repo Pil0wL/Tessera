@@ -1,3 +1,16 @@
+
+
+
+
+
+let selectedActiveTicket;
+// is set by the module.js function, refreshMyActivityTicketContainer
+// is used by the module_myactivity.js click callback from id="homepage_myactivity_1_details_edit"
+
+
+
+
+
 function openPopup(id) {
   document.querySelectorAll(".homepage-individual-panel").forEach(p => {
     p.style.display = "none";
