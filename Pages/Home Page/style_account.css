@@ -43,7 +43,6 @@
   bottom: 0px;
 
   width: 200px;
-  cursor: pointer;
 }
 
 .homepage-account-settings-leftsidetext {
@@ -70,7 +69,6 @@
   top: 25px;
   width: calc(33% - 18px);
 
-  cursor: pointer;
 }
 .homepage-account-settings-rightsidebutton.secondary {
   left: calc(66%);

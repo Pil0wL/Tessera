@@ -27,6 +27,9 @@ body * {
   font-weight: normal;
   text-align: center;
 }
+button {
+  cursor: pointer;
+}
 
 ::-webkit-scrollbar {
   width: 25px;
@@ -73,6 +76,28 @@ ol li {
   object-fit: cover;
 }
 
+.center-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.text-with-many-words {
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  text-align: left;
+
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+
+.parent-height-ratio-1-1 {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
 /**************** Container Types ****************/
 .container-fit-to-screen {
   width: 100vw;
@@ -126,11 +151,6 @@ ol li {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.container-logo img {
-  height: 100%;
-  aspect-ratio: 1 / 1;
 }
 .button-style1 {
   box-sizing: border-box;
@@ -223,6 +243,12 @@ ol li {
   e
   f
 
+  if you want to do a b c, but with a button next to the title
+  g
+  h
+  c
+  i <-- the button
+
 */
 .container-headertextstyle.a {
   position: absolute;
@@ -310,10 +336,43 @@ ol li {
   position: relative;
   transform: none;
   margin-left: 5px;
-
-  cursor: pointer;
 }
+.container-headertextstyle.g {
+  position: absolute;
+  top: 5px;
+  left: 45px;
 
+  height: 30px;
+  width: calc(100% - 50px);
+  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.container-headertextstyle.h {
+  position: absolute;
+  top: 35px;
+  left: 45px;
+
+  background: var(--main-border-transparent);
+  border-radius: 5px;
+
+
+  height: 5px;
+  width: calc(100% - 50px);
+}
+.container-headertextstyle.i {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  height: 35px;
+  width: 35px;
+  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
   
 /* prompt container styles */
 .container-prompt {
@@ -384,15 +443,7 @@ ol li {
   height: calc(100% - 40px);
   width: calc(100% - 10px);
 
-
-  overflow-y: scroll;
-  overflow-x: hidden;
-
   color: var(--text-on-bg);
-  text-align: left;
-
-  white-space: pre-line;
-  overflow-wrap: break-word;
 }
 .container-prompt .buttoncontainer {
   position: absolute;

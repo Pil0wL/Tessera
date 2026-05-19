@@ -68,10 +68,12 @@ export function generateUI_ActiveTickets( parentContainer, arrayOfTickets, callb
   }
 }
 
-
+let currentZIndex = 1000;
 function buildPromptBase() {
+  currentZIndex = currentZIndex + 1;
   // background
   const Background = document.createElement("div");
+  Background.zIndex = currentZIndex;
   Background.classList.add("container-prompt");
 
   // header title
@@ -112,7 +114,7 @@ function buildPromptBase() {
 }
 
 let isPromptedToTitleAndDescription = false;
-export function prompt_RetrieveNewTitleAndDescription(currentTitle, currentDescription, callback) {
+export function prompt_RetrieveNewTitleAndDescription(ticketData, callback) {
   if (isPromptedToTitleAndDescription) {
     console.log("you have an ongoing prompt to type in a new title and description already!");
     return;
@@ -130,32 +132,81 @@ export function prompt_RetrieveNewTitleAndDescription(currentTitle, currentDescr
   inputTitle.type = "text";
   inputTitle.name = "newtitle";
   inputTitle.placeholder = "Title";
+  inputTitle.value = ticketData.data.ti;
   Content.appendChild(inputTitle);
 
   // description prompt
   const inputDescription = document.createElement("textarea");
-  inputDescription.classList.add("prompdescription");
+  inputDescription.classList.add("prompdescription", "text-with-many-words");
   inputDescription.name = "newdescription";
+  inputDescription.value = ticketData.data.des;
   Content.appendChild(inputDescription);
+
+  let proceeding = false;
+  const proceedCallback = async (success, newTitle, newDescription) => {
+    if (proceeding) return;
+    proceeding = true
+    try {
+      await callback(success, newTitle, newDescription);
+    } catch(e) {
+      console.log("prompt_RetrieveNewTitleAndDescription callback error:", e)
+    }
+
+    Background.remove();
+    isPromptedToTitleAndDescription = false;
+  };
 
   leftButton.textContent = "Cancel"
   leftButton.addEventListener("click", async () => {
-    callback(false, "", "");
-    isPromptedToTitleAndDescription = false;
-    Background.remove()
+    await proceedCallback(false, "", "");
   });
 
   rightButton.textContent = "Submit"
   rightButton.addEventListener("click", async () => {
-    callback(true, inputTitle.value, inputDescription.value);
-    isPromptedToTitleAndDescription = false;
-    Background.remove()
+    await proceedCallback(true, inputTitle.value, inputDescription.value);
   });
 
   parentContainer.appendChild(Background);
 }
 
 
+export async function display_Progress(titleText, callback) {
+  const parentContainer = document.querySelector(".container-fit-to-screen");
+  const { Background, Title, Content, ButtonContainer, leftButton, rightButton } = buildPromptBase();
+
+  const spinner = document.createElement("div");
+  spinner.classList.add("spinner");
+  Content.appendChild(spinner);
+
+  Title.textContent = titleText
+  leftButton.remove();
+
+  rightButton.textContent = "Confirm";
+  rightButton.style.display = "none";
+
+  parentContainer.appendChild(Background);
+  
+  var success = true;
+  try {
+    await callback();
+    Content.classList.add("center-items");
+    Content.textContent = "Success!";
+  } catch(e) {
+    Content.classList.add("text-with-many-words");
+    Content.textContent = "Error: " + e;
+    console.error("Error:", e);
+    success = false;
+  } 
+  spinner.remove();
+  Title.remove();
+
+  rightButton.style.display = "block";
+  rightButton.addEventListener("click", async () => {
+    Background.remove();
+  });
+
+  return success;
+}
 //// Starting number
 //let timeLeft = 10;
 //
