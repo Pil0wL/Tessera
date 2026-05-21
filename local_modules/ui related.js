@@ -7,8 +7,10 @@ export function generateUI_ActiveTickets( parentContainer, arrayOfTickets, callb
     {
       "ID": "d4797470-e1a0-4849-8217-7cb8b4d60cdc",
       "data": {
-        "des": "nga but"
+        "des": "nga but",
+        "ti": "yeah"
       },
+      "category": 0,
       "ownerID": "393a15cc-3031-70de-5d9e-3ecb604a7f50",
       "timestamp": "2026-05-16T20:08:14.783Z"
     },
@@ -18,6 +20,8 @@ export function generateUI_ActiveTickets( parentContainer, arrayOfTickets, callb
   */
   const freepikLogoTransparent = import.meta.url + "/../.././images/Freepik ticket transparent.png";
   const callbackReference = callback;
+
+  const toReturn = [];
   for (const ticketData of arrayOfTickets) {
 
 
@@ -65,7 +69,13 @@ export function generateUI_ActiveTickets( parentContainer, arrayOfTickets, callb
 
   
     parentContainer.appendChild(card);
+    toReturn.push({
+      data: ticketData,
+      element: card
+    })
   }
+
+  return toReturn;
 }
 
 let currentZIndex = 1000;
@@ -206,6 +216,86 @@ export async function display_Progress(titleText, callback) {
   });
 
   return success;
+}
+
+
+export function officiate_dropdown(targetDropdownElement, callback) {
+  const buttons = targetDropdownElement.querySelectorAll("button");
+  const dropdownTextDisplay = targetDropdownElement.querySelector("p");
+
+  for (let i = 0; i < buttons.length; i++) {
+    const childButton = buttons[i];
+
+    childButton.addEventListener("click", () => {
+      const thisText = childButton.textContent
+
+      dropdownTextDisplay.textContent = "Sort By: " + thisText;
+      callback(i);
+    });
+  }
+
+  buttons[0].click();
+}
+
+const sortingLambdas = [
+  (a, b) => {return a.data.timestamp.localeCompare(b.data.timestamp);},
+  (a, b) => {return b.data.timestamp.localeCompare(a.data.timestamp);},
+  (a, b) => {return a.data.data.ti.localeCompare(b.data.data.ti);},
+  (a, b) => {return b.data.data.ti.localeCompare(a.data.data.ti);}
+]
+export function filter_givenTickets(generatedTickets, filterInfo) {
+  /*
+  generatedTickets = [
+    {
+      data = ticketData,
+      element = html element
+    },
+    {...},
+    ...
+  ]
+  */
+
+  /*
+  arrayOfTickets = [
+    {
+      "ID": "d4797470-e1a0-4849-8217-7cb8b4d60cdc",
+      "data": {
+        "des": "nga but",
+        "ti": "yeah"
+      },
+      "category": 0,
+      "ownerID": "393a15cc-3031-70de-5d9e-3ecb604a7f50",
+      "timestamp": "2026-05-16T20:08:14.783Z"
+    },
+    {...},
+    ...
+  ]
+  */
+  /*
+  filterInfo = {
+    sortBy = 0, // defaults to zero
+    searchString = "..."
+  }
+  */
+  const maxSize = generatedTickets.length;
+  if (!maxSize) return;
+
+  filterInfo.sortBy = filterInfo.hasOwnProperty("sortBy") ? filterInfo.sortBy : 0;
+  generatedTickets.sort(sortingLambdas[filterInfo.sortBy]);
+  
+  const parentContainer = generatedTickets[0].element.parentElement;
+
+  const searchString = filterInfo.hasOwnProperty("searchString") ? filterInfo.searchString.toLowerCase() : "";
+  for (const indexData of generatedTickets) {
+    const thisElement = indexData.element;
+
+    parentContainer.appendChild(thisElement);
+    if (indexData.data.data.ti.toLowerCase().includes(searchString)) {
+      thisElement.style.display = "block";
+    } else {
+      thisElement.style.display = "none";
+    }
+  }
 }
 //// Starting number
 //let timeLeft = 10;

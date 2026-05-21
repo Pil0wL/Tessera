@@ -61,6 +61,25 @@ ol li {
   margin-bottom: 5px;
 }
 
+.spinner {
+  transform: translate();
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 25px;
+  height: 25px;
+
+  border: 5px solid var(--text-on-bg);
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  
+  animation: spin 1s linear infinite; 
+}
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
 /**************** Quick Settings ****************/
 
 .default-shadow {
@@ -84,6 +103,7 @@ ol li {
   text-align: center;
 }
 
+
 .text-with-many-words {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -99,6 +119,40 @@ ol li {
   aspect-ratio: 1 / 1;
 }
 /**************** Container Types ****************/
+.button-style1 {
+  box-sizing: border-box;
+  background-color: var(--main-fill);
+  border: 5px solid var(--main-border);
+
+  padding: 12px 24px;
+  height: 50px;
+
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.button-style2 {
+  box-sizing: border-box;
+  background-color: var(--main-fill);
+  border: 5px solid var(--main-border);
+
+  padding: 5px 5px;
+  height: 50px;
+  width: fit-content;
+
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
 .container-fit-to-screen {
   width: 100vw;
   height: 100vh;
@@ -152,21 +206,8 @@ ol li {
   align-items: center;
   gap: 10px;
 }
-.button-style1 {
-  box-sizing: border-box;
-  background-color: var(--main-fill);
-  border: 5px solid var(--main-border);
 
-  padding: 12px 24px;
-  height: 50px;
-
-  border-radius: 5px;
-  transform: translate(-50%, -50%);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/**************** Container Types - Ticket ****************/
 .container-ticket {
   position: relative;
 
@@ -179,6 +220,7 @@ ol li {
 
   cursor: pointer;
 }
+
 .container-ticket .primary {
   position: absolute;
   transform: translate(0%, -50%);
@@ -230,6 +272,7 @@ ol li {
   aspect-ratio: 1 / 1;
 }
 
+/**************** Container Types - Quick Build ****************/
 /* special container styles
   so if you just wanwt a header for your container do
   a
@@ -374,7 +417,7 @@ ol li {
   text-overflow: ellipsis;
 }
   
-/* prompt container styles */
+/**************** Container Types - Prompt ****************/
 .container-prompt {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -465,7 +508,51 @@ ol li {
 
   height: 100%;
 }
+/**************** Container Types - Dropdown ****************/
+.container-dropdown {
+  position: absolute;
 
+  cursor: pointer;
+}
+
+.container-dropdown-content {
+  display: none;
+  position: absolute;
+
+  background-color: var(--main-fill);
+  border: 2px solid var(--main-border);
+
+  top: calc(100% + 4px);
+  left: 0px;
+
+  width: calc(100% - 5px);
+  height: 300%;
+  
+  z-index: 20;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.container-dropdown:hover .container-dropdown-content {
+  display: flex;
+}
+.container-dropdown-content button {
+  position: relative;
+  transform: none;
+
+  margin-bottom: 5px;
+  
+  background-color: var(--secondary-fill);
+  border: none;
+
+  width: calc(100% - 10px);
+  height: fit-content;
+}
 /**************** Text Settings ****************/
 .textstyle-standard { /* kept here so you may re-apply it */
   color: var(--text-on-bg);
@@ -476,23 +563,3 @@ ol li {
   text-align: center;
 }
 
-
-.spinner {
-  transform: translate();
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  width: 25px;
-  height: 25px;
-
-  border: 5px solid var(--text-on-bg);
-  border-top: 5px solid transparent;
-  border-radius: 50%;
-  
-  animation: spin 1s linear infinite; 
-}
-@keyframes spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}

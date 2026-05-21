@@ -1,5 +1,5 @@
 
-import { generateUI_ActiveTickets, prompt_RetrieveNewTitleAndDescription, display_Progress } from "../.././local_modules/ui related.js";
+import { generateUI_ActiveTickets, prompt_RetrieveNewTitleAndDescription, display_Progress, officiate_dropdown, filter_givenTickets } from "../.././local_modules/ui related.js";
 import { getAllMyActiveTickets } from "../.././local_modules/aws main.js";
 import { fetchAuthSession } from "https://esm.sh/@aws-amplify/auth";
 import { post } from "https://esm.sh/aws-amplify/api";
@@ -10,6 +10,7 @@ import { post } from "https://esm.sh/aws-amplify/api";
 let debounce_my_activity_activeticketcontainer = false;
 const my_activity_activeticketcontainer = document.getElementById("my_activity_activeticketcontainer");
 const my_activity_activeticket_details = document.getElementById("homepage-myactivity-1-details");
+let currentGeneratedTickets = [];
 async function refreshMyActivityTicketContainer() {
   if (debounce_my_activity_activeticketcontainer) return;
   debounce_my_activity_activeticketcontainer = true;
@@ -22,7 +23,7 @@ async function refreshMyActivityTicketContainer() {
   debounce_my_activity_activeticketcontainer = false;
   my_activity_activeticket_details.textContent = "Click on a ticket of yours!";
 
-  generateUI_ActiveTickets(my_activity_activeticketcontainer, currentTickets, (card, data) => {
+  currentGeneratedTickets = generateUI_ActiveTickets(my_activity_activeticketcontainer, currentTickets, (card, data) => {
     console.log(data);
 
     my_activity_activeticket_details.textContent = `Title: ${data.data.ti}
@@ -35,7 +36,7 @@ async function refreshMyActivityTicketContainer() {
 
 
 document.getElementById("my_activity_activeticketrefresh").addEventListener("click", refreshMyActivityTicketContainer);
-refreshMyActivityTicketContainer();
+
 
 
 document.getElementById("homepage_myactivity_1_details_edit").addEventListener("click", async () => {
@@ -64,6 +65,7 @@ document.getElementById("homepage_myactivity_1_details_edit").addEventListener("
           }
         }
       });
+      await restOperation.response;
     });
 
     if (successFromRequest) {
@@ -74,3 +76,23 @@ document.getElementById("homepage_myactivity_1_details_edit").addEventListener("
 
 
 });
+
+let filtering_SortBy = 0;
+let filtering_searchString = "";
+const search_input = document.querySelector("#my_activity_searchfilter input");
+function updateFiltering() {
+  filter_givenTickets(currentGeneratedTickets, {
+    sortBy: filtering_SortBy,
+    searchString: search_input.value
+  });
+}
+officiate_dropdown(document.getElementById("my_activity_quickfilter"), (selected) => {
+  filtering_SortBy = selected;
+  updateFiltering();
+});
+
+
+document.querySelector("#my_activity_searchfilter button").addEventListener("click", updateFiltering);
+
+await refreshMyActivityTicketContainer();
+updateFiltering();
