@@ -6,6 +6,9 @@
 let selectedActiveTicket;
 // is set by the module.js function, refreshMyActivityTicketContainer
 // is used by the module_myactivity.js click callback from id="homepage_myactivity_1_details_edit"
+let selectedSingularHistoryTicket;
+// is set by the module.js function, refreshMyTicketHistoryContainer
+// is used by the module_myactivity.js click callback from id="homepage_myactivity_1_details_edit"
 
 
 
@@ -31,36 +34,23 @@ function myactivityOpenPage(id) {
   document.getElementById(id).style.display = "block";
 }
 
-let tosend_ticketDescription;
 function submitaticketOpenPage(id) {
   document.querySelectorAll("#submit_ticket .homepage-internal-panel-container").forEach(p => {
     p.style.display = "none";
   });
 
   // this is the start of a long if-chain, normally you wouldn't do this, but its less of a hassle on the html side
-  if (id === "submit_ticket_review") { 
-    const writtenText = document.getElementById("submit_ticket_forum_textarea").value;
-    document.getElementById("submit_ticket_review_toreview").textContent = writtenText;
-    tosend_ticketDescription = writtenText;
-  }
+  //if (id === "submit_ticket_review") { 
+  //  const writtenText = document.getElementById("submit_ticket_forum_textarea").value;
+  //  document.getElementById("submit_ticket_review_toreview").textContent = writtenText;
+  //  tosend_ticketDescription = writtenText;
+  //}
+  // yeah... i am now needing something far more specific
+  // is now handled by module_submitticket.js
 
   document.getElementById(id).style.display = "block";
 }
-function submitaticketConfirmationPage(success, error_message) { // aint this bittersweet
-  submitaticketOpenPage("submit_ticket_confirmation")
 
-  const successScreen = document.getElementById("submit_ticket_confirmation_success");
-  const errorScreen = document.getElementById("submit_ticket_confirmation_error");
-  successScreen.style.display = "none";
-  errorScreen.style.display = "none";
-  if (success) {
-    successScreen.style.display = "block";
-  } else {
-    errorScreen.textContent = "Error: " + error_message;
-    errorScreen.style.display = "block";
-  }
-  
-}
 
 
 window.addEventListener("load", () => {
@@ -97,11 +87,11 @@ window.addEventListener("load", () => {
   { // submit a ticket
     const to_link = {
       button_submit_ticket_greetings: "submit_ticket_forum",
-      button_submit_ticket_forum: "submit_ticket_review",
+      //button_submit_ticket_forum: "submit_ticket_review", // is now handled by module_submitticket.js
 
       // atp i am contemplating about jst using class identifiers
       button_submit_ticket_review_1: "submit_ticket_forum",
-      button_submit_ticket_review_2: "submit_ticket_greetings",
+      button_submit_ticket_review_2: "submit_ticket_greetings", 
       //button_submit_ticket_review_3: "submit_ticket_confirmation", // is now handled by module_submitticket.js
 
       button_submit_ticket_confirmation: "submit_ticket_greetings"

@@ -55,12 +55,16 @@
                 <!-- My Activity -->
                 <div id="my_activity" class="homepage-individual-panel">
                     <div id="my_activity_1" class="homepage-internal-panel-container">
+
+                        <!-- search -->
                         <div id="my_activity_searchfilter" class="button-style1 default-shadow homepage-myactivity-1-search">
                             <button>
                                 <img class="parent-height-ratio-1-1" src="../.././images/Freepik magnifying.png" alt="Freepik Logo">
                             </button>
                             <input type="text" placeholder="Search...">
                         </div>
+
+                        <!-- filter 1 -->
                         <div id="my_activity_quickfilter" class="button-style2 default-shadow container-dropdown homepage-myactivity-1-sortby">
                             <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
                     
@@ -73,7 +77,9 @@
                             </div>
                         </div>
 
+                        <!-- main container -->
                         <div class="homepage-myactivity-1-container">
+                            <!-- active ticket selection -->
                             <div class="button-style1 homepage-myactivity-1-1">
                                 <div class="container-headertextstyle g">
                                     Active Tickets
@@ -88,6 +94,8 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <!-- details -->
                             <div class="container-mainfill homepage-myactivity-1-2">
                                 <div class="container-headertextstyle a">
                                     Details
@@ -107,24 +115,67 @@
                         </div>
                     </div>
                     <div id="my_activity_2" class="homepage-internal-panel-container">
-                        <input type="text" class="button-style1 default-shadow homepage-myactivity-1-search" placeholder="Search...">
+                        <!-- search -->
+                        <div id="my-ticket-history-search" class="button-style1 default-shadow homepage-myactivity-1-search">
+                            <button>
+                                <img class="parent-height-ratio-1-1" src="../.././images/Freepik magnifying.png" alt="Freepik Logo">
+                            </button>
+                            <input type="text" placeholder="Search...">
+                        </div>
+
+                        <!-- filter 1 -->
+                        <div id="my-ticket-history-quickfilter" class="button-style2 default-shadow container-dropdown homepage-myactivity-1-sortby">
+                            <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
                     
+                            <p>Sort By: This Text is replaced</p>
+                            <div class="default-shadow container-dropdown-content">
+                                <button>Date Ascending</button>
+                                <button>Date Descending</button>
+                                <button>Alphabetically Ascending</button>
+                                <button>Alphabetically Descending</button>
+                            </div>
+                        </div>
+
+                        <!-- Ticket History Selection -->
                         <div class="button-style1 default-shadow homepage-myactivity-2-1">
-                            Ticket History
+                            <div class="container-headertextstyle g">
+                                Ticket History
+                            </div>
+                            <div class="container-headertextstyle h"></div>
+                            <div class="container-headertextstyle c">
+                                <ol id="my-ticket-history-container" class="container-fit-to-container"></ol>
+                            </div>
+                            <div class="container-headertextstyle i">
+                                <button id="my-ticket-history-refresh" class="container-fit-to-container">
+                                    <img class="parent-height-ratio-1-1" src="../.././images/Freepik reload.png" alt="reload icon">
+                                </button>
+                            </div>
                         </div>
+
                         <div class="container-mainfill homepage-myactivity-2-2">
-                            Details
+                            <div class="container-headertextstyle a">
+                                Details
+                            </div>
+                            <div class="container-headertextstyle b"></div>
+                            <div id="ticket-history-details" class="container-headertextstyle d">
+                                Content goes here
+                            </div>
+                            <div class="container-headertextstyle e"></div>
+                            <div class="container-headertextstyle f"></div>
                         </div>
+                        
                     </div>
                     <div id="my_activity_3" class="homepage-internal-panel-container">
                         
-                        <div class="container-mainfill homepage-myactivity-3-1">
-                            Graph here
+                        <div class="container-mainfill container-charts-parent bargraph">
+                            <div class="containerchild" id="my-ticket-history-chart" ></div>
                         </div>
-                        <div class="button-style1 default-shadow homepage-myactivity-3-export">
+
+                        <!-- Hidden buttons for legacy reasons-->
+                        <div style="display: none;" class="button-style1 default-shadow homepage-myactivity-3-export">
                             Export as PDF
                         </div>
-                        <div class="button-style1 default-shadow homepage-myactivity-3-export" style="right: 225px">
+                        <div style="display: none;" class="button-style1 default-shadow homepage-myactivity-3-export" style="right: 225px">
                             Export as CSV
                         </div>
                     </div>
@@ -154,7 +205,7 @@
                             Your tickets ( more info in the activity page):
                         </div>
                         <div class="button-style1 default-shadow homepage-submitticket-greetings-quickview">
-                            short ticket history here
+                            <ol id="submit_ticket_active_tickets" class="container-fit-to-container"></ol>
                         </div>
 
                         <button id="button_submit_ticket_greetings" class="button-style1 default-shadow homepage-submitticket-greetings-submit">New Ticket</button>
@@ -162,12 +213,25 @@
 
                     <!-- forum -->
                     <div id="submit_ticket_forum" class="homepage-internal-panel-container">
-                        <div class="homepage-submitticket-forum-title">
-                            Enter your feedback for a ticket ( 200 - 300 words ) : 
+
+                        <div class="container-mainfill homepage-submitticket-forum-title" >
+                            <input id="submit_ticket_forum_title" class="container-fit-to-container" type="text" placeholder="20 Characters Max" value="Dont look at this">
                         </div>
-                        
                         <div class="container-mainfill homepage-submitticket-forum-entry" >
-                            <textarea id="submit_ticket_forum_textarea" class="textstyle-standard" placeholder="...">Write your feedback 200 - 300 words</textarea>
+                            <textarea id="submit_ticket_forum_textarea" class="container-fit-to-container textstyle-standard" placeholder="...">Write your feedback 200 - 300 words</textarea>
+                        </div>
+
+                        
+                        <!-- Category -->
+                        <div id="submit_ticket_forum_category" class="button-style2 default-shadow container-dropdown homepage-submitticket-forum-category">
+                            <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
+                    
+                            <p>Sort By: This Text is replaced</p>
+                            <div class="default-shadow container-dropdown-content">
+                                <button>Technical</button>
+                                <button>Network</button>
+                                <button>Human Resource</button>
+                            </div>
                         </div>
                         
                         <button id="button_submit_ticket_forum" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
@@ -178,11 +242,20 @@
                     <!-- review -->
                     <div id="submit_ticket_review" class="homepage-internal-panel-container">
                         
-                        <div class="homepage-submitticket-forum-title">
+                        <div class="homepage-submitticket-forum-warn">
                            Make sure everything here is correct
                         </div>
                         
-                        <div id="submit_ticket_review_toreview" class="container-mainfill homepage-submitticket-forum-entry textstyle-standard" style="color: #ffffff79" >
+                        <div id="submit_ticket_review_toreview_title" class="container-mainfill homepage-submitticket-forum-title textstyle-standard" style="color: #ffffff79" >
+                            <!-- content is put in through code -->
+                        </div>
+                        <div id="submit_ticket_review_toreview_description" class="container-mainfill homepage-submitticket-forum-entry textstyle-standard" style="color: #ffffff79" >
+                            <!-- content is put in through code -->
+                        </div>
+
+                        
+                        <!-- Category -->
+                        <div id="submit_ticket_review_toreview_category" class="button-style2 default-shadow homepage-submitticket-forum-category">
                             <!-- content is put in through code -->
                         </div>
                         

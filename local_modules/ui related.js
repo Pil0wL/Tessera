@@ -217,9 +217,65 @@ export async function display_Progress(titleText, callback) {
 
   return success;
 }
+export function prompt_Confirmation(titleText, callback) {
+  const parentContainer = document.querySelector(".container-fit-to-screen");
+  const { Background, Title, Content, ButtonContainer, leftButton, rightButton } = buildPromptBase();
+
+  Title.textContent = titleText
+  
+  rightButton.textContent = "Confirm";
+  rightButton.addEventListener("click", async () => {
+    Background.remove();
+    callback(true);
+  });
+
+  leftButton.textContent = "Cancel";
+  leftButton.addEventListener("click", async () => {
+    Background.remove();
+    callback(false);
+  });
 
 
-export function officiate_dropdown(targetDropdownElement, callback) {
+  parentContainer.appendChild(Background);
+}
+export function prompt_Message(titleText, description, callback) {
+  const parentContainer = document.querySelector(".container-fit-to-screen");
+  const { Background, Title, Content, ButtonContainer, leftButton, rightButton } = buildPromptBase();
+
+  Title.textContent = titleText
+  
+  rightButton.textContent = "Confirm";
+  rightButton.addEventListener("click", async () => {
+    Background.remove();
+    callback();
+  });
+
+  Content.textContent = description;
+
+  leftButton.remove();
+
+
+  parentContainer.appendChild(Background);
+}
+
+
+export function officiate_dropdown(prefix, targetDropdownElement, callback) {
+
+  const content = targetDropdownElement.querySelector(".container-dropdown-content");
+
+  let toggled = false;
+  const toggler = (event) => {
+      const clickedInsideContent = content.contains(event.target);
+      if (clickedInsideContent) return;
+
+      toggled = !toggled;
+      content.style.display = toggled ? "flex" : "none";
+  };
+  content.style.display = "none";
+
+  targetDropdownElement.addEventListener("click", toggler);
+
+
   const buttons = targetDropdownElement.querySelectorAll("button");
   const dropdownTextDisplay = targetDropdownElement.querySelector("p");
 
@@ -229,7 +285,11 @@ export function officiate_dropdown(targetDropdownElement, callback) {
     childButton.addEventListener("click", () => {
       const thisText = childButton.textContent
 
-      dropdownTextDisplay.textContent = "Sort By: " + thisText;
+      dropdownTextDisplay.textContent = prefix + thisText;
+
+      toggled = false;
+      content.style.display = "none";
+
       callback(i);
     });
   }

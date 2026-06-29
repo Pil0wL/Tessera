@@ -83,9 +83,44 @@ export async function getAllMyActiveTickets() {
     const responseBody = await response.body.json();
     console.log("getAllMyActiveTickets, Success!");
 
-    toReturn = responseBody.items;
+    _activeTicketsCache = responseBody.items;
+    toReturn = _activeTicketsCache;
   } catch(e) {
     console.log("getAllMyActiveTickets, something happed ( an erro bro ):", e);
+  }
+  return toReturn;
+}
+
+let _historyTicketsCache = [];
+let _historyTicketsRequestTime = 0;
+export async function getTicketHistory() {
+  let toReturn = _historyTicketsCache;
+
+  if (Date.now() < _historyTicketsRequestTime) return toReturn; // debounce
+  _historyTicketsRequestTime = Date.now() + 2000; // current date + 2 seconds in milisec
+
+  try {
+    const session = await fetchAuthSession();
+    const token = session.tokens?.idToken?.toString(); 
+
+    const restOperation = post({
+    apiName: "Tessera-RestAPI",
+    path: "/Tessera-BasicUser-GetMyTicketHistory", // return my pages
+    options: {
+      headers: {
+        Authorization: token
+      },
+      body: {}
+    }});
+
+    const response = await restOperation.response;
+    const responseBody = await response.body.json();
+    console.log("GetMyTicketHistory, Success!");
+
+    _historyTicketsCache = responseBody.items;
+    toReturn = _historyTicketsCache;
+  } catch(e) {
+    console.log("GetMyTicketHistory, something happed ( an erro bro ):", e);
   }
   return toReturn;
 }
