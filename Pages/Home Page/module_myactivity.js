@@ -210,7 +210,6 @@ const categoryConverter = [ // in conjunction with module_submitticket.js
   series_historical.length = 12;
 
   const targetYear = 2026;
-  console.log(ActiveTickets);
   for (const indexedActive of ActiveTickets) {
     const dateObj = new Date(indexedActive.timestamp);
     if (dateObj.getFullYear() != targetYear) continue;
@@ -246,7 +245,7 @@ const categoryConverter = [ // in conjunction with module_submitticket.js
       data: series_historical
     }],
     xaxis: {
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     },
     colors: ["#3498db", "#556169"]
   };

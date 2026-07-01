@@ -18,16 +18,20 @@
         
         <div class="container-fit-to-screen color-bg">
             <!-- top bar -->
-            <div class="container-secondaryfillbordered admin-firstbar">
-
+            <div id="topbar" class="container-secondaryfillbordered admin-firstbar">
+                Yeah I AM THIRSTY
+                <!-- text is replaced -->
             </div>
             <!-- main content -->
             <div class="admin-primary-container">
                 <!-- buttons-->
                 <div class="admin-container-buttons">
                     <button id="OverviewButton" class="container-secondaryfill admin-category-button">Overview</button>
-                    
+                    <button id="PendingTicketsButton" class="container-secondaryfill admin-category-button">Pending Tickets</button>
                     <button id="UserMaButton" class="container-secondaryfill admin-category-button">User Management</button>
+                    <button id="SystemRecButton" class="container-secondaryfill admin-category-button">System Records</button>
+                    <button id="ReportsButton" class="container-secondaryfill admin-category-button">Reports</button>
+                    <button id="SettingsButton" class="container-secondaryfill admin-category-button">Settings</button>
                     
 
                 </div>
@@ -39,10 +43,31 @@
                         overview
 
                     </div>
+                    <!-- Pending Tickets -->
+                    <div id="PendingTicketsPanel" class="container-mainfill admin-container-individual-categorypanel">
+                        Pending Tickets
+
+                    </div>
 
                     <!-- User Management -->
                     <div id="UserMaPanel" class="container-mainfill admin-container-individual-categorypanel">
                         user management
+
+                    </div>
+                    <!-- System Records -->
+                    <div id="SystemRecPanel" class="container-mainfill admin-container-individual-categorypanel">
+                        user management
+
+                    </div>
+
+                    <!-- Reports -->
+                    <div id="ReportsPanel" class="container-mainfill admin-container-individual-categorypanel">
+                        reports
+
+                    </div>
+                    <!-- Settings -->
+                    <div id="SettingsPanel" class="container-mainfill admin-container-individual-categorypanel">
+                        settings
 
                     </div>
 
@@ -57,4 +82,5 @@
     </body>
     <script src="../.././globalscript.js"></script>
     <script src="./script.js"></script>
+    <script type="module" src="./module.js"></script>
 </html>

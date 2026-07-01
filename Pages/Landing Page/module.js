@@ -1,5 +1,5 @@
 
-import { IsLoggedIn, delay } from "../.././local_modules/aws main.js";
+import { getUser, delay } from "../.././local_modules/aws main.js";
 import { signIn, signInWithRedirect, fetchAuthSession } from "https://esm.sh/aws-amplify/auth";
 import { post } from "https://esm.sh/aws-amplify/api";
 
@@ -45,7 +45,7 @@ googleBtn.addEventListener("click", async () => {
 });
 
 document.getElementById("loggedin").style.display = "none"; // for the moment
-let currentUser = await IsLoggedIn();
+let currentUser = await getUser();
 while (currentUser) {
     // this basically loops until it can confirm that there is an entry for userData for this account
     try {
@@ -72,5 +72,5 @@ while (currentUser) {
         console.error("database entry verification error:", error.message, "if it says its a network error, try checking the lambda to see if something crashed it");
     }
 
-    await delay(5000);
+    await delay(1000);
 }

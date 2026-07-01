@@ -7,10 +7,12 @@
   width: calc(100% - 10px);
   height: 50px;
 
-  font-size: 64px;
+  font-size: 32px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
+
+
 }
 
 .admin-primary-container {
@@ -29,7 +31,7 @@
 .admin-container-buttons {
   position: absolute;
 
-  top: 0px;
+  top: 5px;
   left: 0px;
 
   width: 100%;
@@ -49,8 +51,9 @@
   width: calc(50px + 5%);
   height: 100%;
 
-  border-radius: 0px;
-  border: 0px;
+  border-radius: 5px;
+  border: 5px solid var(--main-border);
+  border-bottom: none;
 }
 
 .admin-main-container-category {
@@ -61,19 +64,24 @@
   width: 100%;
   height: calc(100% - 50px);
 
-  border-radius: 0px;
-  border: 0px;
+  border-radius: 5px;
+  border: 5px solid var(--main-border);
+
+  z-index: 2;
 }
 
 .admin-container-individual-categorypanel {
   position: absolute;
 
-  top: 50px;
-  left: 50px;
+  top: 25px;
+  left: 25px;
 
-  width: calc(100% - 100px);
-  height: calc(100% - 100px);
+  width: calc(100% - 50px);
+  height: calc(100% - 50px);
 
   border-radius: 0px;
   border: 0px;
+
+  overflow-x: scroll;
+  overflow-y: scroll;
 }

@@ -1,5 +1,5 @@
 import { Amplify } from "https://esm.sh/aws-amplify";
-import { fetchAuthSession, getCurrentUser, signOut } from "https://esm.sh/@aws-amplify/auth";
+import { fetchAuthSession, getCurrentUser, signOut, fetchUserAttributes, updateUserAttributes } from "https://esm.sh/@aws-amplify/auth";
 import { post } from "https://esm.sh/aws-amplify/api";
 import "https://esm.sh/aws-amplify/auth/enable-oauth-listener";
 
@@ -14,7 +14,7 @@ Amplify.configure({
         email: true,
         oauth: {
           domain: "ap-southeast-1cdzf5ewms.auth.ap-southeast-1.amazoncognito.com",
-          scopes: ["openid", "email", "profile"],
+          scopes: ["openid", "email", "profile", "aws.cognito.signin.user.admin"],
           redirectSignIn: ["http://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
           redirectSignOut: ["http://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
           responseType: "code"
@@ -32,7 +32,7 @@ Amplify.configure({
   }
 });
 
-export async function IsLoggedIn() {
+export async function getUser() {
   try {
     const user = await getCurrentUser();
     console.log("User is logged in:", user);
@@ -125,28 +125,83 @@ export async function getTicketHistory() {
   return toReturn;
 }
 
-async function checkUserGroups() {
+
+export async function getUserRole() {
+  const defaultRetry_ms = 1000;
+  const rolePresedenceConverter = {
+    Admin: 1,
+    Moderator: 2,
+  }
+
+  let running = true;
+
+
+  let user_presedence = 10;
+  let highest_precedence_role = "N/A";
+
+  while (running) {
+    try {
+      const session = await fetchAuthSession();
+      
+      if (!session.tokens?.idToken) { // user is not logged in
+        running = false;
+        continue;
+      }
+      const groups = session.tokens.idToken.payload["cognito:groups"] || [];
+      
+      for (const thisRole of groups) {
+        const thisPresedence = rolePresedenceConverter[thisRole];
+        if (!thisPresedence) continue;
+
+        if (thisPresedence < user_presedence) {
+          user_presedence = thisPresedence;
+          highest_precedence_role = thisRole;
+        }
+      }
+
+      
+      
+      running = false;
+    } catch (error) {
+      console.warn("getUserRole() | Attempt failed fetching auth session:", error);
+      
+      // If we have retries left, wait and try again
+      console.log(`getUserRole() | Retrying in ${defaultRetry_ms}ms...`);
+      await delay(defaultRetry_ms);
+    }
+  }
+
+  return {
+    user_presedence: user_presedence,
+    highest_precedence_role: highest_precedence_role
+  };
+}
+
+
+export async function getUserAttributes() {
   try {
-    const session = await fetchAuthSession();
-    const groups = session.tokens.idToken.payload["cognito:groups"] || [];
+    const attributes = await fetchUserAttributes();
+    console.log("Retrieved user attributes:", attributes);
 
-    if (groups.includes('admin')) {
-      console.log("Welcome, Overlord.");
-    }
-
-    if (groups.includes('ticket checker')) {
-      console.log("Ready to scan some tickets!");
-    }
-    
-    return groups;
-  } catch (err) {
-    console.error("Error fetching session:", err);
-    return [];
+    return attributes;
+  } catch (error) {
+    console.error("Error when fetching attributes: ", error);
+    return null;
   }
 }
 
 
+export async function changePreferredUsername(newUsername) {
+  try {
+    const result = await updateUserAttributes({
+      userAttributes: {
+        preferred_username: newUsername
+      }
+    });
 
-
-
-
+    console.log("Update result:", result);
+    
+  } catch (error) {
+    console.error("Error updating preferred username:", error);
+  }
+}

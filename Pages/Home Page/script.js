@@ -70,9 +70,10 @@ window.addEventListener("load", () => {
         openPopup(this_id);
       });
     }
-    document.getElementById("gotoadminpanel").addEventListener("click", () => {
-      window.location.href=".././Admin Panel/Admin Panel.html";
-    });
+    // is now handled by the module script
+    //document.getElementById("gotoadminpanel").addEventListener("click", () => {
+    //  window.location.href=".././Admin Panel/Admin Panel.html";
+    //});
   }
 
   { // my activity button links
