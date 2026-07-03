@@ -1,5 +1,3 @@
-
-
 .admin-firstbar {
   position: absolute;
   transform: none;
@@ -25,9 +23,6 @@
 }
 
 
-
-
-
 .admin-container-buttons {
   position: absolute;
 
@@ -38,11 +33,11 @@
   height: 50px;
 
   display: flex;
-  
+
   flex-direction: row;
   justify-content: left;
   align-items: center;
-  gap: 10px;     
+  gap: 10px;
 }
 
 .admin-category-button {
@@ -84,4 +79,33 @@
 
   overflow-x: scroll;
   overflow-y: scroll;
+}
+
+.admin-search-1 {
+  position: absolute;
+  transform: none;
+  width: calc(50px + 15%);
+  padding: 0px;
+}
+.admin-list-button {
+  position: relative;
+  width: calc(100% - 5px);
+
+  transform: none;
+
+  padding: 5px;
+  margin: 0px;
+
+  background: var(--main-border-transparent);
+  display: list-item;
+}
+.admin-list-button button {
+  width: 100%;
+  height: 100%;
+
+  padding: 0px;
+  margin: 0px;
+
+  background-color: transparent;
+  border: none;
 }

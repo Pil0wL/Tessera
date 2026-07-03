@@ -1,6 +1,5 @@
-
-
-:root { /* Globals */
+:root {
+  /* Globals */
   --main-fill: #8BB4DC;
   --main-border: #95C5F5;
   --main-border-transparent: #95C5F586;
@@ -10,8 +9,9 @@
   --text-on-bg: #FFFFFF;
   --text-on-bg-disable: #ffffff86;
 }
- 
-html, body {
+
+html,
+body {
   height: 100%;
   margin: 0;
 
@@ -27,6 +27,7 @@ body * {
   font-weight: normal;
   text-align: center;
 }
+
 button {
   cursor: pointer;
 }
@@ -37,7 +38,7 @@ button {
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;  
+  background: transparent;
   /*border-radius: 10px;*/
 }
 
@@ -55,6 +56,8 @@ ol {
   list-style-type: none;
   padding-left: 0px;
   padding-top: 0px;
+
+  overflow-y: scroll;
 }
 
 ol li {
@@ -73,25 +76,67 @@ ol li {
   border: 5px solid var(--text-on-bg) !important;
   border-top: 5px solid transparent !important;
   border-radius: 50% !important;
-  
-  animation: spin 1s linear infinite; 
+
+  animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
+
+div.search-box {
+  position: absolute;
+  transform: none;
+
+  width: calc(200px);
+  padding: 0px;
+}
+
+.search-box button {
+  height: 100%;
+  width: 40px;
+  background: none;
+  border: none;
+  padding: 0%;
+  margin: 0%;
+}
+
+.search-box input {
+  height: 100%;
+  width: calc(100% - 45px);
+  left: 50px;
+  background: none;
+  border: none;
+  padding: 0%;
+  margin: 0%;
+}
+
 /**************** Quick Settings ****************/
 
 .default-shadow {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
 }
+
 .color-bg {
   background-color: var(--bg-fill);
 }
-.bg-image img {
-  width: 100%;
-  height: 100%;
 
+
+.bg-image {
+  height: 100%;
+  width: 100%;
+}
+
+.bg-image img {
+  height: 100%;
+  width: 100%;
+  
   object-fit: cover;
 }
 
@@ -118,6 +163,7 @@ ol li {
   height: 100%;
   aspect-ratio: 1 / 1;
 }
+
 /**************** Container Types ****************/
 .button-style1 {
   box-sizing: border-box;
@@ -153,13 +199,16 @@ ol li {
 
   text-align: center;
 }
+
 .container-fit-to-screen {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: relative;
+  overflow: clip;
 
   background: linear-gradient(to top, var(--bg-fill) 43%, var(--bg-border) 95%);
 }
+
 .container-fit-to-container {
   position: absolute;
 
@@ -182,10 +231,12 @@ ol li {
   border-radius: 5px;
   background-color: var(--main-fill);
 }
+
 .container-secondaryfill {
   border-radius: 5px;
   background-color: var(--secondary-fill);
 }
+
 .container-borderfill {
   border-radius: 5px;
   background-color: var(--main-border);
@@ -195,6 +246,7 @@ ol li {
   background-color: var(--secondary-fill);
   border: 5px solid var(--main-border);
 }
+
 .container-logo {
   color: var(--text-on-bg);
   position: absolute;
@@ -272,6 +324,71 @@ ol li {
   aspect-ratio: 1 / 1;
 }
 
+/**************** Container Types - User ****************/
+.container-user-list-element {
+  position: relative;
+
+  border-radius: 5px;
+  border: none;
+  background: var(--secondary-fill);
+
+  height: 50px;
+  width: calc(100% - 10px);
+
+  cursor: pointer;
+}
+
+.container-user-list-element .primary {
+  position: absolute;
+  transform: translate(0%, -50%);
+  background: none;
+
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  left: 5px;
+  top: 50%;
+
+
+  height: 30px;
+  width: calc(80% - 65px);
+}
+
+.container-user-list-element .secondary {
+  position: absolute;
+  background: none;
+
+  left: calc(80% - 55px);
+
+  height: 100%;
+  width: calc(20% + 50px);
+
+  text-align: center;
+}
+
+.container-user-list-element .border {
+  position: absolute;
+  background: var(--main-border);
+
+  top: 5px;
+  /*left: calc(80% - 55px); is set manually*/
+
+  height: calc(100% - 10px);
+  width: 5px;
+  border-radius: 5px;
+}
+
+.container-user-list-element img {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  height: calc(100% - 10px);
+  aspect-ratio: 1 / 1;
+}
+
 /**************** Container Types - Quick Build ****************/
 /* special container styles
   so if you just wanwt a header for your container do
@@ -300,11 +417,12 @@ ol li {
 
   height: 30px;
   width: calc(100% - 10px);
-  
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .container-headertextstyle.b {
   position: absolute;
   top: 35px;
@@ -317,12 +435,13 @@ ol li {
   height: 5px;
   width: calc(100% - 10px);
 }
+
 .container-headertextstyle.c {
   position: absolute;
 
   top: 45px;
   left: 5px;
-  
+
   height: calc(100% - 50px);
   width: calc(100% - 10px);
 
@@ -334,12 +453,13 @@ ol li {
   white-space: pre-line;
   overflow-wrap: break-word;
 }
+
 .container-headertextstyle.d {
   position: absolute;
 
   top: 45px;
   left: 5px;
-  
+
   height: calc(100% - 115px);
   width: calc(100% - 10px);
 
@@ -351,6 +471,7 @@ ol li {
   white-space: pre-line;
   overflow-wrap: break-word;
 }
+
 .container-headertextstyle.e {
   position: absolute;
   bottom: calc(60px);
@@ -363,6 +484,7 @@ ol li {
   height: 5px;
   width: calc(100% - 10px);
 }
+
 .container-headertextstyle.f {
   position: absolute;
   bottom: 5px;
@@ -370,16 +492,18 @@ ol li {
 
   height: 50px;
   width: calc(100% - 10px);
-  
+
   display: flex;
   align-items: center;
   justify-content: left;
 }
+
 .container-headertextstyle.f button {
   position: relative;
   transform: none;
   margin-left: 5px;
 }
+
 .container-headertextstyle.g {
   position: absolute;
   top: 5px;
@@ -387,11 +511,12 @@ ol li {
 
   height: 30px;
   width: calc(100% - 50px);
-  
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .container-headertextstyle.h {
   position: absolute;
   top: 35px;
@@ -404,6 +529,7 @@ ol li {
   height: 5px;
   width: calc(100% - 50px);
 }
+
 .container-headertextstyle.i {
   position: absolute;
   top: 5px;
@@ -411,12 +537,12 @@ ol li {
 
   height: 35px;
   width: 35px;
-  
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-  
+
 /**************** Container Types - Prompt ****************/
 .container-prompt {
   position: absolute;
@@ -457,9 +583,10 @@ ol li {
   height: calc(100% - 120px);
   width: calc(100% - 10px);
 }
+
 .container-prompt .maincontent .prompttitle {
   position: absolute;
-  
+
   left: 0px;
   top: 0px;
 
@@ -472,6 +599,7 @@ ol li {
 
   color: var(--text-on-bg);
 }
+
 .container-prompt .maincontent .prompdescription {
   position: absolute;
 
@@ -488,6 +616,7 @@ ol li {
 
   color: var(--text-on-bg);
 }
+
 .container-prompt .buttoncontainer {
   position: absolute;
   bottom: 5px;
@@ -496,18 +625,21 @@ ol li {
   height: 50px;
   width: calc(100% - 10px);
 }
+
 .container-prompt .buttoncontainer .left {
   position: absolute;
   left: 0px;
 
   height: 100%;
 }
+
 .container-prompt .buttoncontainer .right {
   position: absolute;
   right: 0px;
 
   height: 100%;
 }
+
 /**************** Container Types - Dropdown ****************/
 .container-dropdown {
   position: absolute;
@@ -527,7 +659,7 @@ ol li {
 
   width: calc(100% - 5px);
   height: 300%;
-  
+
   z-index: 20;
 
   overflow-y: scroll;
@@ -543,13 +675,14 @@ ol li {
   transform: none;
 
   margin-bottom: 5px;
-  
+
   background-color: var(--secondary-fill);
   border: none;
 
   width: calc(100% - 10px);
   height: fit-content;
 }
+
 /**************** Container Types - Charts ****************/
 .container-charts-parent.bargraph {
   position: absolute;
@@ -558,6 +691,7 @@ ol li {
   height: 350px;
   width: calc(100%);
 }
+
 .container-charts-parent.bargraph .containerchild {
   position: absolute;
 
@@ -567,8 +701,13 @@ ol li {
   width: calc(100% - 50px);
 }
 
+
+
+
+
 /**************** Text Settings ****************/
-.textstyle-standard { /* kept here so you may re-apply it */
+.textstyle-standard {
+  /* kept here so you may re-apply it */
   color: var(--text-on-bg);
 
   font-family: "Times New Roman", serif;
@@ -584,6 +723,7 @@ ol li {
 .apexcharts-toolbar {
   background-color: var(--secondary-fill) !important;
 }
+
 .apexcharts-menu {
   background-color: var(--secondary-fill) !important;
 }

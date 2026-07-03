@@ -13,10 +13,6 @@
   transform: translate(-50%, -50%);
 }
 .registration-mask {
-  overflow: clip;
-  max-width: 100%;
-  max-height: 100%;
-
   mask-image: radial-gradient(
     ellipse at center,
     black 60%,

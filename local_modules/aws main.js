@@ -24,7 +24,7 @@ Amplify.configure({
   },
   API: {
     REST: {
-      "Tessera-RestAPI": { 
+      "Tessera-RestAPI": {
         endpoint: "https://msiext399k.execute-api.ap-southeast-1.amazonaws.com/prod",
         region: "ap-southeast-1"
       }
@@ -47,7 +47,7 @@ export async function handleSignOut(indexpath) {
     await signOut();
     // The Hub listener we set up earlier will detect this 
     // and you can redirect the user or update the UI there.
-    window.location.href = indexpath; 
+    window.location.href = indexpath;
   } catch (error) {
     console.error('Error signing out: ', error);
   }
@@ -67,17 +67,18 @@ export async function getAllMyActiveTickets() {
 
   try {
     const session = await fetchAuthSession();
-    const token = session.tokens?.idToken?.toString(); 
+    const token = session.tokens?.idToken?.toString();
 
     const restOperation = post({
-    apiName: "Tessera-RestAPI",
-    path: "/Tessera-BasicUser-GetMyActiveTickets", // return my pages
-    options: {
-      headers: {
-        Authorization: token
-      },
-      body: {}
-    }});
+      apiName: "Tessera-RestAPI",
+      path: "/Tessera-BasicUser-GetMyActiveTickets", // return my pages
+      options: {
+        headers: {
+          Authorization: token
+        },
+        body: {}
+      }
+    });
 
     const response = await restOperation.response;
     const responseBody = await response.body.json();
@@ -85,7 +86,7 @@ export async function getAllMyActiveTickets() {
 
     _activeTicketsCache = responseBody.items;
     toReturn = _activeTicketsCache;
-  } catch(e) {
+  } catch (e) {
     console.log("getAllMyActiveTickets, something happed ( an erro bro ):", e);
   }
   return toReturn;
@@ -101,17 +102,18 @@ export async function getTicketHistory() {
 
   try {
     const session = await fetchAuthSession();
-    const token = session.tokens?.idToken?.toString(); 
+    const token = session.tokens?.idToken?.toString();
 
     const restOperation = post({
-    apiName: "Tessera-RestAPI",
-    path: "/Tessera-BasicUser-GetMyTicketHistory", // return my pages
-    options: {
-      headers: {
-        Authorization: token
-      },
-      body: {}
-    }});
+      apiName: "Tessera-RestAPI",
+      path: "/Tessera-BasicUser-GetMyTicketHistory", // return my pages
+      options: {
+        headers: {
+          Authorization: token
+        },
+        body: {}
+      }
+    });
 
     const response = await restOperation.response;
     const responseBody = await response.body.json();
@@ -119,7 +121,7 @@ export async function getTicketHistory() {
 
     _historyTicketsCache = responseBody.items;
     toReturn = _historyTicketsCache;
-  } catch(e) {
+  } catch (e) {
     console.log("GetMyTicketHistory, something happed ( an erro bro ):", e);
   }
   return toReturn;
@@ -142,13 +144,13 @@ export async function getUserRole() {
   while (running) {
     try {
       const session = await fetchAuthSession();
-      
+
       if (!session.tokens?.idToken) { // user is not logged in
         running = false;
         continue;
       }
       const groups = session.tokens.idToken.payload["cognito:groups"] || [];
-      
+
       for (const thisRole of groups) {
         const thisPresedence = rolePresedenceConverter[thisRole];
         if (!thisPresedence) continue;
@@ -159,12 +161,12 @@ export async function getUserRole() {
         }
       }
 
-      
-      
+
+
       running = false;
     } catch (error) {
       console.warn("getUserRole() | Attempt failed fetching auth session:", error);
-      
+
       // If we have retries left, wait and try again
       console.log(`getUserRole() | Retrying in ${defaultRetry_ms}ms...`);
       await delay(defaultRetry_ms);
@@ -200,8 +202,58 @@ export async function changePreferredUsername(newUsername) {
     });
 
     console.log("Update result:", result);
-    
+
   } catch (error) {
     console.error("Error updating preferred username:", error);
   }
 }
+
+
+let _gottenUsers = [];
+let _gottenUsersRequestTime = 0;
+let _wasAscending;
+let _lastIndexBy;
+export async function _moderator_GetUsers(ascending, indexBy) {
+  let toReturn = _historyTicketsCache;
+
+  // only stops if:
+  // to debounce
+  // AND if the last params were equal
+  if ((Date.now() < _gottenUsersRequestTime) && ((_wasAscending === ascending) && (_lastIndexBy === indexBy))) return toReturn; // debounce
+  _gottenUsersRequestTime = Date.now() + 2000; // current date + 2 seconds in milisec
+
+
+  _wasAscending = ascending
+  _lastIndexBy = indexBy
+  try {
+    const session = await fetchAuthSession();
+    const token = session.tokens?.idToken?.toString();
+    const restOperation = post({
+      apiName: "Tessera-RestAPI",
+      path: "/Privileged/Tessera-Moderator-GetUsers",
+      options: {
+        headers: {
+          Authorization: token
+        },
+        body: {
+          ascending: _wasAscending,
+          indexBy: _lastIndexBy,
+          // startKey
+        }
+      }
+    });
+
+    const response = await restOperation.response;
+    const responseBody = await response.body.json();
+    console.log("_moderator_GetUsers, Success!");
+
+    _gottenUsers = responseBody.users;
+    toReturn = _gottenUsers;
+  } catch (error) {
+    console.error("_moderator_GetUsers | ", error.message);
+  }
+
+
+  return toReturn;
+}
+

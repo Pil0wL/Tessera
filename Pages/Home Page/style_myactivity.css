@@ -12,40 +12,11 @@
   
   border-radius: 50px;
 }
-.homepage-myactivity-1-search {
-  position: absolute;
-  transform: none;
-  width: calc(50px + 15%);
 
-  padding: 0px;
-}
-.homepage-myactivity-1-search input {
-  height: 100%;
-  width: calc(100% - 45px);
-
-  left: 50px;
-
-  background: none;
-  border: none;
-  padding: 0%;
-  margin: 0%;
-
-}
-.homepage-myactivity-1-search button {
-  height: 100%;
-  width: 40px;
-
-  background: none;
-  border: none;
-  
-  padding: 0%;
-  margin: 0%;
-
-}
 .homepage-myactivity-1-sortby {
   position: absolute;
 
-  left: calc(55px + 15%);
+  left: calc(205px);
 }
 
 .homepage-myactivity-1-container {

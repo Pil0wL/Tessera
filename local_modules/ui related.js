@@ -1,6 +1,6 @@
 
 
-export function generateUI_ActiveTickets( parentContainer, arrayOfTickets, callback) {
+export function generateUI_ActiveTickets(parentContainer, arrayOfTickets, callback) {
 
   /*
   arrayOfTickets = [
@@ -27,8 +27,8 @@ export function generateUI_ActiveTickets( parentContainer, arrayOfTickets, callb
 
     const card = document.createElement("li");
     card.classList.add("container-ticket");
-  
-  
+
+
     // logo
     const logoElement = document.createElement("img");
     logoElement.src = freepikLogoTransparent;
@@ -41,7 +41,7 @@ export function generateUI_ActiveTickets( parentContainer, arrayOfTickets, callb
     titleElement.classList.add("primary");
     titleElement.style.zIndex = 5;
     card.appendChild(titleElement);
-  
+
     // border
     const borderElement = document.createElement("div");
     borderElement.classList.add("border");
@@ -67,10 +67,114 @@ export function generateUI_ActiveTickets( parentContainer, arrayOfTickets, callb
     card.appendChild(buttonElement);
 
 
-  
+
     parentContainer.appendChild(card);
     toReturn.push({
       data: ticketData,
+      element: card
+    })
+  }
+
+  return toReturn;
+}
+
+export function generateUI_UserListElement(parentContainer, arrayOfUsers, callback) {
+
+  /*
+  arrayOfUsers = [
+    {
+      "ID": UUID,
+      "activeTickets": [
+        {
+        "ID": UUID,
+        "org": "Tessera-Organization-Tickets.Pecunia"
+        }
+      ],
+      "createdAt": Timestamp,
+      "currentStatus": number,
+      "email": String,
+      "Statistics": {
+        "CategoryDistribution": {
+          "Human Resource": 0,
+          "Network": 0,
+          "Technical": 0
+        },
+        "Logins": {Timestamp: true},
+        "ResponseTime": {
+          "<12hour": 0,
+          "<30min": 0,
+          "<4hour": 0,
+          ">Day": 0,
+          ">Week": 0
+        },
+        "SatistfactionDistribution": [ 0, 0, 0, 0, 0 ]
+      },
+      "StatisticsSubmittedTickets": 0,
+      "ticketHistory": []
+    },
+    {...},
+    ...
+  ]
+  */
+
+
+  while (parentContainer.firstChild) { // replaceChildren() but this is more tuff
+    parentContainer.removeChild(parentContainer.lastChild);
+  }
+
+  const freepikLogoTransparent = import.meta.url + "/../.././images/Freepik user profile transparent.png";
+  const callbackReference = callback;
+
+  const toReturn = [];
+  for (const userData of arrayOfUsers) {
+
+
+    const card = document.createElement("li");
+    card.classList.add("container-user-list-element");
+
+
+    // logo
+    const logoElement = document.createElement("img");
+    logoElement.src = freepikLogoTransparent;
+    logoElement.alt = "transparent logo";
+    card.appendChild(logoElement);
+
+    // title
+    const titleElement = document.createElement("div");
+    titleElement.textContent = userData.email;
+    titleElement.classList.add("primary");
+    titleElement.style.zIndex = 5;
+    card.appendChild(titleElement);
+
+    // border
+    const borderElement = document.createElement("div");
+    borderElement.classList.add("border");
+    borderElement.style.left = "calc(80% - 60px)";
+    titleElement.style.zIndex = 5;
+    card.appendChild(borderElement);
+
+    // date added
+    const dateElement = document.createElement("div");
+    dateElement.textContent = userData.createdAt.split("T")[0];
+    dateElement.classList.add("secondary");
+    dateElement.style.zIndex = 5;
+    card.appendChild(dateElement);
+
+    // the actual button
+    const buttonElement = document.createElement("button");
+    buttonElement.classList.add("container-fit-to-container");
+    buttonElement.style.cursor = "pointer";
+    buttonElement.style.zIndex = 10;
+    buttonElement.addEventListener("click", () => {
+      callbackReference(card, userData)
+    });
+    card.appendChild(buttonElement);
+
+
+
+    parentContainer.appendChild(card);
+    toReturn.push({
+      data: userData,
       element: card
     })
   }
@@ -123,17 +227,17 @@ function buildPromptBase() {
   }
 }
 
-let isPromptedToTitleAndDescription = false;
+let isPromptedToInput = false;
 export function prompt_RetrieveNewTitleAndDescription(ticketData, callback) {
-  if (isPromptedToTitleAndDescription) {
+  if (isPromptedToInput) {
     console.log("you have an ongoing prompt to type in a new title and description already!");
     return;
   }
-  isPromptedToTitleAndDescription = true;
+  isPromptedToInput = true;
 
   const parentContainer = document.querySelector(".container-fit-to-screen");
   const { Background, Title, Content, ButtonContainer, leftButton, rightButton } = buildPromptBase();
-  Title.textContent = "Enter a new title and description"
+  Title.textContent = "Enter a new title and description";
 
 
   // title prompt
@@ -158,12 +262,12 @@ export function prompt_RetrieveNewTitleAndDescription(ticketData, callback) {
     proceeding = true
     try {
       await callback(success, newTitle, newDescription);
-    } catch(e) {
+    } catch (e) {
       console.log("prompt_RetrieveNewTitleAndDescription callback error:", e)
     }
 
     Background.remove();
-    isPromptedToTitleAndDescription = false;
+    isPromptedToInput = false;
   };
 
   leftButton.textContent = "Cancel"
@@ -195,18 +299,18 @@ export async function display_Progress(titleText, callback) {
   rightButton.style.display = "none";
 
   parentContainer.appendChild(Background);
-  
+
   var success = true;
   try {
     await callback();
     Content.classList.add("center-items");
     Content.textContent = "Success!";
-  } catch(e) {
+  } catch (e) {
     Content.classList.add("text-with-many-words");
     Content.textContent = "Error: " + e;
     console.error("Error:", e);
     success = false;
-  } 
+  }
   spinner.remove();
   Title.remove();
 
@@ -222,7 +326,7 @@ export function prompt_Confirmation(titleText, callback) {
   const { Background, Title, Content, ButtonContainer, leftButton, rightButton } = buildPromptBase();
 
   Title.textContent = titleText
-  
+
   rightButton.textContent = "Confirm";
   rightButton.addEventListener("click", async () => {
     Background.remove();
@@ -243,7 +347,7 @@ export function prompt_Message(titleText, description, callback) {
   const { Background, Title, Content, ButtonContainer, leftButton, rightButton } = buildPromptBase();
 
   Title.textContent = titleText
-  
+
   rightButton.textContent = "Confirm";
   rightButton.addEventListener("click", async () => {
     Background.remove();
@@ -265,11 +369,11 @@ export function officiate_dropdown(prefix, targetDropdownElement, callback) {
 
   let toggled = false;
   const toggler = (event) => {
-      const clickedInsideContent = content.contains(event.target);
-      if (clickedInsideContent) return;
+    const clickedInsideContent = content.contains(event.target);
+    if (clickedInsideContent) return;
 
-      toggled = !toggled;
-      content.style.display = toggled ? "flex" : "none";
+    toggled = !toggled;
+    content.style.display = toggled ? "flex" : "none";
   };
   content.style.display = "none";
 
@@ -298,10 +402,10 @@ export function officiate_dropdown(prefix, targetDropdownElement, callback) {
 }
 
 const sortingLambdas = [
-  (a, b) => {return a.data.timestamp.localeCompare(b.data.timestamp);},
-  (a, b) => {return b.data.timestamp.localeCompare(a.data.timestamp);},
-  (a, b) => {return a.data.data.ti.localeCompare(b.data.data.ti);},
-  (a, b) => {return b.data.data.ti.localeCompare(a.data.data.ti);}
+  (a, b) => { return a.data.timestamp.localeCompare(b.data.timestamp); },
+  (a, b) => { return b.data.timestamp.localeCompare(a.data.timestamp); },
+  (a, b) => { return a.data.data.ti.localeCompare(b.data.data.ti); },
+  (a, b) => { return b.data.data.ti.localeCompare(a.data.data.ti); }
 ]
 export function filter_givenTickets(generatedTickets, filterInfo) {
   /*
@@ -342,7 +446,7 @@ export function filter_givenTickets(generatedTickets, filterInfo) {
 
   filterInfo.sortBy = filterInfo.hasOwnProperty("sortBy") ? filterInfo.sortBy : 0;
   generatedTickets.sort(sortingLambdas[filterInfo.sortBy]);
-  
+
   const parentContainer = generatedTickets[0].element.parentElement;
 
   const searchString = filterInfo.hasOwnProperty("searchString") ? filterInfo.searchString.toLowerCase() : "";
@@ -357,13 +461,99 @@ export function filter_givenTickets(generatedTickets, filterInfo) {
     }
   }
 }
+export function displayTicketDescription(container, ticketData) {
+
+  const categoryConverter = [
+    "Technical",
+    "Network",
+    "Human Resource"
+  ];
+
+  const buildingString = [`Title: ${ticketData.data.ti}
+    \n\nDescription: ${ticketData.data.des}
+    \n\nCategory: ${categoryConverter[ticketData.category]}
+    \n\nDate: ${ticketData.timestamp.split("T")[0]}`];
+
+  if (ticketData.notes) {
+    buildingString.push(`\n\nNotes:\n"${ticketData.notes.join("\"\n\n\"")}"`)
+  }
+  container.textContent = buildingString.join("");
+}
+
+
+export function prompt_RetrieveNewString(title, callback) {
+  if (isPromptedToInput) {
+    console.log("you have an ongoing prompt!");
+    return;
+  }
+  isPromptedToInput = true;
+
+  const parentContainer = document.querySelector(".container-fit-to-screen");
+  const { Background, Title, Content, ButtonContainer, leftButton, rightButton } = buildPromptBase();
+  Title.textContent = title;
+
+  // description prompt
+  const inputDescription = document.createElement("textarea");
+  inputDescription.classList.add("prompdescription", "text-with-many-words");
+  inputDescription.name = "newdescription";
+  inputDescription.value = "your comment here";
+  Content.appendChild(inputDescription);
+
+  let proceeding = false;
+  const proceedCallback = async (success, newString) => {
+    if (proceeding) return;
+    proceeding = true
+    try {
+      await callback(success, newString);
+    } catch (e) {
+      console.log("prompt_RetrieveNewTitleAndDescription callback error:", e)
+    }
+
+    Background.remove();
+    isPromptedToInput = false;
+  };
+
+  leftButton.textContent = "Cancel"
+  leftButton.addEventListener("click", async () => {
+    await proceedCallback(false, "");
+  });
+
+  rightButton.textContent = "Submit"
+  rightButton.addEventListener("click", async () => {
+    await proceedCallback(true, inputDescription.value);
+  });
+
+  parentContainer.appendChild(Background);
+}
+
+
+export function prompt_RetrieveNewInteger(title, callback) {
+  prompt_RetrieveNewString(title, async (success, newString) => {
+    if (!success) {
+      await callback(false, 0);
+      return;
+    }
+    if (
+      (typeof newString !== 'string' || newString.trim() === "")
+      || !Number.isInteger(Number(newString))
+    ) {
+      prompt_Message("Error", "Invalid Integer", () => { });
+      await callback(false, 0);
+      return;
+    }
+
+
+
+    await callback(true, Number(newString));
+  });
+}
 //// Starting number
 //let timeLeft = 10;
 //
 //// Update the countdown every 1 second
 //const countdown = setInterval(function() {
 //  timeLeft--; // Subtract 1
-//  
+//
 //  // Show the new number in the HTML
 //  document.getElementById("timer").textContent = timeLeft;
 //

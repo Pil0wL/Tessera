@@ -58,7 +58,7 @@ let tosend_category;
       return
     }
 
-    const categoryConverter = [ // in conjunction with module_myactivity.js
+    const categoryConverter = [ // in conjunction with the local module, ui related.js
       "Technical",
       "Network",
       "Human Resource"

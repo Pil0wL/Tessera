@@ -42,3 +42,5 @@ try {
 } catch (error) {
   console.error("Statistics | Failed to log activity", error.message);
 }
+
+

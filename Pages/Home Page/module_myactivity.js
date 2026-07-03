@@ -1,15 +1,10 @@
 
-import { generateUI_ActiveTickets, prompt_RetrieveNewTitleAndDescription, display_Progress, prompt_Confirmation, officiate_dropdown, filter_givenTickets } from "../.././local_modules/ui related.js";
+import { generateUI_ActiveTickets, prompt_RetrieveNewTitleAndDescription, display_Progress, prompt_Confirmation, officiate_dropdown, filter_givenTickets, displayTicketDescription } from "../.././local_modules/ui related.js";
 import { getAllMyActiveTickets, getTicketHistory } from "../.././local_modules/aws main.js";
 import { fetchAuthSession } from "https://esm.sh/@aws-amplify/auth";
 import { post } from "https://esm.sh/aws-amplify/api";
 import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
 
-const categoryConverter = [ // in conjunction with module_submitticket.js
-  "Technical",
-  "Network",
-  "Human Resource"
-];
 
 { // first page
   let debounce_my_activity_activeticketcontainer = false;
@@ -34,11 +29,8 @@ const categoryConverter = [ // in conjunction with module_submitticket.js
     currentGeneratedTickets = generateUI_ActiveTickets(my_activity_activeticketcontainer, currentTickets, (card, data) => {
       console.log(data);
 
-      my_activity_activeticket_details.textContent = `Title: ${data.data.ti}
-      \n\nDescription: ${data.data.des}
-      \n\nCategory: ${categoryConverter[data.category]}
-      \n\nDate: ${data.timestamp.split("T")[0]}`;
-
+      displayTicketDescription(my_activity_activeticket_details, data);
+      
       selectedActiveTicket = data;
     });
   }
@@ -161,10 +153,7 @@ const categoryConverter = [ // in conjunction with module_submitticket.js
     currentGeneratedTickets = generateUI_ActiveTickets(my_ticket_history_container, currentTickets, (card, data) => {
       console.log(data);
 
-      my_ticket_history_details.textContent = `Title: ${data.data.ti}
-      \n\nDescription: ${data.data.des}
-      \n\nCategory: ${categoryConverter[data.category]}
-      \n\nDate: ${data.timestamp.split("T")[0]}`;
+      displayTicketDescription(my_ticket_history_details, data);
 
       selectedSingularHistoryTicket = data;
     });

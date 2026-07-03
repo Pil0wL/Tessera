@@ -84,9 +84,8 @@
   left: calc(50px);
   top: calc(50px);
 
-  width: calc(100% - 225px);
-  height: calc(100% - 225px);
-  padding: 50px;
+  width: calc(100% - 125px);
+  height: calc(100% - 125px);
 }
 
 

@@ -13,9 +13,6 @@
   transform: translate(-50%, -50%);
 }
 .login-mask {
-  overflow: clip;
-  max-width: 100%;
-  max-height: 100%;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 30%,
@@ -30,6 +27,7 @@
     black 100%
   );
 }
+
 
 .login-input {
   position: absolute;
