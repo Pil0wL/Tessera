@@ -1,5 +1,7 @@
 
 
+import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
+
 export function generateUI_ActiveTickets(parentContainer, arrayOfTickets, callback) {
 
   /*
@@ -546,6 +548,152 @@ export function prompt_RetrieveNewInteger(title, callback) {
 
     await callback(true, Number(newString));
   });
+}
+
+
+export function formatDate(timestamp) {
+
+  const date = new Date(timestamp);
+
+  const year = date.getUTCFullYear();
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  const hours = String(date.getUTCHours()).padStart(2, "0");
+  const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+
+  const monthShort = date.toLocaleString("en-US", { month: "short", timeZone: "UTC" });
+
+  return `${year}-${monthShort}-${day}, ${hours}:${minutes} UTC`;
+}
+
+
+export function officiate_chart(target_container, options, refresh_callback) {
+
+
+
+  options.chart.toolbar = {
+    show: false
+  };
+
+
+
+  let main_chart_place;
+  {
+    const created = document.createElement("div");
+    created.classList.add("containerchild");
+    target_container.appendChild(created);
+
+    main_chart_place = created;
+  }
+
+  let button_refresh;
+  {
+    const created = document.createElement("div");
+    created.classList.add("chartrefresh");
+    target_container.appendChild(created);
+
+    const created_button = document.createElement("button");
+    created_button.classList.add("container-fit-to-container");
+
+    const created_image = document.createElement("img");
+    created_image.classList.add("parent-height-ratio-1-1");
+    created_image.src = "../.././images/Freepik reload.png";
+    created_image.alt = "reload icon";
+
+    created_button.appendChild(created_image)
+    created.appendChild(created_button);
+    target_container.appendChild(created);
+
+    button_refresh = created_button
+  }
+
+
+  let containerbuttons;
+  {
+    const created = document.createElement("div");
+    created.classList.add("containerbuttons");
+    target_container.appendChild(created);
+
+    containerbuttons = created;
+  }
+
+  { // border
+    const created = document.createElement("div");
+    created.classList.add("border");
+    target_container.appendChild(created);
+  }
+
+
+  const chart = new ApexCharts(main_chart_place, options);
+
+  async function refresh() {
+    while (main_chart_place.firstChild) { // replaceChildren() but this is more tuff
+      main_chart_place.removeChild(main_chart_place.lastChild);
+    }
+
+    try {
+      await refresh_callback();
+    } catch (error) {
+      console.error(target_container, " | refresh error | ", error.message);
+    }
+    chart.render();
+  }
+  button_refresh.addEventListener("click", refresh);
+
+  { // button downloads // from https://apexcharts.com/docs/export-chart-image/
+    function getButton() {
+      // the actual button
+      const buttonElement = document.createElement("button");
+      buttonElement.classList.add("button-style2");
+      buttonElement.style.position = "relative";
+
+      return buttonElement
+    }
+    { // png
+      const retrievedButton = getButton();
+      retrievedButton.addEventListener("click", async () => {
+        const { imgURI } = await chart.dataURI();
+        const link = document.createElement("a");
+        link.href = imgURI;
+        link.download = "my-chart.png";
+        link.click();
+
+      });
+      retrievedButton.textContent = "Download as PNG";
+      containerbuttons.appendChild(retrievedButton);
+    }
+    { // svg
+      const retrievedButton = getButton();
+      retrievedButton.addEventListener("click", async () => {
+        const svgString = await chart.getSvgString();
+        const blob = new Blob([svgString], { type: "image/svg+xml;charset=utf-8" });
+        const blobURL = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = blobURL;
+        link.download = "my-chart.svg";
+        link.click();
+
+        URL.revokeObjectURL(blobURL);
+
+      });
+      retrievedButton.textContent = "Download as SVG";
+      containerbuttons.appendChild(retrievedButton);
+    }
+    { // csv
+      const retrievedButton = getButton();
+      retrievedButton.addEventListener("click", async () => {
+        chart.exportToCSV({
+          fileName: "my-chart-data"
+        });
+      });
+      retrievedButton.textContent = "Download as CSV";
+      containerbuttons.appendChild(retrievedButton);
+    }
+  }
+
+  button_refresh.click();
+
+  return chart
 }
 //// Starting number
 //let timeLeft = 10;

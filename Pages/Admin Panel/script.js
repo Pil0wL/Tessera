@@ -22,8 +22,8 @@ function switchCategory(id) {
 const disable_by_default = [
   "UserMaButton",
   "SystemRecButton",
-  "ReportsButton",
-  "SettingsButton"
+  //"ReportsButton",
+  //"SettingsButton"
 ];
 for (const id_to_disable of disable_by_default) {
   document.getElementById(id_to_disable).style.display = "none";
@@ -41,8 +41,8 @@ window.addEventListener("load", () => {
     PendingTicketsButton: "PendingTickets",
     UserMaButton: "UserMa",
     SystemRecButton: "SystemRec",
-    ReportsButton: "Reports",
-    SettingsButton: "Settings",
+    //ReportsButton: "Reports",
+    //SettingsButton: "Settings",
   };
 
   for (const key in to_link) {

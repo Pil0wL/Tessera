@@ -1,0 +1,33 @@
+
+
+
+.admin-system-records.a {
+  position: absolute;
+  transform: none;
+  top: 100px;
+
+  width: 800px;
+  height: 500px;
+}
+.admin-system-records.b {
+  position: absolute;
+  transform: none;
+  top: 625px;
+
+  width: 800px;
+  height: 300px;
+}
+
+.admin-system-records.filterpos {
+  position: absolute;
+  transform: none;
+  left: 400px;
+}
+
+.admin-system-records.c {
+  position: absolute;
+  transform: none;
+  top: 950px;
+
+  width: 800px;
+}

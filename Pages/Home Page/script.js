@@ -61,7 +61,7 @@ window.addEventListener("load", () => {
     const to_link = [
       "my_activity",
       "submit_ticket",
-      "messages",
+      "statistics",
       "my_account"
     ];
 

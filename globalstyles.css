@@ -688,19 +688,64 @@ div.search-box {
   position: absolute;
   transform: none;
 
-  height: 350px;
+
+  /* barcharts are hardcoded to be 300px + 25px * 2 for each margin + 70px for the buttons */
+  height: 435px;
   width: calc(100%);
 }
 
-.container-charts-parent.bargraph .containerchild {
+.container-charts-parent .containerchild {
   position: absolute;
 
   top: 25px;
+  left: 25px;
 
-  height: 300px;
+  height: calc(100% - 60px);
   width: calc(100% - 50px);
 }
+.container-charts-parent .containerbuttons {
+  position: absolute;
 
+  left: 80px;
+  bottom: 25px;
+  
+  height: 70px;
+  width: calc(100% - 105px);
+  overflow-x: scroll;
+
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+
+  justify-content: left;
+  align-items: center;
+}
+
+.container-charts-parent .chartrefresh {
+  position: absolute;
+
+  bottom: 40px;
+  left: 25px;
+
+  height: 40px;
+  width: 40px;
+}
+
+
+.container-charts-parent .border {
+  position: absolute;
+
+  background: var(--main-border-transparent);
+  border-radius: 5px;
+
+  height: 5px;
+
+  bottom: 100px;
+  left: 25px;
+
+  height: 5px;
+  width: calc(100% - 50px);
+}
 
 
 

@@ -1,5 +1,5 @@
 
-import { generateUI_ActiveTickets, prompt_RetrieveNewTitleAndDescription, display_Progress, prompt_Confirmation, officiate_dropdown, filter_givenTickets, displayTicketDescription } from "../.././local_modules/ui related.js";
+import { generateUI_ActiveTickets, prompt_RetrieveNewTitleAndDescription, display_Progress, prompt_Confirmation, officiate_dropdown, filter_givenTickets, displayTicketDescription, officiate_chart } from "../.././local_modules/ui related.js";
 import { getAllMyActiveTickets, getTicketHistory } from "../.././local_modules/aws main.js";
 import { fetchAuthSession } from "https://esm.sh/@aws-amplify/auth";
 import { post } from "https://esm.sh/aws-amplify/api";
@@ -17,7 +17,7 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
   async function refreshMyActivityTicketContainer() {
     if (debounce_my_activity_activeticketcontainer) return;
     debounce_my_activity_activeticketcontainer = true;
-    
+
     while (my_activity_activeticketcontainer.firstChild) { // replaceChildren() but this is more tuff
       my_activity_activeticketcontainer.removeChild(my_activity_activeticketcontainer.lastChild);
     }
@@ -30,7 +30,7 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
       console.log(data);
 
       displayTicketDescription(my_activity_activeticket_details, data);
-      
+
       selectedActiveTicket = data;
     });
   }
@@ -42,35 +42,35 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
     const deepCopy = structuredClone(selectedActiveTicket);
     prompt_RetrieveNewTitleAndDescription(
       deepCopy,
-    async (success, newTitle, newDescription) => {
-      if (!success) return;
+      async (success, newTitle, newDescription) => {
+        if (!success) return;
 
-      const successFromRequest = await display_Progress("Submitting your request to edit ticket...", async () => {
-        const session = await fetchAuthSession();
-        const token = session.tokens?.idToken?.toString(); 
-        const restOperation = post({
-          apiName: "Tessera-RestAPI",
-          path: "/Tessera-BasicUser-EditMyTicket",
-          options: {
-            headers: {
-              Authorization: token
-            },
-            body: {
-              targetID: deepCopy.ID,
-              title: newTitle,
-              description: newDescription,
+        const successFromRequest = await display_Progress("Submitting your request to edit ticket...", async () => {
+          const session = await fetchAuthSession();
+          const token = session.tokens?.idToken?.toString();
+          const restOperation = post({
+            apiName: "Tessera-RestAPI",
+            path: "/Tessera-BasicUser-EditMyTicket",
+            options: {
+              headers: {
+                Authorization: token
+              },
+              body: {
+                targetID: deepCopy.ID,
+                title: newTitle,
+                description: newDescription,
 
+              }
             }
-          }
+          });
+          await restOperation.response;
         });
-        await restOperation.response;
-      });
 
-      if (successFromRequest) {
-        refreshMyActivityTicketContainer();
-      }
-    
-    });
+        if (successFromRequest) {
+          refreshMyActivityTicketContainer();
+        }
+
+      });
 
 
   });
@@ -85,7 +85,7 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
 
         const successFromRequest = await display_Progress("Submitting your request to archive ticket...", async () => {
           const session = await fetchAuthSession();
-          const token = session.tokens?.idToken?.toString(); 
+          const token = session.tokens?.idToken?.toString();
           const restOperation = post({
             apiName: "Tessera-RestAPI",
             path: "/Tessera-BasicUser-ArchiveMyTicket",
@@ -126,7 +126,7 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
 
 
   document.querySelector("#my_activity_searchfilter button").addEventListener("click", updateFiltering);
-  
+
   await refreshMyActivityTicketContainer();
   updateFiltering();
 }
@@ -141,7 +141,7 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
   async function refreshMyTicketHistoryContainer() {
     if (debounce_my_ticket_history_container) return;
     debounce_my_ticket_history_container = true;
-    
+
     while (my_ticket_history_container.firstChild) { // replaceChildren() but this is more tuff
       my_ticket_history_container.removeChild(my_ticket_history_container.lastChild);
     }
@@ -158,7 +158,7 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
       selectedSingularHistoryTicket = data;
     });
   }
-  
+
   let filtering_SortBy = 0;
   let filtering_searchString = "";
   const search_input = document.querySelector("#my-ticket-history-search input");
@@ -173,8 +173,8 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
     updateFiltering();
   });
   document.querySelector("#my-ticket-history-search button").addEventListener("click", updateFiltering);
-  
-  
+
+
   document.getElementById("my-ticket-history-refresh").addEventListener("click", refreshMyTicketHistoryContainer);
   await refreshMyTicketHistoryContainer();
   updateFiltering();
@@ -185,37 +185,15 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
 { // third page
   const target_container = document.getElementById("my-ticket-history-chart");
 
-  
 
-  const ActiveTickets = await getAllMyActiveTickets();
-  const HistoricalTickets = await getTicketHistory();
+
 
   const series_active = []
   const series_historical = []
-
-  series_active.length = 0;
-  series_historical.length = 0;
-  series_active.length = 12;
-  series_historical.length = 12;
-
   const targetYear = 2026;
-  for (const indexedActive of ActiveTickets) {
-    const dateObj = new Date(indexedActive.timestamp);
-    if (dateObj.getFullYear() != targetYear) continue;
-
-    const thisMonth = dateObj.getMonth();
-    series_active[thisMonth] = series_active[thisMonth] ? series_active[thisMonth] + 1 : 1
-  }
-  for (const indexedHistorical of HistoricalTickets) {
-    const dateObj = new Date(indexedHistorical.timestamp);
-    if (dateObj.getFullYear() != targetYear) continue;
-    
-    const thisMonth = dateObj.getMonth();
-    series_historical[thisMonth] = series_historical[thisMonth] ? series_historical[thisMonth] + 1 : 1
-  }
   const barOptions = {
     title: {
-      text: `My Ticket Frequency for ${String(targetYear)}` , // Your title text
+      text: `My Ticket Frequency for ${String(targetYear)}`, // Your title text
       align: "center",
       margin: 10,
       offsetX: 0,
@@ -229,7 +207,7 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
     series: [{
       name: "Active",
       data: series_active
-    },{
+    }, {
       name: "Historical",
       data: series_historical
     }],
@@ -238,11 +216,33 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
     },
     colors: ["#3498db", "#556169"]
   };
+  async function refresh() {
 
-  // Render the Bar Graph
-  const barChart = new ApexCharts(target_container, barOptions);
-  barChart.render();
+    const ActiveTickets = await getAllMyActiveTickets();
+    const HistoricalTickets = await getTicketHistory();
 
+    series_active.length = 0;
+    series_historical.length = 0;
+    series_active.length = 12;
+    series_historical.length = 12;
+
+    for (const indexedActive of ActiveTickets) {
+      const dateObj = new Date(indexedActive.timestamp);
+      if (dateObj.getFullYear() != targetYear) continue;
+
+      const thisMonth = dateObj.getMonth();
+      series_active[thisMonth] = series_active[thisMonth] ? series_active[thisMonth] + 1 : 1
+    }
+    for (const indexedHistorical of HistoricalTickets) {
+      const dateObj = new Date(indexedHistorical.timestamp);
+      if (dateObj.getFullYear() != targetYear) continue;
+
+      const thisMonth = dateObj.getMonth();
+      series_historical[thisMonth] = series_historical[thisMonth] ? series_historical[thisMonth] + 1 : 1
+    }
+  }
+
+  officiate_chart(target_container, barOptions, refresh)
 
 
 
