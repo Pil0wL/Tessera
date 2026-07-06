@@ -1,4 +1,4 @@
-import { handleSignOut, getUserRole, changePreferredUsername } from "../.././local_modules/aws main.js";
+import { handleSignOut, getUserRole, changePreferredUsername, getUserAttributes } from "../.././local_modules/aws main.js";
 import { fetchAuthSession } from "https://esm.sh/@aws-amplify/auth";
 import { post } from "https://esm.sh/aws-amplify/api";
 
@@ -11,6 +11,11 @@ document.getElementById("logout").addEventListener("click", async () => {
 const Button_GoToAdminPanel = document.getElementById("gotoadminpanel");
 Button_GoToAdminPanel.style.display = "none";
 const { user_presedence, highest_precedence_role } = await getUserRole();
+const currentUser = await getUserAttributes();
+
+document.getElementById("welcome-message").textContent = `Welcome to Tessera! ${currentUser.email}`;
+
+
 
 console.log("user_presedence = ", user_presedence);
 if (user_presedence < 5) {

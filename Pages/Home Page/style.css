@@ -10,10 +10,12 @@
   width: 50%;
   height: 50%;
 
-  font-size: 64px;
+  font-size: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  overflow-wrap: break-word;
 }
 .homepage-container-quick-access {
   position: absolute;
@@ -81,11 +83,11 @@
   background-color: var(--secondary-fill);
   border: 5px solid var(--main-border);
 
-  left: calc(50px);
-  top: calc(50px);
+  left: calc(25px);
+  top: calc(25px);
 
-  width: calc(100% - 125px);
-  height: calc(100% - 125px);
+  width: calc(100% - 75px);
+  height: calc(100% - 100px);
 }
 
 
@@ -104,4 +106,19 @@
 
   height: 100%;
   width: calc(100% - 350px);
+}
+
+
+.homepage-internal-panel-container-revised {
+  display: block;
+  position: absolute;
+  
+  left: 25px;
+  top: 25px;
+
+  height: calc(100% - 50px);
+  width: calc(100% - 50px);
+
+  overflow-x: scroll;
+  overflow-y: scroll;
 }

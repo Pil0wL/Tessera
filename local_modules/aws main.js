@@ -15,8 +15,8 @@ Amplify.configure({
         oauth: {
           domain: "ap-southeast-1cdzf5ewms.auth.ap-southeast-1.amazoncognito.com",
           scopes: ["openid", "email", "profile", "aws.cognito.signin.user.admin"],
-          redirectSignIn: ["http://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
-          redirectSignOut: ["http://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/"],
+          redirectSignIn: ["http://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/", "http://tessera-bucket-host.s3-website-ap-southeast-1.amazonaws.com"],
+          redirectSignOut: ["http://127.0.0.1:5500/index.html", "https://pil0wl.github.io/Tessera/", "http://tessera-bucket-host.s3-website-ap-southeast-1.amazonaws.com"],
           responseType: "code"
         }
       }
@@ -257,3 +257,73 @@ export async function _moderator_GetUsers(ascending, indexBy) {
   return toReturn;
 }
 
+
+let _statisticsCache = {};
+let _statisticsRequestTime = 0;
+export async function getMyStatistics() {
+  let toReturn = _statisticsCache;
+
+  if (Date.now() < _statisticsRequestTime) return toReturn; // debounce
+  _statisticsRequestTime = Date.now() + 2000; // current date + 2 seconds in milisec
+
+  try {
+    const session = await fetchAuthSession();
+    const token = session.tokens?.idToken?.toString();
+
+    const restOperation = post({
+      apiName: "Tessera-RestAPI",
+      path: "/Tessera-BasicUser-GetMyStatistics", // return my pages
+      options: {
+        headers: {
+          Authorization: token
+        },
+        body: {}
+      }
+    });
+
+    const response = await restOperation.response;
+    console.log("getMyStatistics, Success!");
+    _statisticsCache = await response.body.json();
+    toReturn = _statisticsCache;
+
+  } catch (e) {
+    console.log("getMyStatistics, something happed ( an erro bro ):", e);
+  }
+  return toReturn;
+}
+
+
+
+let _moderatorStatisticsCache = {};
+let _moderatorStatisticsRequestTime = 0;
+export async function _moderator_getStatistics() {
+  let toReturn = _moderatorStatisticsCache;
+
+  if (Date.now() < _moderatorStatisticsRequestTime) return toReturn; // debounce
+  _moderatorStatisticsRequestTime = Date.now() + 2000; // current date + 2 seconds in milisec
+
+  try {
+    const session = await fetchAuthSession();
+    const token = session.tokens?.idToken?.toString();
+
+    const restOperation = post({
+      apiName: "Tessera-RestAPI",
+      path: "/Privileged/Tessera-Moderator-GetStatistics", // return my pages
+      options: {
+        headers: {
+          Authorization: token
+        },
+        body: {}
+      }
+    });
+
+    const response = await restOperation.response;
+    console.log("_moderator_getStatistics, Success!");
+    _moderatorStatisticsCache = await response.body.json();
+    toReturn = _moderatorStatisticsCache;
+
+  } catch (e) {
+    console.log("_moderator_getStatistics, something happed ( an erro bro ):", e);
+  }
+  return toReturn;
+}

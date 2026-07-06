@@ -574,6 +574,14 @@ export function officiate_chart(target_container, options, refresh_callback) {
     show: false
   };
 
+  if (options.tooltip) {
+    options.tooltip.theme = "dark";
+  } else {
+    options.tooltip = {
+      theme: "dark"
+    }
+  }
+
 
 
   let main_chart_place;
@@ -625,7 +633,10 @@ export function officiate_chart(target_container, options, refresh_callback) {
 
   const chart = new ApexCharts(main_chart_place, options);
 
+  let refresh_debounce = false;
   async function refresh() {
+    if (refresh_debounce) return;
+    refresh_debounce = true;
     while (main_chart_place.firstChild) { // replaceChildren() but this is more tuff
       main_chart_place.removeChild(main_chart_place.lastChild);
     }
@@ -635,6 +646,7 @@ export function officiate_chart(target_container, options, refresh_callback) {
     } catch (error) {
       console.error(target_container, " | refresh error | ", error.message);
     }
+    refresh_debounce = false;
     chart.render();
   }
   button_refresh.addEventListener("click", refresh);

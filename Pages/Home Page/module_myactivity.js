@@ -1,5 +1,5 @@
 
-import { generateUI_ActiveTickets, prompt_RetrieveNewTitleAndDescription, display_Progress, prompt_Confirmation, officiate_dropdown, filter_givenTickets, displayTicketDescription, officiate_chart } from "../.././local_modules/ui related.js";
+import { generateUI_ActiveTickets, prompt_RetrieveNewTitleAndDescription, display_Progress, prompt_Confirmation, officiate_dropdown, filter_givenTickets, displayTicketDescription, officiate_chart, prompt_RetrieveNewInteger, prompt_Message } from "../.././local_modules/ui related.js";
 import { getAllMyActiveTickets, getTicketHistory } from "../.././local_modules/aws main.js";
 import { fetchAuthSession } from "https://esm.sh/@aws-amplify/auth";
 import { post } from "https://esm.sh/aws-amplify/api";
@@ -138,6 +138,7 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
   const my_ticket_history_details = document.getElementById("ticket-history-details");
 
   let currentGeneratedTickets = [];
+  let currentlySelectedTicket;
   async function refreshMyTicketHistoryContainer() {
     if (debounce_my_ticket_history_container) return;
     debounce_my_ticket_history_container = true;
@@ -152,6 +153,8 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
 
     currentGeneratedTickets = generateUI_ActiveTickets(my_ticket_history_container, currentTickets, (card, data) => {
       console.log(data);
+
+      currentlySelectedTicket = data;
 
       displayTicketDescription(my_ticket_history_details, data);
 
@@ -178,72 +181,44 @@ import ApexCharts from 'https://cdn.jsdelivr.net/npm/apexcharts/+esm';
   document.getElementById("my-ticket-history-refresh").addEventListener("click", refreshMyTicketHistoryContainer);
   await refreshMyTicketHistoryContainer();
   updateFiltering();
+
+
+  document.getElementById("ticket-history-rate-satisfaction").addEventListener("click", () => {
+
+    if (!currentlySelectedTicket) {
+      prompt_Message("Info", "Select a ticket first!", () => { });
+      return;
+    }
+    prompt_RetrieveNewInteger("From 1 ( Very Bad ) to 5 ( Very Good )", async (success, newInteger) => {
+
+      if (!success) return;
+      if (newInteger < 1 || newInteger > 5) {
+        prompt_Message("Misinput", "Out of range", () => { });
+        return;
+      }
+
+
+      const successFromRequest = await display_Progress("Submitting your request to archive ticket...", async () => {
+        const session = await fetchAuthSession();
+        const token = session.tokens?.idToken?.toString();
+        const restOperation = post({
+          apiName: "Tessera-RestAPI",
+          path: "/Tessera-BasicUser-SubmitSatisfaction",
+          options: {
+            headers: {
+              Authorization: token
+            },
+            body: {
+              targetID: currentlySelectedTicket.ID,
+              rating: newInteger
+            }
+          }
+        });
+        await restOperation.response;
+      });
+
+    });
+  });
 }
 
 
-
-{ // third page
-  const target_container = document.getElementById("my-ticket-history-chart");
-
-
-
-
-  const series_active = []
-  const series_historical = []
-  const targetYear = 2026;
-  const barOptions = {
-    title: {
-      text: `My Ticket Frequency for ${String(targetYear)}`, // Your title text
-      align: "center",
-      margin: 10,
-      offsetX: 0,
-      offsetY: 0,
-      floating: false,
-    },
-    chart: {
-      type: "bar",
-      height: 300
-    },
-    series: [{
-      name: "Active",
-      data: series_active
-    }, {
-      name: "Historical",
-      data: series_historical
-    }],
-    xaxis: {
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    },
-    colors: ["#3498db", "#556169"]
-  };
-  async function refresh() {
-
-    const ActiveTickets = await getAllMyActiveTickets();
-    const HistoricalTickets = await getTicketHistory();
-
-    series_active.length = 0;
-    series_historical.length = 0;
-    series_active.length = 12;
-    series_historical.length = 12;
-
-    for (const indexedActive of ActiveTickets) {
-      const dateObj = new Date(indexedActive.timestamp);
-      if (dateObj.getFullYear() != targetYear) continue;
-
-      const thisMonth = dateObj.getMonth();
-      series_active[thisMonth] = series_active[thisMonth] ? series_active[thisMonth] + 1 : 1
-    }
-    for (const indexedHistorical of HistoricalTickets) {
-      const dateObj = new Date(indexedHistorical.timestamp);
-      if (dateObj.getFullYear() != targetYear) continue;
-
-      const thisMonth = dateObj.getMonth();
-      series_historical[thisMonth] = series_historical[thisMonth] ? series_historical[thisMonth] + 1 : 1
-    }
-  }
-
-  officiate_chart(target_container, barOptions, refresh)
-
-
-
-}

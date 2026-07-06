@@ -8,6 +8,11 @@
   --bg-border: #B0C9E5;
   --text-on-bg: #FFFFFF;
   --text-on-bg-disable: #ffffff86;
+
+
+  --chart-bargraph-height-and-padding: 460px;
+  --chart-piechart-height-and-padding: 460px;
+  --chart-piechart-width-and-padding: 525px;
 }
 
 html,
@@ -693,6 +698,24 @@ div.search-box {
   height: 435px;
   width: calc(100%);
 }
+.container-charts-parent.piechart {
+  position: absolute;
+  transform: none;
+
+
+  /* pie charts are hardcoded to be 300px + 25px * 2 for each margin + 70px for the buttons */
+  height: 435px;
+  width: 500px;
+}
+.container-charts-parent.heatmap {
+  position: absolute;
+  transform: none;
+
+
+  /* pie charts are hardcoded to be 300px + 25px * 2 for each margin + 70px for the buttons */
+  height: 535px;
+  width: 1500px;
+}
 
 .container-charts-parent .containerchild {
   position: absolute;
@@ -712,6 +735,7 @@ div.search-box {
   height: 70px;
   width: calc(100% - 105px);
   overflow-x: scroll;
+  overflow-y: hidden;
 
   display: flex;
   flex-direction: row;

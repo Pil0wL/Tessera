@@ -1,5 +1,5 @@
 
-import { getUserAttributes, delay, getUserRole, _moderator_GetUsers } from "../.././local_modules/aws main.js";
+import { getUserAttributes, delay, getUserRole, _moderator_GetUsers, _moderator_getStatistics } from "../.././local_modules/aws main.js";
 import { officiate_dropdown, generateUI_UserListElement, generateUI_ActiveTickets, displayTicketDescription, filter_givenTickets, prompt_RetrieveNewString, prompt_RetrieveNewInteger, prompt_Message, prompt_Confirmation, display_Progress, formatDate, officiate_chart } from "../.././local_modules/ui related.js";
 
 import { updateUserAttributes, fetchAuthSession } from "https://esm.sh/@aws-amplify/auth";
@@ -11,7 +11,7 @@ const { user_presedence, highest_precedence_role } = await getUserRole();
 
 document.getElementById("topbar").textContent = "Getting user info...";
 const currentUser = await getUserAttributes();
-document.getElementById("topbar").textContent = `${currentUser.preferred_username || "N/A"} - ${highest_precedence_role}`;
+document.getElementById("topbar").textContent = `${currentUser.email || "N/A"} - ${highest_precedence_role}`;
 
 if (user_presedence < 2) {
   const admin_only = [
@@ -26,13 +26,110 @@ if (user_presedence < 2) {
   }
 }
 
+{ // overview
+  const target_container = document.getElementById("overview-charts-loginsbyday");
+
+
+
+
+  const targetYear = 2026;
+
+  const categories = [];
+  const data = [];
+  
+  categories.length = 365;
+  for (let i = 0; i < 365; i++) {
+    const walkingDate = new Date(targetYear, 0, 1 + i);
+
+    const dateString = walkingDate.toLocaleDateString("en-CA");
+
+    categories[i] = dateString;
+  }
+
+
+  const barOptions = {
+    title: {
+      text: `Logins By Day for ${String(targetYear)}`,
+      align: "center",
+      margin: 10,
+      offsetX: 0,
+      offsetY: 0,
+      floating: false,
+    },
+    chart: {
+      type: "line",
+      height: 300
+    },
+    series: [{
+      name: "Unique Logins",
+      data: data
+    }],
+    xaxis: {
+      type: "datetime",
+      categories: categories,
+      labels: {
+        datetimeFormatter: {
+          year: 'yyyy',
+          month: "MMM 'yy",
+          day: 'dd MMM'
+        }
+      }
+    },
+    yaxis: {
+      title: {
+        text: "Total Logins"
+      },
+      forceNiceScale: true,
+      min: 0
+    },
+    stroke: {
+      curve: "smooth",
+      width: 3
+    },
+    colors: ["#28a745"],
+    markers: {
+      size: 0, // Hides 365 dots
+      hover: {
+        size: 5
+      }
+    },
+    tooltip: {
+      x: {
+        format: "dd MMM yyyy" // Forces clear tooltips on hover (e.g., "01 Jul 2026")
+      }
+    }
+  };
+  async function refresh() {
+    const Statistics = await _moderator_getStatistics();
+    console.log(Statistics)
+
+    data.length = 0;
+    data.length = 365
+    for (let i = 0; i < 365; i++) {
+      const walkingDate = new Date(targetYear, 0, 1 + i);
+
+      const dateString = walkingDate.toLocaleDateString("en-CA"); 
+
+      const LoginsByDay = Statistics.LoginsByDay;
+      const dailyCount = LoginsByDay[dateString] ? Object.keys(LoginsByDay[dateString]).length : 0;
+
+      data[i] = dailyCount;
+    }
+  }
+
+  officiate_chart(target_container, barOptions, refresh)
+
+
+}
+
+
+
 const arrayUserFilters = [
   [false, 0],
   [true, 0],
   [false, 1],
   [true, 1],
 ]
-
 { // Pending Tickets
   const pending_tickets_user_list = document.getElementById("pending-tickets-user-list");
   const pending_tickets_user_active_tickets = document.getElementById("pending-tickets-active-tickets");

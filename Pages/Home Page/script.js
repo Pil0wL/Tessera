@@ -62,7 +62,7 @@ window.addEventListener("load", () => {
       "my_activity",
       "submit_ticket",
       "statistics",
-      "my_account"
+      //"my_account"
     ];
 
     for (const this_id of to_link) {
@@ -77,7 +77,8 @@ window.addEventListener("load", () => {
   }
 
   { // my activity button links
-    for (let i = 1; i < 4; i++) {
+    // third page has been repurposed and been put into smart ticket statstics instead
+    for (let i = 1; i < 3; i++) {
       const stringedNum = String(i)
       document.getElementById("my_activity_button_" + stringedNum).addEventListener("click", () => {
         myactivityOpenPage("my_activity_" + stringedNum);

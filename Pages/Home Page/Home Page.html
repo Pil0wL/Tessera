@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="../.././globalstyles.css"/>
+        <link rel="icon" type="image/x-icon" href="../.././images/favicon.png">
     </head>
 </head>
     <body>
@@ -18,6 +19,7 @@
         <link rel="stylesheet" href="./style_myactivity.css"/>
         <link rel="stylesheet" href="./style_submitticket.css"/>
         <link rel="stylesheet" href="./style_account.css"/>
+        <link rel="stylesheet" href="./style_smartticketstat.css"/>
 
 
         <div class="container-fit-to-screen color-bg">
@@ -42,14 +44,18 @@
                 
 
 
+                <!--
                 <button id="popup_my_account" class="button-style1 default-shadow homepage-quickacess-button" style="top: auto; bottom: 50px;">My Account</button>
-            
+                -->
+                <button id="logout" style="top: auto; bottom: 50px;" class="button-style1 default-shadow homepage-quickacess-button">
+                    Logout
+                </button>
             </div>
 
             <!-- Panels -->
             <div class="homepage-container-panels">
                 <!-- Welcome Message (put in here because the middle of it is in the same place as the panels) -->
-                <div class="homepage-welcome">Welcome to Tessera! Placeholder
+                <div id="welcome-message" class="homepage-welcome">Welcome to Tessera! Placeholder
                 </div>
                 
                 <!-- My Activity -->
@@ -161,13 +167,13 @@
                                 Content goes here
                             </div>
                             <div class="container-headertextstyle e"></div>
-                            <div class="container-headertextstyle f"></div>
+                            <div class="container-headertextstyle f">
+                                <button id="ticket-history-rate-satisfaction" class="button-style1 default-shadow" >Rate Satisfaction</button>
+                            </div>
                         </div>
                         
                     </div>
                     <div id="my_activity_3" class="homepage-internal-panel-container">
-                        
-                        <div id="my-ticket-history-chart" class="container-mainfill container-charts-parent bargraph"></div>
 
                         <!-- Hidden buttons for legacy reasons-->
                         <div style="display: none;" class="button-style1 default-shadow homepage-myactivity-3-export">
@@ -185,9 +191,11 @@
                     <div id="my_activity_button_2" class="button-style1 default-shadow homepage-myactivity-button" style="left: 80px;">
                         2
                     </div>
+                    <!-- 
                     <div id="my_activity_button_3" class="button-style1 default-shadow homepage-myactivity-button" style="left: 135px;">
                         3
                     </div>
+                    -->
                 </div>
 
                 <!-- Submit a Ticket -->
@@ -296,11 +304,14 @@
                 <!-- Smart Ticket Statistics -->
                 <div id="statistics" class="homepage-individual-panel">
                     
-                    <div class="button-style1 homepage-messages-1 default-shadow">
-                        Smart Ticket Statistics
-                    </div>
-                    <div class="container-mainfill homepage-messages-2">
-                        Smart Ticket Statistics
+                        
+                    
+                    <div class="homepage-internal-panel-container-revised">
+                        <div id="smart-ticket-my-history" class="container-mainfill container-charts-parent bargraph"></div>
+                        <div id="smart-ticket-my-categories" class="container-mainfill smart-ticket-placement a container-charts-parent piechart"></div>
+                        <div id="smart-ticket-daily-logins" class="container-mainfill smart-ticket-placement b container-charts-parent heatmap"></div>
+                        <div id="smart-ticket-satisfaction-rating" class="container-mainfill smart-ticket-placement c container-charts-parent piechart"></div>
+
                     </div>
                 </div>
                 
@@ -319,10 +330,11 @@
                             profile icon
                         </div>
                         
+                        <!-- 
                         <button id="logout" class="button-style1 default-shadow homepage-account-logout">
                             Logout
                         </button>
-
+                        -->
                         <div class="container-mainfill homepage-account-settings">
                             <div class="homepage-account-settings-leftsidetext">
                                 Notifications:
@@ -374,4 +386,5 @@
     <script type="module" src="./module.js"></script>
     <script type="module" src="./module_submitticket.js"></script>
     <script type="module" src="./module_myactivity.js"></script>
+    <script type="module" src="./module_smartticketstat.js"></script>
 </html>

@@ -12,7 +12,8 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="../.././globalstyles.css" />
+        <link rel="stylesheet" href="../.././globalstyles.css"/>
+        <link rel="icon" type="image/x-icon" href="../.././images/favicon.png">
     </head>
 </head>
 
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./style_pendingtickets.css" />
     <link rel="stylesheet" href="./style_systemrecords.css" />
+    <link rel="stylesheet" href="./style_overview.css" />
 
     <div class="container-fit-to-screen color-bg">
         <!-- top bar -->
@@ -27,6 +29,9 @@
             Yeah I AM THIRSTY
             <!-- text is replaced -->
         </div>
+        <button id="gotohomepage" class="button-style1 topbar-button-placement">
+            Go to Home page
+        </button>
         <!-- main content -->
         <div class="admin-primary-container">
             <!-- buttons-->
@@ -46,8 +51,10 @@
             <!-- panels -->
             <div class="container-secondaryfill admin-main-container-category">
                 <!-- Overview -->
-                <div id="OverviewPanel" class="container-mainfill admin-container-individual-categorypanel">
-                    overview
+                <div id="OverviewPanel" class="admin-container-individual-categorypanel">
+                    <div id="overview-charts-loginsbyday" class="container-mainfill container-charts-parent bargraph">
+                    </div>
+
 
                 </div>
                 <!-- Pending Tickets -->
@@ -263,7 +270,8 @@
 
                     </div>
 
-                    <div id="system-records-moderation-chart" class="container-mainfill container-charts-parent bargraph admin-system-records c"></div>
+                    <div id="system-records-moderation-chart"
+                        class="container-mainfill container-charts-parent bargraph admin-system-records c"></div>
                 </div>
 
                 <!-- Reports -->
