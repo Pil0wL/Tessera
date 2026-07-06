@@ -5,42 +5,55 @@
         <meta property="og:title" content="Tessera" />
         <meta property="twitter:card" content="summary_large_image" />
 
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="globalstyles.css"/>
+        <link rel="stylesheet" href="./globalstyles.css"/>
+        <link rel="icon" type="image/x-icon" href="../.././images/favicon.png">
     </head>
     <body>
-    
-        <link rel="stylesheet" href="Pages/Login/style.css"/>
+        
+        <link rel="stylesheet" href="./Pages/Landing Page/style.css"/>
         <div class="container-fit-to-screen color-bg">
             
 
 
             <!-- background -->
             <div class="login-mask bg-image">
-                <img src="images/login.jpg" alt="its just clouds">
+                <img src="./images/login.jpg" alt="its just clouds">
             </div>
 
             <!-- logo -->
             <div class="container-logo login-container-logo textstyle-standard">
-                <img src="images/Freepik ticket.png" alt="Freepik Logo">
+                <img class="parent-height-ratio-1-1" src="./images/Freepik ticket.png" alt="Freepik Logo">
                 Tessera
             </div>
 
-            <!-- the login details -->
-            <div class="container-secondaryfill login-container default-shadow">
-                <form>
-                    <input class="button-style1 login-username default-shadow" type="text" name="username" placeholder="Enter name" />
-                    <input class="button-style1 login-password default-shadow" type="password" name="password" placeholder="Enter Password" />
+            <!-- already logged in -->
+            <div id="loggedin" class="container-secondaryfill login-container default-shadow">
+                <button id="gotohomepage" class="button-style1 login-input default-shadow">You are already logged in! ( go to next page )</button>
+            </div>
+
+            <!-- to log in -->
+            <div id="notloggedin" class="container-secondaryfill login-container default-shadow">
+                <form id="loginForm">
+                    <input id="email" class="button-style1 login-input default-shadow" type="email" name="email" placeholder="Enter Email" />
+                    <input id="password" style="top: 120px;" class="button-style1 login-input default-shadow" type="password" name="password" placeholder="Enter Password" />
 
                     <button class="button-style1 login-submit default-shadow" type="submit">Login</button>
                 </form>
 
                 <!-- registration -->
                 <div class="login-registration textstyle-standard">
-                    <a href="Pages/Registration/Registration.html">New to Tessera? ( Register)</a>
+                    <a href="./Pages/Registration/Registration.html">New to Tessera? ( Register)</a>
                 </div>
+
+                <!-- external log in -->
+                <button id="googlelogin" class="button-style1 login-externalloginbutton textstyle-standard">
+                    <img src="./images/icons8-google-48.png" alt="google logo">
+                </button>
             </div>
+
 
         </div>
 
@@ -48,5 +61,8 @@
         <link rel="canonical" href="https://pil0wl.github.io/Tessera/">
     </body>
 
-    <script src="globalscript.js"></script>
+    <script src="./globalscript.js"></script>
+    <script src="./Pages/Landing Page/script.js"></script>
+    <script type="module" src="./local_modules/aws main.js"></script>
+    <script type="module" src="./Pages/Landing Page/module.js"></script>
 </html>

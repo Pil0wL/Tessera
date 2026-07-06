@@ -1,0 +1,124 @@
+
+
+.homepage-welcome {
+  position: absolute;
+  transform: none;
+
+  left: 25%;
+  top: 25%;
+
+  width: 50%;
+  height: 50%;
+
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow-wrap: break-word;
+}
+.homepage-container-quick-access {
+  position: absolute;
+
+  left: calc(-20px);
+  top: calc(0%);
+  background-color: var(--secondary-fill);
+  border: 5px solid var(--main-border);
+
+  width: 300px;
+  height: calc(100% - 10px);
+
+  border-radius: 15px;
+
+}
+
+.homepage-container-panels { /* must be the remainder of homepage-container-quick-access */
+  position: absolute;
+
+  left: calc(300px);
+
+  width: calc(100% - 300px);
+  height: 100%;
+}
+
+.homepage-internal-panel-container {
+  display: block;
+  position: absolute;
+  
+  left: 25px;
+  top: 25px;
+
+  height: calc(100% - 50px);
+  width: calc(100% - 50px);
+}
+
+
+.homepage-container-logo {
+  font-size: 48px;
+  height: 75px;
+  gap: 10px;
+
+  right: calc(50% - 80px);
+  top: calc(25px);
+
+}
+
+.homepage-quickacess-button {
+  position: absolute;
+
+  left: calc(50% + 5px);
+  top: calc(165px);
+
+  width: 75%;
+}
+
+.homepage-individual-panel {
+
+  display: none; /* is changed to "flex" when toggled */
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+
+  background-color: var(--secondary-fill);
+  border: 5px solid var(--main-border);
+
+  left: calc(25px);
+  top: calc(25px);
+
+  width: calc(100% - 75px);
+  height: calc(100% - 100px);
+}
+
+
+.homepage-messages-1 {
+  position: relative;
+  transform: none;
+  left: calc(-25px);
+
+  height: 100%;
+  width: 300px;
+}
+
+.homepage-messages-2 {
+  position: relative;
+  left: calc(25px);
+
+  height: 100%;
+  width: calc(100% - 350px);
+}
+
+
+.homepage-internal-panel-container-revised {
+  display: block;
+  position: absolute;
+  
+  left: 25px;
+  top: 25px;
+
+  height: calc(100% - 50px);
+  width: calc(100% - 50px);
+
+  overflow-x: scroll;
+  overflow-y: scroll;
+}

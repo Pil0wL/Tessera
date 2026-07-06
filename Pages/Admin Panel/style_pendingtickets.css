@@ -1,0 +1,48 @@
+
+
+
+.admin-component-pendingtickets.a {
+  position: absolute;
+  transform: none;
+  top: 100px;
+
+  width: 500px;
+  height: 500px;
+}
+.admin-component-pendingtickets.b {
+  position: absolute;
+  transform: none;
+  top: 100px;
+
+  left: 515px;
+
+  width: 300px;
+  height: 500px;
+}
+.admin-component-pendingtickets.b.c {
+  left: 820px;
+}
+.admin-component-pendingtickets.b.d {
+  left: 1125px;
+}
+
+.admin-component-pendingtickets.border {
+  position: absolute;
+
+  left: 505px;
+
+  width: 5px;
+  height: 500px;
+
+  background-color: var(--main-border);
+  border-radius: 5px;
+
+  padding: none;
+  margin: none;
+}
+.admin-component-pendingtickets-placement.a {
+  left: 515px;
+}
+.admin-component-pendingtickets-placement.b {
+  left: 720px;
+}

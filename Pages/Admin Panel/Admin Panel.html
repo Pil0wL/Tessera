@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tessera - Admin Panel</title>
+
+    <head>
+        <title>Tessera</title>
+        <meta property="og:title" content="Tessera" />
+        <meta property="twitter:card" content="summary_large_image" />
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="../.././globalstyles.css"/>
+        <link rel="icon" type="image/x-icon" href="../.././images/favicon.png">
+    </head>
+</head>
+
+<body>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style_pendingtickets.css" />
+    <link rel="stylesheet" href="./style_systemrecords.css" />
+    <link rel="stylesheet" href="./style_overview.css" />
+
+    <div class="container-fit-to-screen color-bg">
+        <!-- top bar -->
+        <div id="topbar" class="container-secondaryfillbordered admin-firstbar">
+            Yeah I AM THIRSTY
+            <!-- text is replaced -->
+        </div>
+        <button id="gotohomepage" class="button-style1 topbar-button-placement">
+            Go to Home page
+        </button>
+        <!-- main content -->
+        <div class="admin-primary-container">
+            <!-- buttons-->
+            <div class="admin-container-buttons">
+                <button id="OverviewButton" class="container-secondaryfill admin-category-button">Overview</button>
+                <button id="PendingTicketsButton" class="container-secondaryfill admin-category-button">Pending
+                    Tickets</button>
+                <button id="UserMaButton" class="container-secondaryfill admin-category-button">User Management</button>
+                <button id="SystemRecButton" class="container-secondaryfill admin-category-button">System
+                    Records</button>
+                <!-- <button id="ReportsButton" class="container-secondaryfill admin-category-button">Reports</button> -->
+                <!-- <button id="SettingsButton" class="container-secondaryfill admin-category-button">Settings</button> -->
+
+
+            </div>
+
+            <!-- panels -->
+            <div class="container-secondaryfill admin-main-container-category">
+                <!-- Overview -->
+                <div id="OverviewPanel" class="admin-container-individual-categorypanel">
+                    <div id="overview-charts-loginsbyday" class="container-mainfill container-charts-parent bargraph">
+                    </div>
+
+
+                </div>
+                <!-- Pending Tickets -->
+                <div id="PendingTicketsPanel" class="admin-container-individual-categorypanel">
+
+                    <!-- filter 1 -->
+                    <div id="pending-tickets-user-filter" class="button-style2 default-shadow container-dropdown">
+                        <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
+
+                        <p>Sort By: This Text is replaced</p>
+                        <div class="default-shadow container-dropdown-content">
+                            <button>Submitted Descending</button>
+                            <button>Submitted Ascending</button>
+                            <button>Date Created Descending</button>
+                            <button>Date Created Ascending</button>
+                        </div>
+                    </div>
+
+                    <!-- User list -->
+                    <div class="button-style1 admin-component-pendingtickets a">
+
+                        <div class="container-headertextstyle a">
+                            User Results
+                        </div>
+                        <div class="container-headertextstyle b"></div>
+                        <div class="container-headertextstyle c">
+                            <ol id="pending-tickets-user-list" class="container-fit-to-container"></ol>
+                        </div>
+                    </div>
+
+                    <div class="admin-component-pendingtickets border"></div>
+
+                    <!-- Searcch for their active ticket list -->
+                    <div id="pending-tickets-active-search"
+                        class="button-style1 default-shadow search-box admin-component-pendingtickets-placement a">
+                        <button>
+                            <img class="parent-height-ratio-1-1" src="../.././images/Freepik magnifying.png"
+                                alt="Freepik Logo">
+                        </button>
+                        <input type="text" placeholder="Search...">
+                    </div>
+
+                    <!-- filter 1 -->
+                    <div id="pending-tickets-active-filter1"
+                        class="button-style2 default-shadow container-dropdown admin-component-pendingtickets-placement b">
+                        <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
+
+                        <p>Sort By: This Text is replaced</p>
+                        <div class="default-shadow container-dropdown-content">
+                            <button>Date Ascending</button>
+                            <button>Date Descending</button>
+                            <button>Alphabetically Ascending</button>
+                            <button>Alphabetically Descending</button>
+                        </div>
+                    </div>
+
+                    <!-- Their Active Ticket List -->
+                    <div class="button-style1 admin-component-pendingtickets b">
+
+                        <div class="container-headertextstyle a">
+                            Active Tickets
+                        </div>
+                        <div class="container-headertextstyle b"></div>
+                        <div class="container-headertextstyle c">
+                            <ol id="pending-tickets-active-tickets" class="container-fit-to-container"></ol>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="button-style1 admin-component-pendingtickets b c">
+
+                        <div class="container-headertextstyle a">
+                            Description
+                        </div>
+                        <div class="container-headertextstyle b"></div>
+                        <div id="pending-tickets-description" class="container-headertextstyle c">
+                            Click on a ticket!
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="button-style1 admin-component-pendingtickets b d">
+
+                        <div class="container-headertextstyle a">
+                            Actions
+                        </div>
+                        <div class="container-headertextstyle b"></div>
+                        <div class="container-headertextstyle c">
+                            <ol class="container-fit-to-container">
+                                <li class="button-style2 admin-list-button"><button
+                                        id="pending-tickets-note">Note</button></li>
+                                <li class="button-style2 admin-list-button"><button id="pending-tickets-set-status">Set
+                                        Status</button></li>
+                                <li class="button-style2 admin-list-button"><button
+                                        id="pending-tickets-archive">Archive</button></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Management -->
+                <div id="UserMaPanel" class="admin-container-individual-categorypanel">
+
+                    <!-- filter 1 -->
+                    <div id="user-management-user-filter" class="button-style2 default-shadow container-dropdown">
+                        <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
+
+                        <p>Sort By: This Text is replaced</p>
+                        <div class="default-shadow container-dropdown-content">
+                            <button>Submitted Descending</button>
+                            <button>Submitted Ascending</button>
+                            <button>Date Created Descending</button>
+                            <button>Date Created Ascending</button>
+                        </div>
+                    </div>
+
+                    <!-- User list -->
+                    <div class="button-style1 admin-component-pendingtickets a">
+
+                        <div class="container-headertextstyle a">
+                            User Results
+                        </div>
+                        <div class="container-headertextstyle b"></div>
+                        <div class="container-headertextstyle c">
+                            <ol id="user-management-user-list" class="container-fit-to-container"></ol>
+                        </div>
+                    </div>
+
+                    <div class="admin-component-pendingtickets border"></div>
+
+                    <!-- User Information -->
+                    <div class="button-style1 admin-component-pendingtickets b">
+
+                        <div class="container-headertextstyle a">
+                            User Information
+                        </div>
+                        <div class="container-headertextstyle b"></div>
+                        <div id="user-management-user-information" class="container-headertextstyle c">
+                            Click on a user!
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="button-style1 admin-component-pendingtickets b c">
+
+                        <div class="container-headertextstyle a">
+                            Actions
+                        </div>
+                        <div class="container-headertextstyle b"></div>
+                        <div id="pending-tickets-description" class="container-headertextstyle c">
+                            <ol class="container-fit-to-container">
+                                <li class="button-style2 admin-list-button"><button
+                                        id="user-management-give-moderator">Give Moderator Role</button></li>
+                                <li class="button-style2 admin-list-button"><button
+                                        id="user-management-remove-moderator">Remove Moderator Role</button></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- System Records -->
+                <div id="SystemRecPanel" class="admin-container-individual-categorypanel">
+
+                    <!-- filter 1 -->
+                    <div id="system-records-filter1" class="button-style2 default-shadow container-dropdown">
+                        <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
+
+                        <p>Sort By: This Text is replaced</p>
+                        <div class="default-shadow container-dropdown-content">
+                            <button>Date Created Descending</button>
+                            <button>Date Created Ascending</button>
+                        </div>
+                    </div>
+
+                    <!-- filter 2 -->
+                    <div id="system-records-filter2"
+                        class="button-style2 default-shadow container-dropdown admin-system-records filterpos">
+                        <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
+
+                        <p>Modification Type: This Text is replaced</p>
+                        <div class="default-shadow container-dropdown-content">
+                            <button>Tickets</button>
+                            <button>Users</button>
+                        </div>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="button-style1 admin-system-records a">
+
+                        <div class="container-headertextstyle g">
+                            Results
+                        </div>
+                        <div class="container-headertextstyle h"></div>
+                        <div class="container-headertextstyle c">
+                            <ol id="system-records-list" class="container-fit-to-container"></ol>
+                        </div>
+                        <div class="container-headertextstyle i">
+                            <button id="system-records-list-refresh" class="container-fit-to-container">
+                                <img class="parent-height-ratio-1-1" src="../.././images/Freepik reload.png"
+                                    alt="reload icon">
+                            </button>
+                        </div>
+                    </div>
+                    <!-- description -->
+                    <div class="button-style1 admin-system-records b">
+                        <div class="container-headertextstyle g">
+                            Information
+                        </div>
+                        <div class="container-headertextstyle h"></div>
+                        <div id="system-records-information" class="container-headertextstyle c">
+                            Click on a log!
+                        </div>
+
+                    </div>
+
+                    <div id="system-records-moderation-chart"
+                        class="container-mainfill container-charts-parent bargraph admin-system-records c"></div>
+                </div>
+
+                <!-- Reports -->
+                <div id="ReportsPanel" class="container-mainfill admin-container-individual-categorypanel">
+                    reports
+
+                </div>
+                <!-- Settings -->
+                <div id="SettingsPanel" class="container-mainfill admin-container-individual-categorypanel">
+                    settings
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <link rel="canonical" href="https://pil0wl.github.io/Tessera/">
+
+</body>
+<script src="../.././globalscript.js"></script>
+<script src="./script.js"></script>
+<script type="module" src="./module.js"></script>
+
+</html>

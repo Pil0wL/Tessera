@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tessera - Home Page</title>
+    <head>
+        <title>Tessera</title>
+        <meta property="og:title" content="Tessera" />
+        <meta property="twitter:card" content="summary_large_image" />
+        
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="../.././globalstyles.css"/>
+        <link rel="icon" type="image/x-icon" href="../.././images/favicon.png">
+    </head>
+</head>
+    <body>
+        <link rel="stylesheet" href="./style.css"/>
+        <link rel="stylesheet" href="./style_myactivity.css"/>
+        <link rel="stylesheet" href="./style_submitticket.css"/>
+        <link rel="stylesheet" href="./style_account.css"/>
+        <link rel="stylesheet" href="./style_smartticketstat.css"/>
+
+
+        <div class="container-fit-to-screen color-bg">
+
+
+            <!-- Quick Access -->
+            <div class="homepage-container-quick-access default-shadow">
+                <!-- logo -->
+                <div class="container-logo homepage-container-logo textstyle-standard">
+                    <img class="parent-height-ratio-1-1" src="../.././images/Freepik ticket.png" alt="Freepik Logo">
+                    Tessera
+                </div>
+
+                <!-- buttons -->
+                <button id="popup_my_activity" class="button-style1 default-shadow homepage-quickacess-button" >My Activity</button>
+            
+                <button id="popup_submit_ticket" class="button-style1 default-shadow homepage-quickacess-button" style="top: 230px;">Submit a Ticket</button>
+            
+                <button id="popup_statistics" class="button-style1 default-shadow homepage-quickacess-button" style="top: 295px;">Smart Ticket Statistics</button>
+                
+                <button id="gotoadminpanel" class="button-style1 default-shadow homepage-quickacess-button" style="top: 360px;">Go to Admin Panel</button>
+                
+
+
+                <!--
+                <button id="popup_my_account" class="button-style1 default-shadow homepage-quickacess-button" style="top: auto; bottom: 50px;">My Account</button>
+                -->
+                <button id="logout" style="top: auto; bottom: 50px;" class="button-style1 default-shadow homepage-quickacess-button">
+                    Logout
+                </button>
+            </div>
+
+            <!-- Panels -->
+            <div class="homepage-container-panels">
+                <!-- Welcome Message (put in here because the middle of it is in the same place as the panels) -->
+                <div id="welcome-message" class="homepage-welcome">Welcome to Tessera! Placeholder
+                </div>
+                
+                <!-- My Activity -->
+                <div id="my_activity" class="homepage-individual-panel">
+                    <div id="my_activity_1" class="homepage-internal-panel-container">
+
+                        <!-- search -->
+                        <div id="my_activity_searchfilter" class="button-style1 default-shadow search-box">
+                            <button>
+                                <img class="parent-height-ratio-1-1" src="../.././images/Freepik magnifying.png" alt="Freepik Logo">
+                            </button>
+                            <input type="text" placeholder="Search...">
+                        </div>
+
+                        <!-- filter 1 -->
+                        <div id="my_activity_quickfilter" class="button-style2 default-shadow container-dropdown homepage-myactivity-1-sortby">
+                            <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
+                    
+                            <p>Sort By: This Text is replaced</p>
+                            <div class="default-shadow container-dropdown-content">
+                                <button>Date Ascending</button>
+                                <button>Date Descending</button>
+                                <button>Alphabetically Ascending</button>
+                                <button>Alphabetically Descending</button>
+                            </div>
+                        </div>
+
+                        <!-- main container -->
+                        <div class="homepage-myactivity-1-container">
+                            <!-- active ticket selection -->
+                            <div class="button-style1 homepage-myactivity-1-1">
+                                <div class="container-headertextstyle g">
+                                    Active Tickets
+                                </div>
+                                <div class="container-headertextstyle h"></div>
+                                <div class="container-headertextstyle c">
+                                    <ol id="my_activity_activeticketcontainer" class="container-fit-to-container"></ol>
+                                </div>
+                                <div class="container-headertextstyle i">
+                                    <button id="my_activity_activeticketrefresh" class="container-fit-to-container">
+                                        <img class="parent-height-ratio-1-1" src="../.././images/Freepik reload.png" alt="reload icon">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- details -->
+                            <div class="container-mainfill homepage-myactivity-1-2">
+                                <div class="container-headertextstyle a">
+                                    Details
+                                </div>
+                                <div class="container-headertextstyle b"></div>
+                                <div id="homepage-myactivity-1-details" class="container-headertextstyle d">
+                                    Content goes here
+                                </div>
+                                <div class="container-headertextstyle e"></div>
+                                <div class="container-headertextstyle f">
+                                    <button id="homepage_myactivity_1_details_edit" class="button-style1 default-shadow" >Edit</button>
+                                    <button id="homepage_myactivity_1_details_remove" class="button-style1 default-shadow" >Delete/Archive</button>
+            
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="my_activity_2" class="homepage-internal-panel-container">
+                        <!-- search -->
+                        <div id="my-ticket-history-search" class="button-style1 default-shadow search-box">
+                            <button>
+                                <img class="parent-height-ratio-1-1" src="../.././images/Freepik magnifying.png" alt="Freepik Logo">
+                            </button>
+                            <input type="text" placeholder="Search...">
+                        </div>
+
+                        <!-- filter 1 -->
+                        <div id="my-ticket-history-quickfilter" class="button-style2 default-shadow container-dropdown homepage-myactivity-1-sortby">
+                            <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
+                    
+                            <p>Sort By: This Text is replaced</p>
+                            <div class="default-shadow container-dropdown-content">
+                                <button>Date Ascending</button>
+                                <button>Date Descending</button>
+                                <button>Alphabetically Ascending</button>
+                                <button>Alphabetically Descending</button>
+                            </div>
+                        </div>
+
+                        <!-- Ticket History Selection -->
+                        <div class="button-style1 default-shadow homepage-myactivity-2-1">
+                            <div class="container-headertextstyle g">
+                                Ticket History
+                            </div>
+                            <div class="container-headertextstyle h"></div>
+                            <div class="container-headertextstyle c">
+                                <ol id="my-ticket-history-container" class="container-fit-to-container"></ol>
+                            </div>
+                            <div class="container-headertextstyle i">
+                                <button id="my-ticket-history-refresh" class="container-fit-to-container">
+                                    <img class="parent-height-ratio-1-1" src="../.././images/Freepik reload.png" alt="reload icon">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="container-mainfill homepage-myactivity-2-2">
+                            <div class="container-headertextstyle a">
+                                Details
+                            </div>
+                            <div class="container-headertextstyle b"></div>
+                            <div id="ticket-history-details" class="container-headertextstyle d">
+                                Content goes here
+                            </div>
+                            <div class="container-headertextstyle e"></div>
+                            <div class="container-headertextstyle f">
+                                <button id="ticket-history-rate-satisfaction" class="button-style1 default-shadow" >Rate Satisfaction</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div id="my_activity_3" class="homepage-internal-panel-container">
+
+                        <!-- Hidden buttons for legacy reasons-->
+                        <div style="display: none;" class="button-style1 default-shadow homepage-myactivity-3-export">
+                            Export as PDF
+                        </div>
+                        <div style="display: none;" class="button-style1 default-shadow homepage-myactivity-3-export" style="right: 225px">
+                            Export as CSV
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div id="my_activity_button_1" class="button-style1 default-shadow homepage-myactivity-button">
+                        1
+                    </div>
+                    <div id="my_activity_button_2" class="button-style1 default-shadow homepage-myactivity-button" style="left: 80px;">
+                        2
+                    </div>
+                    <!-- 
+                    <div id="my_activity_button_3" class="button-style1 default-shadow homepage-myactivity-button" style="left: 135px;">
+                        3
+                    </div>
+                    -->
+                </div>
+
+                <!-- Submit a Ticket -->
+                <div id="submit_ticket" class="homepage-individual-panel">
+                    <!-- greetings -->
+                    <div id="submit_ticket_greetings" class="homepage-internal-panel-container">
+                        <div class="homepage-submitticket-titletext">
+                            Welcome to submit a ticket!
+                        </div>
+
+
+                        <div class="homepage-submitticket-greetings-quickviewtitle">
+                            Your tickets ( more info in the activity page):
+                        </div>
+                        <div class="button-style1 default-shadow homepage-submitticket-greetings-quickview">
+                            <ol id="submit_ticket_active_tickets" class="container-fit-to-container"></ol>
+                        </div>
+
+                        <button id="button_submit_ticket_greetings" class="button-style1 default-shadow homepage-submitticket-greetings-submit">New Ticket</button>
+                    </div>
+
+                    <!-- forum -->
+                    <div id="submit_ticket_forum" class="homepage-internal-panel-container">
+
+                        <div class="container-mainfill homepage-submitticket-forum-title" >
+                            <input id="submit_ticket_forum_title" class="container-fit-to-container" type="text" placeholder="20 Characters Max" value="Dont look at this">
+                        </div>
+                        <div class="container-mainfill homepage-submitticket-forum-entry" >
+                            <textarea id="submit_ticket_forum_textarea" class="container-fit-to-container textstyle-standard" placeholder="...">Write your feedback 200 - 300 words</textarea>
+                        </div>
+
+                        
+                        <!-- Category -->
+                        <div id="submit_ticket_forum_category" class="button-style2 default-shadow container-dropdown homepage-submitticket-forum-category">
+                            <img class="parent-height-ratio-1-1" src="../.././images/Freepik down.png" alt="Freepik Logo">
+                    
+                            <p>Sort By: This Text is replaced</p>
+                            <div class="default-shadow container-dropdown-content">
+                                <button>Technical</button>
+                                <button>Network</button>
+                                <button>Human Resource</button>
+                            </div>
+                        </div>
+                        
+                        <button id="button_submit_ticket_forum" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Next
+                        </button>
+                    </div>
+
+                    <!-- review -->
+                    <div id="submit_ticket_review" class="homepage-internal-panel-container">
+                        
+                        <div class="homepage-submitticket-forum-warn">
+                           Make sure everything here is correct
+                        </div>
+                        
+                        <div id="submit_ticket_review_toreview_title" class="container-mainfill homepage-submitticket-forum-title textstyle-standard" style="color: #ffffff79" >
+                            <!-- content is put in through code -->
+                        </div>
+                        <div id="submit_ticket_review_toreview_description" class="container-mainfill homepage-submitticket-forum-entry textstyle-standard" style="color: #ffffff79" >
+                            <!-- content is put in through code -->
+                        </div>
+
+                        
+                        <!-- Category -->
+                        <div id="submit_ticket_review_toreview_category" class="button-style2 default-shadow homepage-submitticket-forum-category">
+                            <!-- content is put in through code -->
+                        </div>
+                        
+                        <button id="button_submit_ticket_review_1" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Back
+                        </button>
+                    
+                        <button style="right: 225px;" id="button_submit_ticket_review_2" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Cancel
+                        </button>
+                    
+                        <button style="left: 0px; right: auto;" id="button_submit_ticket_review_3" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Confirm
+                        </button>
+
+                        <button style="left: 0px; right: auto; display: none;" id="button_submit_ticket_review_3_loading" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            <div class="spinner"></div>
+                        </button>
+                    
+                    </div>
+
+                    <!-- confirmation -->
+                    <div id="submit_ticket_confirmation" class="homepage-internal-panel-container">
+                        
+                        <div class="container-fit-to-container">
+                            <div id="submit_ticket_confirmation_success" style="top: 50%; transform: translate(0%, -50%);" class="homepage-submitticket-titletext">
+                                Success!
+                            </div>
+                            <div id="submit_ticket_confirmation_error" style="top: 50%; transform: translate(0%, -50%);" class="homepage-submitticket-titletext">
+                                <!-- changed in script to display error message -->
+                            </div>
+                        </div>
+                        <button id="button_submit_ticket_confirmation" class="button-style1 default-shadow homepage-submitticket-lowerrightbutton">
+                            Confirm
+                        </button>
+                    
+                    </div>
+                </div>
+
+                <!-- Smart Ticket Statistics -->
+                <div id="statistics" class="homepage-individual-panel">
+                    
+                        
+                    
+                    <div class="homepage-internal-panel-container-revised">
+                        <div id="smart-ticket-my-history" class="container-mainfill container-charts-parent bargraph"></div>
+                        <div id="smart-ticket-my-categories" class="container-mainfill smart-ticket-placement a container-charts-parent piechart"></div>
+                        <div id="smart-ticket-daily-logins" class="container-mainfill smart-ticket-placement b container-charts-parent heatmap"></div>
+                        <div id="smart-ticket-satisfaction-rating" class="container-mainfill smart-ticket-placement c container-charts-parent piechart"></div>
+
+                    </div>
+                </div>
+                
+                <!-- My Account -->
+                <div id="my_account" class="homepage-individual-panel">
+
+                    <div id="submit_ticket_greetings" class="homepage-internal-panel-container">
+                        
+                        <div class="homepage-account-datecreated">
+                            Date Created: XX|XX|XXXX
+                        </div>
+                        <div class="homepage-account-title">
+                            How people see you:
+                        </div>
+                        <div class="container-borderfill homepage-account-profile">
+                            profile icon
+                        </div>
+                        
+                        <!-- 
+                        <button id="logout" class="button-style1 default-shadow homepage-account-logout">
+                            Logout
+                        </button>
+                        -->
+                        <div class="container-mainfill homepage-account-settings">
+                            <div class="homepage-account-settings-leftsidetext">
+                                Notifications:
+                            </div>
+                            <div class="button-style1 default-shadow homepage-account-settings-rightsidebutton">
+                                Desktop-Allowed
+                            </div>
+                            <div class="button-style1 default-shadow homepage-account-settings-rightsidebutton secondary">
+                                Browser-Only
+                            </div>
+
+                            <div class="secondrow homepage-account-settings-leftsidetext">
+                                Notifications have sound:
+                            </div>
+                            <div class="secondrow button-style1 default-shadow homepage-account-settings-rightsidebutton">
+                                On
+                            </div>
+                            <div class="secondrow button-style1 default-shadow homepage-account-settings-rightsidebutton secondary">
+                                Off
+                            </div>
+
+                            <div style="top: 200px;" class="homepage-account-settings-centeredtext">
+                                Change Password:
+                            </div>
+
+                            <input style="top: 250px;" class="button-style1 default-shadow homepage-account-settings-centeredbutton" type="text" placeholder="Current Password"/>
+                    
+                            <input style="top: 305px;" class="button-style1 default-shadow homepage-account-settings-centeredbutton" type="text" placeholder="Re-Type Current Password"/>
+                    
+                            <input style="top: 415px;" class="button-style1 default-shadow homepage-account-settings-centeredbutton" type="text" placeholder="New Password"/>
+                    
+                            <button style="top: 465px; width: 50%;" class="button-style1 default-shadow homepage-account-settings-centeredbutton">
+                                Confirm
+                            </button>
+                    
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        <link rel="canonical" href="https://pil0wl.github.io/Tessera/">
+
+    </body>
+    <script src="../.././globalscript.js"></script>
+    <script src="./script.js"></script>
+    <script type="module" src="./module.js"></script>
+    <script type="module" src="./module_submitticket.js"></script>
+    <script type="module" src="./module_myactivity.js"></script>
+    <script type="module" src="./module_smartticketstat.js"></script>
+</html>

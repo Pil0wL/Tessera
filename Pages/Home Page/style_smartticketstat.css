@@ -1,0 +1,13 @@
+
+.smart-ticket-placement.a {
+  top: var(--chart-bargraph-height-and-padding);
+}
+
+.smart-ticket-placement.b {
+  top: calc(var(--chart-bargraph-height-and-padding) + var(--chart-piechart-height-and-padding));
+}
+
+.smart-ticket-placement.c {
+  top: calc(var(--chart-bargraph-height-and-padding));
+  left: var(--chart-piechart-width-and-padding);
+}

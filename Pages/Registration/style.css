@@ -13,10 +13,6 @@
   transform: translate(-50%, -50%);
 }
 .registration-mask {
-  overflow: clip;
-  max-width: 100%;
-  max-height: 100%;
-
   mask-image: radial-gradient(
     ellipse at center,
     black 60%,
@@ -24,7 +20,7 @@
   );
 }
 
-.registration-username {
+.registration-input {
   position: absolute;
 
   left: calc(50%);
@@ -32,17 +28,8 @@
 
   width: 25%;
 }
-.registration-password {
-  position: absolute;
 
-  left: calc(50%);
-  top: calc(165px);
 
-  width: 25%;
-}
-.registration-re-password {
-  top: calc(220px);
-}
 .registration-submit {
   position: absolute;
 
@@ -50,7 +37,6 @@
   bottom: calc(10%);
 
   width: 25%;
-  cursor: pointer;
 }
 .registration-title {
   position: absolute;

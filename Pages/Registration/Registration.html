@@ -3,24 +3,27 @@
 
     <head>
         <title>Tessera - Registration</title>
+        <base href="../../../">
         <meta property="og:title" content="Tessera" />
         <meta property="twitter:card" content="summary_large_image" />
-
+        
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="../../globalstyles.css"/>
+        <link rel="stylesheet" href="globalstyles.css"/>
+        <link rel="icon" type="image/x-icon" href="../.././images/favicon.png">
     </head>
     <body>
 
         
-        <link rel="stylesheet" href="./style.css"/>
+        <link rel="stylesheet" href="Pages/Registration/style.css"/>
         <div class="container-fit-to-screen color-bg">
             
 
 
             <!-- background -->
             <div class="registration-mask bg-image">
-                <img src="../../images/Registration.jpg" alt="its just clouds">
+                <img src="images/Registration.jpg" alt="its just clouds">
             </div>
 
             <!-- Title -->
@@ -29,13 +32,22 @@
             </div>
 
             <!-- the registration details -->
-            <div class="container-mainfill registration-container default-shadow">
-                <form action="../Landing Page/Landing Page.html">
-                    <input class="button-style1 registration-username default-shadow" type="text" name="username" placeholder="Enter name" />
-                    <input class="button-style1 registration-password default-shadow" type="password" name="password" placeholder="Enter Password" />
-                    <input class="button-style1 registration-password registration-re-password default-shadow" type="password" name="password" placeholder="Re-Enter Password" />
+            <div id="main-registration-container" class="container-mainfill registration-container default-shadow">
+                <form id="signupForm">
+                    <input id="username" class="button-style1 registration-input default-shadow" type="text" name="username" placeholder="Enter Username" required/>
+                    <input id="email" style="top: calc(50px + 55px);" class="button-style1 registration-input default-shadow" type="email" name="email" placeholder="Enter Email" required/>
+                    <input id="password" style="top: calc(50px + 55px * 3);" class="button-style1 registration-input default-shadow" type="password" name="password" placeholder="Enter Password" required/>
+                    <input style="top: calc(50px + 55px * 4);" class="button-style1 registration-input registration-re-password default-shadow" type="password" name="password" placeholder="Re-Enter Password" />
 
                     <button class="button-style1 registration-submit default-shadow" type="submit">Register</button>
+                </form>
+            </div>
+
+            <!-- email verification -->
+            <div id="verification-container" class="container-mainfill registration-container default-shadow">
+                <form id="confirmForm">
+                    <input id="verification-input" class="button-style1 registration-input default-shadow" type="text" name="username" placeholder="Enter Email" required/>
+                    <button class="button-style1 registration-submit default-shadow" type="submit">Verify Email</button>
                 </form>
             </div>
 
@@ -44,5 +56,7 @@
 
 
     </body>
-    <script src="../../globalscript.js"></script>
+    <script src="globalscript.js"></script>
+    <script type="module" src="local_modules/aws main.js"></script>
+    <script type="module" src="Pages/Registration/module.js"></script>
 </html>

@@ -1,83 +1,29 @@
-
-
-:root { /* Globals */
+:root {
+  /* Globals */
   --main-fill: #8BB4DC;
   --main-border: #95C5F5;
+  --main-border-transparent: #95C5F586;
   --secondary-fill: #7BAFE0;
   --bg-fill: #D3E0F0;
   --bg-border: #B0C9E5;
   --text-on-bg: #FFFFFF;
   --text-on-bg-disable: #ffffff86;
+
+
+  --chart-bargraph-height-and-padding: 460px;
+  --chart-piechart-height-and-padding: 460px;
+  --chart-piechart-width-and-padding: 525px;
 }
- 
-html, body {
+
+html,
+body {
   height: 100%;
   margin: 0;
+
+  scrollbar-color: var(--text-on-bg) transparent;
+  scrollbar-width: thin;
 }
 
-/**************** Quick Settings ****************/
-
-.default-shadow {
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
-}
-.color-bg {
-  background-color: var(--bg-fill);
-}
-.bg-image img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-/**************** Container Types ****************/
-.container-fit-to-screen {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-
-  background: linear-gradient(to top, var(--bg-fill) 43%, var(--bg-border) 95%);
-}
-
-
-.container-mainfill {
-  border-radius: 5px;
-  background: var(--main-fill);
-}
-.container-secondaryfill {
-  border-radius: 5px;
-  background: var(--secondary-fill);
-}
-.container-borderfill {
-  border-radius: 5px;
-  background: var(--main-border);
-}
-
-.container-logo {
-  color: var(--text-on-bg);
-  position: absolute;
-
-  height: 50px;
-  width: 200px;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.container-logo img {
-  height: 100%;
-  aspect-ratio: 1 / 1;
-}
-/**************** Text Settings ****************/
-.textstyle-standard { /* kept here so you may re-apply it */
-  color: var(--text-on-bg);
-
-  font-family: "Times New Roman", serif;
-  font-size: 24px;
-  font-weight: normal;
-  text-align: center;
-}
 body * {
   color: var(--text-on-bg);
 
@@ -87,6 +33,143 @@ body * {
   text-align: center;
 }
 
+button {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 25px;
+  height: 25px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  /*border-radius: 10px;*/
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-on-bg);
+  /*border-radius: 10px;*/
+  /*border: 3px solid #f1f1f1;*/
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-on-bg-disable);
+}
+
+ol {
+  list-style-type: none;
+  padding-left: 0px;
+  padding-top: 0px;
+
+  overflow-y: scroll;
+}
+
+ol li {
+  margin-bottom: 5px;
+}
+
+.spinner {
+  transform: translate();
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 25px;
+  height: 25px;
+
+  border: 5px solid var(--text-on-bg) !important;
+  border-top: 5px solid transparent !important;
+  border-radius: 50% !important;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+div.search-box {
+  position: absolute;
+  transform: none;
+
+  width: calc(200px);
+  padding: 0px;
+}
+
+.search-box button {
+  height: 100%;
+  width: 40px;
+  background: none;
+  border: none;
+  padding: 0%;
+  margin: 0%;
+}
+
+.search-box input {
+  height: 100%;
+  width: calc(100% - 45px);
+  left: 50px;
+  background: none;
+  border: none;
+  padding: 0%;
+  margin: 0%;
+}
+
+/**************** Quick Settings ****************/
+
+.default-shadow {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.color-bg {
+  background-color: var(--bg-fill);
+}
+
+
+.bg-image {
+  height: 100%;
+  width: 100%;
+}
+
+.bg-image img {
+  height: 100%;
+  width: 100%;
+  
+  object-fit: cover;
+}
+
+.center-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+.text-with-many-words {
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  text-align: left;
+
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+
+.parent-height-ratio-1-1 {
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+/**************** Container Types ****************/
 .button-style1 {
   box-sizing: border-box;
   background-color: var(--main-fill);
@@ -101,4 +184,615 @@ body * {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+.button-style2 {
+  box-sizing: border-box;
+  background-color: var(--main-fill);
+  border: 5px solid var(--main-border);
+
+  padding: 5px 5px;
+  height: 50px;
+  width: fit-content;
+
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.container-fit-to-screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: clip;
+
+  background: linear-gradient(to top, var(--bg-fill) 43%, var(--bg-border) 95%);
+}
+
+.container-fit-to-container {
+  position: absolute;
+
+  margin: 0px;
+  padding: 0px;
+
+  top: 0px;
+  left: 0px;
+  right: auto;
+  bottom: auto;
+
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+}
+
+
+.container-mainfill {
+  border-radius: 5px;
+  background-color: var(--main-fill);
+}
+
+.container-secondaryfill {
+  border-radius: 5px;
+  background-color: var(--secondary-fill);
+}
+
+.container-borderfill {
+  border-radius: 5px;
+  background-color: var(--main-border);
+}
+
+.container-secondaryfillbordered {
+  background-color: var(--secondary-fill);
+  border: 5px solid var(--main-border);
+}
+
+.container-logo {
+  color: var(--text-on-bg);
+  position: absolute;
+
+  height: 50px;
+  width: 200px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/**************** Container Types - Ticket ****************/
+.container-ticket {
+  position: relative;
+
+  border-radius: 5px;
+  border: none;
+  background: var(--secondary-fill);
+
+  height: 50px;
+  width: calc(100% - 10px);
+
+  cursor: pointer;
+}
+
+.container-ticket .primary {
+  position: absolute;
+  transform: translate(0%, -50%);
+  background: none;
+
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  left: 5px;
+  top: 50%;
+
+
+  height: 30px;
+  width: calc(80% - 65px);
+}
+
+.container-ticket .secondary {
+  position: absolute;
+  background: none;
+
+  left: calc(80% - 55px);
+
+  height: 100%;
+  width: calc(20% + 50px);
+
+  text-align: center;
+}
+
+.container-ticket .border {
+  position: absolute;
+  background: var(--main-border);
+
+  top: 5px;
+  /*left: calc(80% - 55px); is set manually*/
+
+  height: calc(100% - 10px);
+  width: 5px;
+  border-radius: 5px;
+}
+
+.container-ticket img {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  height: calc(100% - 10px);
+  aspect-ratio: 1 / 1;
+}
+
+/**************** Container Types - User ****************/
+.container-user-list-element {
+  position: relative;
+
+  border-radius: 5px;
+  border: none;
+  background: var(--secondary-fill);
+
+  height: 50px;
+  width: calc(100% - 10px);
+
+  cursor: pointer;
+}
+
+.container-user-list-element .primary {
+  position: absolute;
+  transform: translate(0%, -50%);
+  background: none;
+
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  left: 5px;
+  top: 50%;
+
+
+  height: 30px;
+  width: calc(80% - 65px);
+}
+
+.container-user-list-element .secondary {
+  position: absolute;
+  background: none;
+
+  left: calc(80% - 55px);
+
+  height: 100%;
+  width: calc(20% + 50px);
+
+  text-align: center;
+}
+
+.container-user-list-element .border {
+  position: absolute;
+  background: var(--main-border);
+
+  top: 5px;
+  /*left: calc(80% - 55px); is set manually*/
+
+  height: calc(100% - 10px);
+  width: 5px;
+  border-radius: 5px;
+}
+
+.container-user-list-element img {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  height: calc(100% - 10px);
+  aspect-ratio: 1 / 1;
+}
+
+/**************** Container Types - Quick Build ****************/
+/* special container styles
+  so if you just wanwt a header for your container do
+  a
+  b
+  c
+  
+  if you want a buttons at the bottom, you want to do
+  a
+  b
+  d
+  e
+  f
+
+  if you want to do a b c, but with a button next to the title
+  g
+  h
+  c
+  i <-- the button
+
+*/
+.container-headertextstyle.a {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  height: 30px;
+  width: calc(100% - 10px);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container-headertextstyle.b {
+  position: absolute;
+  top: 35px;
+  left: 5px;
+
+  background: var(--main-border-transparent);
+  border-radius: 5px;
+
+
+  height: 5px;
+  width: calc(100% - 10px);
+}
+
+.container-headertextstyle.c {
+  position: absolute;
+
+  top: 45px;
+  left: 5px;
+
+  height: calc(100% - 50px);
+  width: calc(100% - 10px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  text-align: left;
+
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+
+.container-headertextstyle.d {
+  position: absolute;
+
+  top: 45px;
+  left: 5px;
+
+  height: calc(100% - 115px);
+  width: calc(100% - 10px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  text-align: left;
+
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+
+.container-headertextstyle.e {
+  position: absolute;
+  bottom: calc(60px);
+  left: 5px;
+
+  background: var(--main-border-transparent);
+  border-radius: 5px;
+
+
+  height: 5px;
+  width: calc(100% - 10px);
+}
+
+.container-headertextstyle.f {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+
+  height: 50px;
+  width: calc(100% - 10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.container-headertextstyle.f button {
+  position: relative;
+  transform: none;
+  margin-left: 5px;
+}
+
+.container-headertextstyle.g {
+  position: absolute;
+  top: 5px;
+  left: 45px;
+
+  height: 30px;
+  width: calc(100% - 50px);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container-headertextstyle.h {
+  position: absolute;
+  top: 35px;
+  left: 45px;
+
+  background: var(--main-border-transparent);
+  border-radius: 5px;
+
+
+  height: 5px;
+  width: calc(100% - 50px);
+}
+
+.container-headertextstyle.i {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  height: 35px;
+  width: 35px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/**************** Container Types - Prompt ****************/
+.container-prompt {
+  position: absolute;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--bg-fill);
+  border: 2px solid var(--bg-border);
+  border-radius: 5px;
+
+  top: 50%;
+  left: 50%;
+
+  width: calc(300px + 10%);
+  height: calc(200px + 10%);
+
+  z-index: 1000;
+}
+
+.container-prompt * {
+  color: var(--main-fill);
+  background: none;
+  border: none;
+}
+
+.container-prompt .headertitle {
+  position: absolute;
+  top: 5px;
+
+  height: 50px;
+  width: 100%;
+}
+
+.container-prompt .maincontent {
+  position: absolute;
+  top: 60px;
+  left: 5px;
+
+  height: calc(100% - 120px);
+  width: calc(100% - 10px);
+}
+
+.container-prompt .maincontent .prompttitle {
+  position: absolute;
+
+  left: 0px;
+  top: 0px;
+
+  background-color: var(--main-fill);
+  border-radius: 5px;
+  padding: 0px;
+
+  height: 30px;
+  width: 100%;
+
+  color: var(--text-on-bg);
+}
+
+.container-prompt .maincontent .prompdescription {
+  position: absolute;
+
+  background-color: var(--main-fill);
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+
+  left: 0px;
+  top: 35px;
+
+  height: calc(100% - 40px);
+  width: calc(100% - 10px);
+
+  color: var(--text-on-bg);
+}
+
+.container-prompt .buttoncontainer {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+
+  height: 50px;
+  width: calc(100% - 10px);
+}
+
+.container-prompt .buttoncontainer .left {
+  position: absolute;
+  left: 0px;
+
+  height: 100%;
+}
+
+.container-prompt .buttoncontainer .right {
+  position: absolute;
+  right: 0px;
+
+  height: 100%;
+}
+
+/**************** Container Types - Dropdown ****************/
+.container-dropdown {
+  position: absolute;
+
+  cursor: pointer;
+}
+
+.container-dropdown-content {
+  display: none;
+  position: absolute;
+
+  background-color: var(--main-fill);
+  border: 2px solid var(--main-border);
+
+  top: calc(100% + 4px);
+  left: 0px;
+
+  width: calc(100% - 5px);
+  height: 300%;
+
+  z-index: 20;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.container-dropdown-content button {
+  position: relative;
+  transform: none;
+
+  margin-bottom: 5px;
+
+  background-color: var(--secondary-fill);
+  border: none;
+
+  width: calc(100% - 10px);
+  height: fit-content;
+}
+
+/**************** Container Types - Charts ****************/
+.container-charts-parent.bargraph {
+  position: absolute;
+  transform: none;
+
+
+  /* barcharts are hardcoded to be 300px + 25px * 2 for each margin + 70px for the buttons */
+  height: 435px;
+  width: calc(100%);
+}
+.container-charts-parent.piechart {
+  position: absolute;
+  transform: none;
+
+
+  /* pie charts are hardcoded to be 300px + 25px * 2 for each margin + 70px for the buttons */
+  height: 435px;
+  width: 500px;
+}
+.container-charts-parent.heatmap {
+  position: absolute;
+  transform: none;
+
+
+  /* pie charts are hardcoded to be 300px + 25px * 2 for each margin + 70px for the buttons */
+  height: 535px;
+  width: 1500px;
+}
+
+.container-charts-parent .containerchild {
+  position: absolute;
+
+  top: 25px;
+  left: 25px;
+
+  height: calc(100% - 60px);
+  width: calc(100% - 50px);
+}
+.container-charts-parent .containerbuttons {
+  position: absolute;
+
+  left: 80px;
+  bottom: 25px;
+  
+  height: 70px;
+  width: calc(100% - 105px);
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+
+  justify-content: left;
+  align-items: center;
+}
+
+.container-charts-parent .chartrefresh {
+  position: absolute;
+
+  bottom: 40px;
+  left: 25px;
+
+  height: 40px;
+  width: 40px;
+}
+
+
+.container-charts-parent .border {
+  position: absolute;
+
+  background: var(--main-border-transparent);
+  border-radius: 5px;
+
+  height: 5px;
+
+  bottom: 100px;
+  left: 25px;
+
+  height: 5px;
+  width: calc(100% - 50px);
+}
+
+
+
+
+/**************** Text Settings ****************/
+.textstyle-standard {
+  /* kept here so you may re-apply it */
+  color: var(--text-on-bg);
+
+  font-family: "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
+}
+
+
+/**************** ApexCharts custom config ****************/
+
+
+.apexcharts-toolbar {
+  background-color: var(--secondary-fill) !important;
+}
+
+.apexcharts-menu {
+  background-color: var(--secondary-fill) !important;
 }
